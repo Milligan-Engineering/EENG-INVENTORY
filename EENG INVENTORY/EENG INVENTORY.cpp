@@ -12,8 +12,8 @@ string partName[maxParts];
 string partLoc[maxParts];
 int partQuant[maxParts];
 int partsRemoved;
-int menuChoice; 
-enum{ A=1, B=2};
+char menuChoice; 
+//enum{ A=1, B=2};
 
 int main()
 {
@@ -27,7 +27,7 @@ int main()
 	partQuant[1] = 73;
 	partQuant[2] = 85;
 
-	// Part Locations97\+
+	// Part Locations
 	partLoc[0] = "0101A";
 	partLoc[1] = "0102A";
 	partLoc[2] = "0103A";
@@ -35,16 +35,21 @@ int main()
 	cout << "What would you like to do today?\n\n";
 	cout << "To find a part press A and to exit the program press B";
 		cin >> menuChoice;
-	switch (menuChoice)
-	{
-	case 'A':
-			do 
+		//do
+		//{
+			switch (menuChoice)
+			{
+			case 'A':
+			case'a':
+
+				do
 				{
 
-					cout << "Type part Number or 0 to exit:\n";   
+					cout << "Type part Number or 0 to exit:\n";
 					cin >> partNumber;
+					
 
-					if ((partNumber < 0) || (partNumber > maxParts)) //part not found
+					if ((partNumber <= 0) || (partNumber > maxParts)) //part not found
 					{
 						cout << "part not found.\n\n";
 					}
@@ -53,23 +58,24 @@ int main()
 
 					else // part found command string
 					{
-						cout << "part number: " << partNumber << " requested" <<"\n";
-						cout << "part name: " << partName[partNumber-1]<< "\n";
-						cout << "Quantity: " << partQuant[partNumber-1] << "pcs" << "\n";
-						cout << "Location: "<< partLoc[partNumber-1]<<"\n\n";
-						cout<< "How many parts are you removing? ";
+						cout << "part number: " << partNumber << " requested" << "\n";
+						cout << "part name: " << partName[partNumber - 1] << "\n";
+						cout << "Quantity: " << partQuant[partNumber - 1] << "pcs" << "\n";
+						cout << "Location: " << partLoc[partNumber - 1] << "\n\n";
+						cout << "How many parts are you removing? ";
 						cin >> partsRemoved;
-						 partQuant[partNumber-1] = partQuant[partNumber-1] - partsRemoved; //updates part quantity located in partQuant array
-						 cout << partQuant[partNumber - 1]<<" parts remaining\n\n";
-			 
+						partQuant[partNumber - 1] = partQuant[partNumber - 1] - partsRemoved; //updates part quantity located in partQuant array
+						cout << partQuant[partNumber - 1] << " parts remaining\n\n";
+
 					}
-				}
-			while (partNumber != 0);
+				} 
+				while (partNumber != 0);
 				break;
-	case 'B':
-		
-		break;
-	}
+			case 'B':
+
+				break;
+			}
+		//} while (menuChoice !='B');
  
 
 	
