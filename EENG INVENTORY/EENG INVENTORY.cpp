@@ -12,6 +12,9 @@ string partName[maxParts];
 string partLoc[maxParts];
 int partQuant[maxParts];
 int partsRemoved;
+
+// Changed menuChoice to char as we discussed in class.
+
 char menuChoice; 
 //enum{ A=1, B=2};
 
@@ -47,13 +50,14 @@ int main()
 
 					cout << "Type part Number or 0 to exit:\n";
 					cin >> partNumber;
-					
 
-					if ((partNumber <= 0) || (partNumber > maxParts)) //part not found
+// Porblem here when a 0 is typed in. It goes into the "else" block and looks for partName[-1]
+// You might want to move the while up to here so it exits before looking for the part.
+
+					if ((partNumber < 0) || (partNumber > maxParts)) //part not found
 					{
 						cout << "part not found.\n\n";
 					}
-
 
 
 					else // part found command string
