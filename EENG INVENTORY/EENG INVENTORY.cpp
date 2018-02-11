@@ -1,7 +1,8 @@
 //EENG INVENTORY
 //Sam Wehner
 //EENG 221
-//01/28/2017
+// sjwehner@my.milliga.edu
+//Last modified 02/08/2017
 #include <iostream>
 #include <string>
 
@@ -12,11 +13,11 @@ string partName[maxParts];
 string partLoc[maxParts];
 int partQuant[maxParts];
 int partsRemoved;
-
-// Changed menuChoice to char as we discussed in class.
-
 char menuChoice; 
-//enum{ A=1, B=2};
+int printPartInfo(partNumber);
+
+
+
 
 int main()
 {
@@ -36,14 +37,14 @@ int main()
 	partLoc[2] = "0103A";
 	
 	cout << "What would you like to do today?\n\n";
-	cout << "To find a part press A and to exit the program press B";
+	cout << "To find a part press P and to access part list press I";
 		cin >> menuChoice;
 		//do
 		//{
 			switch (menuChoice)
 			{
-			case 'A':
-			case'a':
+			case 'P':
+			case'p':
 
 				do
 				{
@@ -51,8 +52,6 @@ int main()
 					cout << "Type part Number or 0 to exit:\n";
 					cin >> partNumber;
 
-// Porblem here when a 0 is typed in. It goes into the "else" block and looks for partName[-1]
-// You might want to move the while up to here so it exits before looking for the part.
 
 					if ((partNumber < 0) || (partNumber > maxParts)) //part not found
 					{
@@ -62,11 +61,12 @@ int main()
 
 					else // part found command string
 					{
-						cout << "part number: " << partNumber << " requested" << "\n";
-						cout << "part name: " << partName[partNumber - 1] << "\n";
-						cout << "Quantity: " << partQuant[partNumber - 1] << "pcs" << "\n";
+						cout << "part number: " << partNumber << " requested" << "\t";
+						cout << "part name: " << partName[partNumber - 1] << "\t";
+						cout << "Quantity: " << partQuant[partNumber - 1] << "pcs" << "\t";
 						cout << "Location: " << partLoc[partNumber - 1] << "\n\n";
 						cout << "How many parts are you removing? ";
+						
 						cin >> partsRemoved;
 						partQuant[partNumber - 1] = partQuant[partNumber - 1] - partsRemoved; //updates part quantity located in partQuant array
 						cout << partQuant[partNumber - 1] << " parts remaining\n\n";
@@ -75,11 +75,18 @@ int main()
 				} 
 				while (partNumber != 0);
 				break;
-			case 'B':
+
+			case 'I':
+			case'i':
+		
+				for (i=0, i++);
+					//printPartInfo(i);								// printPartInfo
+					cout << partName[i]"\t" << partQuant[i]"\t" << partLoc[i]"\t";
+
 
 				break;
 			}
-		//} while (menuChoice !='B');
+		
  
 
 	
