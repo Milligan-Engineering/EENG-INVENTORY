@@ -7,9 +7,17 @@
 #include <iostream>
 #include <string>
 
+//Function is good
+
 using namespace std;
 int partIndex(int partNumber[], string partName[], int partQuant[], string partLoc[]);
-const int maxParts = 3;								
+// Add description of preconditions and postconditions
+
+
+const int maxParts = 3;			
+
+//See if you can start getting rid of global variables.
+
 int partnumber;//search value
 string partName[maxParts];
 string partLoc[maxParts];
@@ -42,6 +50,9 @@ int main()
 	
 	cout << "What would you like to do today? \n\n";
 	cout << "To find a part press P and to access part list press I ";
+	// Break this into one line for each option.
+	// Add an exit option.
+	// Put in a loop so user can do several tasks without exiting program.
 		cin >> menuChoice;
 		
 			switch (menuChoice)
@@ -54,6 +65,7 @@ int main()
 
 					cout << "Type part Number or 0 to exit:\n";
 					cin >> partnumber;
+// Let's talk about what all you want the program to do.
 
 
 					if ((partnumber < 0) || (partnumber > maxParts)) //part not found
@@ -85,6 +97,7 @@ int main()
 				
 				break;
 			}
+			//Tell user to enter any character to exit program.
 			char wait;
 			cin >> wait;
 	
