@@ -1,7 +1,7 @@
 //EENG INVENTORY
 //Author: Sam Wehner
 //EENG 221
-// sjwehner@my.milliga.edu
+// sjwehner@my.milligan.edu
 //program if an inventory system that will be used to monitor and maintain quantities, locactions, and names of stored parts.
 //Last modified 02/14/2017
 #include <iostream>
