@@ -6,10 +6,15 @@
 //Last modified 02//2017
 #include <iostream>
 #include <string>
-
+#include <cstdlib>
+#include <fstream>
 //Function is good
 
 using namespace std;
+ofstream LABFILES;
+ifstream partInfo;
+ofstream partData;
+
 void partIndex(int partNumber[], string partName[], int partQuant[], string partLoc[]);//listprint
 // Displays output of part numbers, Names, Quantities, and locations.
 // Only displays iformation for valid parts
@@ -53,16 +58,13 @@ int main()
 		partLoc[0] = "0101A";
 		partLoc[1] = "0102A";
 		partLoc[2] = "0103A";
+		
+		cout << "What would you like to do today? \n\n";
+		cout << "To find a part press P:\n" << "To access part list press I: \n" << "To find class index press S:\n "<<"To exit press E:\n"<<"To get Lab instructions press L:\n";
 		char menuChoice;
 		cin >> menuChoice;
 		do
 		{
-			cout << "What would you like to do today? \n\n";
-			cout << "To find a part press P:\n" << "To access part list press I: \n" << "To exit press E:\n";
-			// Break this into one line for each option. *COMPLETE
-			// Add an exit option. *COMPLETE
-			// Put in a loop so user can do several tasks without exiting program.
-
 
 			switch (menuChoice)
 			{
@@ -77,15 +79,20 @@ int main()
 					cin >> partnumber;
 
 
-
+					
 					if ((partnumber <= 0) || (partnumber > maxParts)) //part not found
 					{
 						cout << "part not found.\n\n";
+						if (partnumber = 'e','E')
+					{
+						return(0);
 					}
 
-
+					}
+					
 					else // part found command string
 					{
+						int choice;
 						cout << "part number: " << partnumber << " requested" << "\t";
 						cout << "part name: " << partName[partnumber - 1] << "\t";
 						cout << "Quantity: " << partQuant[partnumber - 1] << "pcs" << "\t\t";
@@ -94,8 +101,28 @@ int main()
 						cin >> partsRemoved;
 						partQuant[partnumber - 1] = partQuant[partnumber - 1] - partsRemoved; //updates part quantity located in partQuant array
 						cout << partQuant[partnumber - 1] << " parts remaining\n\n";
-
+						cout << "would you like to save this part? ";
+						cin >> choice;
+						if (choice = 1)
+						{
+							partInfo.open("Datasheet.txt");
+								if (partInfo.fail())
+								{
+									cout << " file failed to open";
+									char wait;
+									cin >> wait;
+									exit(1);
+								}
+							partInfo >> partnumber >> partName[partnumber - 1] >> partQuant[partnumber - 1] >> partLoc[partnumber - 1];
+							partData << "part sheet ";
+							exit(1);
+						}
+						
 					}
+					/*if (partnumber = 'e', 'E') 
+					{
+						return(0);
+					}*/
 
 				} 
 				while (partnumber != 0);
@@ -117,8 +144,30 @@ int main()
 			case 'e':
 
 				return(0);
-
 				break;
+			case 'S':
+			case 's':
+				// specific part search
+				break;
+			case'L':
+			case'l':
+				LABFILES.open("LAB1.txt"); //this option allows for the user to acess the labs
+				if (LABFILES.fail())
+				{
+					cout << "Lab file failed to open";
+					char wait;
+					cin >> wait;
+					exit(1);
+				}
+				
+				char wait;
+				cin >> wait;
+				LABFILES.close();
+				break;
+
+
+				
+
 			}
 
 			/*	{
