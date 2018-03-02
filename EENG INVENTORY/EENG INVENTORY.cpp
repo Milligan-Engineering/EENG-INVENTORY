@@ -11,7 +11,8 @@
 //Function is good
 
 using namespace std;
-ofstream LABFILES;
+ifstream LABFILES;
+
 ifstream partInfo;
 ofstream partData;
 
@@ -40,7 +41,7 @@ int main()
 {
 	
 	
-		//Part catagories
+		//Part types
 		//capacitor[3] = { 'cap1', 'cap2', 'cap3' };
 		//resistor[3] = { 'res1','res2', 'res3' };
 		//transistor[3]= { 'tran1', 'tran2', 'tran3' };;
@@ -105,17 +106,18 @@ int main()
 						cin >> choice;
 						if (choice = 1)
 						{
-							partInfo.open("Datasheet.txt");
-								if (partInfo.fail())
+							partData.open("Datasheet.txt");
+								if (partData.fail())
 								{
 									cout << " file failed to open";
 									char wait;
 									cin >> wait;
 									exit(1);
 								}
-							partInfo >> partnumber >> partName[partnumber - 1] >> partQuant[partnumber - 1] >> partLoc[partnumber - 1];
-							partData << "part sheet ";
-							exit(1);
+							partData << partnumber << partName[partnumber - 1] << partQuant[partnumber - 1] << partLoc[partnumber - 1];
+							partData.close();
+							//partData << "part sheet ";
+							//exit(1);
 						}
 						
 					}
@@ -145,10 +147,12 @@ int main()
 
 				return(0);
 				break;
+
 			case 'S':
 			case 's':
 				// specific part search
 				break;
+
 			case'L':
 			case'l':
 				LABFILES.open("LAB1.txt"); //this option allows for the user to acess the labs
@@ -159,6 +163,14 @@ int main()
 					cin >> wait;
 					exit(1);
 				}
+				char cstring[30];
+				for (int i = 0; i < 30; i++)
+				{
+					LABFILES.get(cstring[i]);
+					cout << cstring<<endl;
+
+				}
+					
 				
 				char wait;
 				cin >> wait;
