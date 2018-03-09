@@ -1,1 +1,1 @@
-1capacitor-52340101A
+1 100uF electrolytic capacitor 30 0101A
