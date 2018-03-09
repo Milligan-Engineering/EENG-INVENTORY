@@ -23,8 +23,6 @@ int main()
 	ifstream LABFILES;
 	ifstream partInfo;
 	ofstream partData;
-	char nextChar;
-	string labFilesString = "";
 	string partType[maxParts];
 	string partName[maxParts];
 	int partQuant[maxParts];
@@ -136,8 +134,9 @@ int main()
 			//Specific part search
 			break;
 
-		case 'L':
-		case 'l':
+		case'L':
+		case'l':
+			cout << endl;
 			LABFILES.open("LAB1.txt"); //this option allows for the user to acess the labs
 			if (LABFILES.fail())
 			{
@@ -147,25 +146,29 @@ int main()
 				exit(1);
 			}
 
-			LABFILES.get(nextChar);
-			do
+			char cstring[30];
+			for (int i = 0; i < 30; i++)
 			{
-				labFilesString += nextChar;
-				LABFILES.get(nextChar);
-			} while (nextChar != '\n'); //Continue until new-line character
-
-			cout << labFilesString << endl;
-
-			LABFILES.close();
+				LABFILES.get(cstring[i]);
+				if (LABFILES.eof()) //Stop the loop when the end of the file has been reached - Casey
+				{
+					break;
+				}
+				else
+				{
+					cout << cstring[i]; //Now prints just one character at a time instead of the entire array every loop iteration - Casey
+				}
+			}
+			cout << endl;
 
 			//I don't think there's any point in having the wait here now - Casey		
 			//char wait;
 			//cin >> wait;
+			LABFILES.close();
 			break;
 
-		//default:
-
-			//cout << "Not a valid menu choice.\n\n";
+		default:
+			cout << "Not a valid menu choice.\n\n";
 		}
 
 	} while ((menuChoice != 'E') && (menuChoice != 'e')); //was an OR operator, corrected to AND - Casey
