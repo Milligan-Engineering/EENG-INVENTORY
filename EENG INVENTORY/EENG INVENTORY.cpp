@@ -3,7 +3,7 @@
 //EENG 221
 // sjwehner@my.milligan.edu
 //program if an inventory system that will be used to monitor and maintain quantities, locactions, and names of stored parts.
-//Last modified 02//2017
+//Last modified 03/09/2018
 #include <iostream>
 #include <string>
 #include <cstdlib>
@@ -12,7 +12,6 @@
 
 using namespace std;
 ifstream LABFILES;
-
 ifstream partInfo;
 ofstream partData;
 

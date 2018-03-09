@@ -1,1 +1,1 @@
-1capacitor-52340101A
+2resistor590102A
