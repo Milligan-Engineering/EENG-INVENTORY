@@ -7,13 +7,10 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
-//Function is good
+#include <fstream>
 
 using namespace std;
-ifstream LABFILES;
 
-ifstream partInfo;
-ofstream partData;
 
 void partIndex(int partNumber[], string partName[], int partQuant[], string partLoc[]);//listprint
 //Displays output of part numbers, Names, Quantities, and locations.
@@ -30,20 +27,14 @@ int partnumber;//search value
 int partNumber[maxParts];
 string partName[maxParts];
 string partLoc[maxParts];
-//string capacitor[3]; Moved out of global scope into int main
-//string resistor[3];
-//string transistor[3];
 int partQuant[maxParts];
 //int partsRemoved;
 
 int main()
 {
 		//Part types
-		//capacitor[3] = { "cap1", "cap2", "cap3" }; Doesn't work because you can't define multiple array elements except by intializing them like this:
-		string capacitor[] = { "cap1", "cap2", "cap3" }; //Works (notice there's no 3 in the index because arrays automatically size themselves when you initialize them
-		//resistor[3] = { "res1","res2", "res3"};
+		string capacitor[] = { "cap1", "cap2", "cap3" };
 		string resistor[] = { "res1", "res2", "res3" };
-		//transistor[3] = { "tran1", "tran2", "tran3" };
 		string transistor[] = { "tran1", "tran2", "tran3" };
 
 		//Part Name
@@ -96,6 +87,11 @@ int main()
 						int choice;
 						cout << "part number: " << partnumber << " requested" << "\t";
 						cout << "part name: " << partName[partnumber - 1] << "\t";
+
+						/*if (partName[] = "capacitor")
+						{
+							cout << "capacitor";
+						 }*/
 						cout << "Quantity: " << partQuant[partnumber - 1] << "pcs" << "\t\t";
 						cout << "Location: " << partLoc[partnumber - 1] << "\n\n";
 						cout << "How many parts are you removing? ";
