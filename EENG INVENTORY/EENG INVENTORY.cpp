@@ -4,10 +4,10 @@
 // sjwehner@my.milligan.edu
 //program if an inventory system that will be used to monitor and maintain quantities, locactions, and names of stored parts.
 //Last modified 02//2017
+#include <fstream>
 #include <iostream>
 #include <string>
 #include <cstdlib>
-#include <fstream>
 //Function is good
 
 using namespace std;
@@ -29,9 +29,9 @@ int partnumber;//search value
 int partNumber[maxParts];
 string partName[maxParts];
 string partLoc[maxParts];
-string capacitor[3];
-string resistor[3];
-string transistor[3];
+//string capacitor[3]; Moved out of global scope into int main
+//string resistor[3];
+//string transistor[3];
 int partQuant[maxParts];
 //int partsRemoved;
 
@@ -42,9 +42,13 @@ int main()
 	
 
 		//Part types
-		capacitor[3] = { "cap1", "cap2", "cap3" };
-		resistor[3] = { "res1","res2", "res3"};
-		transistor[3] = { "tran1", "tran2", "tran3" };
+		//capacitor[3] = { "cap1", "cap2", "cap3" }; Doesn't work because you can't define multiple array elements except by intializing them like this:
+		string capacitor[] = { "cap1", "cap2", "cap3" }; //Works (notice there's no 3 in the index because arrays automatically size themselves when you initialize them
+		//resistor[3] = { "res1","res2", "res3"};
+		string resistor[] = { "res1", "res2", "res3" };
+		//transistor[3] = { "tran1", "tran2", "tran3" };
+		string transistor[] = { "tran1", "tran2", "tran3" };
+
 		//Part Name
 		partName[0] = "capacitor";
 		partName[1] = "resistor";
