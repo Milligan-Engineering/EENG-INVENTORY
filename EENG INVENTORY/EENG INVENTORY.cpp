@@ -29,9 +29,9 @@ int partnumber;//search value
 int partNumber[maxParts];
 string partName[maxParts];
 string partLoc[maxParts];
-//string capacitor[3];
-//string resistor[3];
-//string transistor[3];
+string capacitor[3];
+string resistor[3];
+string transistor[3];
 int partQuant[maxParts];
 //int partsRemoved;
 
@@ -40,11 +40,11 @@ int partQuant[maxParts];
 int main()
 {
 	
-	
+
 		//Part types
-		//capacitor[3] = { 'cap1', 'cap2', 'cap3' };
-		//resistor[3] = { 'res1','res2', 'res3' };
-		//transistor[3]= { 'tran1', 'tran2', 'tran3' };;
+		capacitor[3] = { "cap1", "cap2", "cap3" };
+		resistor[3] = { "res1","res2", "res3"};
+		transistor[3] = { "tran1", "tran2", "tran3" };
 		//Part Name
 		partName[0] = "capacitor";
 		partName[1] = "resistor";
