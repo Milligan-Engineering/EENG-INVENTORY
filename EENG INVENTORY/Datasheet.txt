@@ -1,1 +1,1 @@
-2resistor590102A
+1 100uF electrolytic capacitor 30 0101A
