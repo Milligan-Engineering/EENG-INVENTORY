@@ -59,6 +59,7 @@ int main()
 		cout << "What would you like to do today? \n\n";
 		cout << "To find a part press P\n";
 		cout << "To access part list press I \n";
+		cout << "To ?? press C\n";
 		cout << "To find class index press S\n";
 		cout << "To get lab instructions press L\n";
 		cout << "To exit press E\n\n";
@@ -125,17 +126,13 @@ int main()
 			//quantitySort(int partQuant, int Order, int quant);
 			break;
 
-		case 'E':
-		case 'e':
-			break;
-
 		case 'S':
 		case 's':
 			//Specific part search
 			break;
 
-		case'L':
-		case'l':
+		case 'L':
+		case 'l':
 			cout << endl;
 			LABFILES.open("LAB1.txt"); //this option allows for the user to acess the labs
 			if (LABFILES.fail())
@@ -165,6 +162,10 @@ int main()
 			//char wait;
 			//cin >> wait;
 			LABFILES.close();
+			break;
+
+		case 'E':
+		case 'e':
 			break;
 
 		default:
