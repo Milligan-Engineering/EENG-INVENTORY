@@ -3,7 +3,7 @@
 //EENG 221
 //sjwehner@my.milligan.edu
 //program if an inventory system that will be used to monitor and maintain quantities, locactions, and names of stored parts.
-//Last modified 03/09/2017
+//Last modified 02//2017
 #include <iostream>
 #include <string>
 #include <cstdlib>
@@ -86,16 +86,16 @@ int main()
 					{
 						int choice;
 						cout << "part number: " << partnumber << " requested" << "\t";
-
 						cout << "part name: " << partName[partnumber - 1] << "\t";
 
+						/*if (partName[] = "capacitor")
+						{
+							cout << "capacitor";
+						 }*/
 						cout << "Quantity: " << partQuant[partnumber - 1] << "pcs" << "\t\t";
-
 						cout << "Location: " << partLoc[partnumber - 1] << "\n\n";
-
 						cout << "How many parts are you removing? ";
 						cin >> partsRemoved;
-
 						partQuant[partnumber - 1] = partQuant[partnumber - 1] - partsRemoved; //updates part quantity located in partQuant array
 						cout << partQuant[partnumber - 1] << " parts remaining\n\n";
 						cout << "would you like to save this part? ";
