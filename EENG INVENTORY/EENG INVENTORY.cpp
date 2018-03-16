@@ -3,7 +3,7 @@
 //EENG 221
 //sjwehner@my.milligan.edu
 //program if an inventory system that will be used to monitor and maintain quantities, locactions, and names of stored parts.
-//Last modified 03/15/2018
+//Last modified 03/16/2018
 
 #include <fstream>
 #include <iostream>
@@ -16,10 +16,16 @@ void partIndex(string partType[], string partName[], int partQuant[], string par
 //Displays output of part numbers, Names, Quantities, and locations.
 //Only displays iformation for valid parts
 //void quantitySort(int partQuant[], int Order[]);
-
 void lowamnt(int partQuant[], string partName[], string partType[], string partLoc[], int quantityLow, const int maxParts);
-void search(int i, string partType[], char choice, const int maxParts);//capacitor
+//no pre
+//this prints a list of parts whose quantity is below the 20pcs threshhold
 
+//the next void functions are search functions for part types i.e. Tansistors, resistors, and capacitors.
+//the require a menu choice and use that to search through the array for Tansistors, resistors, and capacitors.
+// they output the parts that met the criteria of which part type you chose
+void Csearch(int i, string partType[], char choice, const int maxParts);//capacitor
+void Tsearch(int i, string partType[], char choice, const int maxParts);//Transisitor
+void Rsearch(int i, string partType[], char choice, const int maxParts);//Resistor
 int main()
 {
 	const int maxParts = 3;
@@ -134,15 +140,15 @@ int main()
 			switch(choice)
 				case 'C':
 				case'c':
-					search(i, partType, choice, maxParts);
+					Csearch(i, partType, choice, maxParts);
 					break;
 				case 't':
 				case'T':
-
+					Tsearch(i, partType, choice, maxParts);
 					break;
 				case 'R':
 				case'r':
-
+					Rsearch(i, partType, choice, maxParts);
 					break;
 			
 			break;
@@ -203,7 +209,6 @@ void partIndex(string partName[], string partType[], int partQuant[], string par
 		cout << "Part Location: " << partLoc[i - 1] << "\t\n\n";
 	}
 }
-
 void lowamnt(int partQuant[], string partName[], string partType[], string partLoc[], int quantityLow, const int maxParts)
 {
 	int i=0;
@@ -215,8 +220,7 @@ void lowamnt(int partQuant[], string partName[], string partType[], string partL
 		else
 			i++;
 }
-
-void search(int i, string partType[], char choice,const int maxParts)//capacitor
+void Csearch(int i, string partType[], string choice,const int maxParts)//capacitor
 {
 	int i = 0;
 	bool found=false;
@@ -230,6 +234,44 @@ void search(int i, string partType[], char choice,const int maxParts)//capacitor
 			found = true;
 		}
 	
+		else
+		{
+			i++;
+		}
+}
+void Tsearch(int i, string partType[], string choice, const int maxParts)//Transistor
+{
+	int i = 0;
+	bool found = false;
+	if (choice = 'T' || 't')
+	{
+		choice = "transistor";
+	}
+	while ((!found) && (i <= maxParts))
+		if ("transistor" == partType[i])
+		{
+			found = true;
+		}
+
+		else
+		{
+			i++;
+		}
+}
+void Rsearch(int i, string partType[], string choice, const int maxParts)// Resistor
+{
+	int i = 0;
+	bool found = false;
+	if (choice = 'R' || 'r')
+	{
+		choice = "resistor";
+	}
+	while ((!found) && (i <= maxParts))
+		if ("resistor" == partType[i])
+		{
+			found = true;
+		}
+
 		else
 		{
 			i++;
