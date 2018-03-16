@@ -3,7 +3,7 @@
 //EENG 221
 //sjwehner@my.milligan.edu
 //program if an inventory system that will be used to monitor and maintain quantities, locactions, and names of stored parts.
-//Last modified 03/12/2018
+//Last modified 03/15/2018
 
 #include <fstream>
 #include <iostream>
@@ -15,10 +15,15 @@ using namespace std;
 void partIndex(string partType[], string partName[], int partQuant[], string partLoc[], const int maxParts); //listprint
 //Displays output of part numbers, Names, Quantities, and locations.
 //Only displays iformation for valid parts
+//void quantitySort(int partQuant[], int Order[]);
+
+void lowamnt(int partQuant[], string partName[], string partType[], string partLoc[], int quantityLow, const int maxParts);
+void search(int i, string partType[], char choice, const int maxParts);//capacitor
 
 int main()
 {
 	const int maxParts = 3;
+	const int quantityLow = 20;
 
 	ifstream LABFILES;
 	ifstream partInfo;
@@ -38,7 +43,7 @@ int main()
 	partName[1] = "1.5kOhm, 0.25W carbon film";
 	partName[2] = "2N5401 PNP silicon";
 	//Part quantities
-	partQuant[0] = 70;
+	partQuant[0] = 20;
 	partQuant[1] = 60;
 	partQuant[2] = 80;
 	//Part locations
@@ -46,20 +51,18 @@ int main()
 	partLoc[1] = "0102A";
 	partLoc[2] = "0103A";
 
-	cout << "Let's say:\n";
-	cout << "----------\n";
-	cout << "part 1 is a 100uF, 25V electrolytic capacitor, with quantity of 70, in location 0101A\n\n";
-	cout << "part 2 is a 1.5kOhm, 0.25W carbon film resistor, with quantity 60, in location 0102A\n\n";
-	cout << "part 3 is a 2N5401 PNP silicon transistor, with quantity 80, in location 0103A\n\n\n";
-		
+	cout << "Low parts:\n";
+	lowamnt(partQuant, partName, partType, partLoc, quantityLow, maxParts);
+	cout << "\n\n";
+
 	char menuChoice;
+
 	do
 	{
 		cout << endl;
 		cout << "What would you like to do today? \n\n";
 		cout << "To find a part press P\n";
 		cout << "To access part list press I \n";
-		cout << "To ?? press C\n";
 		cout << "To find class index press S\n";
 		cout << "To get lab instructions press L\n";
 		cout << "To exit press E\n\n";
@@ -120,15 +123,28 @@ int main()
 			partIndex(partName, partType, partQuant, partLoc, maxParts);
 			break;
 
-		case 'C':
-		case 'c':
-			//"part check" option
-			//quantitySort(int partQuant, int Order, int quant);
-			break;
-
-		case 'S':
+		case 'S'://Specific typ search
 		case 's':
-			//Specific part search
+			char choice;
+			cout << "Part type search\n" << "What type of part word you like to find?";
+			cout << "For capacitors type C ";
+			cout << "For Transisters type T ";
+			cout << "For Resisters type R ";
+			cin >> choice;
+			switch(choice)
+				case 'C':
+				case'c':
+					search(i, partType, choice, maxParts);
+					break;
+				case 't':
+				case'T':
+
+					break;
+				case 'R':
+				case'r':
+
+					break;
+			
 			break;
 
 		case 'L':
@@ -158,9 +174,6 @@ int main()
 			}
 			cout << endl;
 
-			//I don't think there's any point in having the wait here now - Casey		
-			//char wait;
-			//cin >> wait;
 			LABFILES.close();
 			break;
 
@@ -172,11 +185,8 @@ int main()
 			cout << "Not a valid menu choice.\n\n";
 		}
 
-	} while ((menuChoice != 'E') && (menuChoice != 'e')); //was an OR operator, corrected to AND - Casey
+	} while ((menuChoice != 'E') && (menuChoice != 'e')); 
 
-	//I don't think there's any point in having the wait here now - Casey
-	//char wait;
-	//cin >> wait;
 	return 0;
 }
 
@@ -184,7 +194,7 @@ void partIndex(string partName[], string partType[], int partQuant[], string par
 {
 	for (int i = 1; i <= maxParts; i++)
 	{
-		//see pages 325-331 in text to get this to format "prettier" - Casey
+		
 		cout << endl;
 		cout << "Part Number: " << i << "\t";
 		cout << "Part Type: " << partType[i - 1] << "\t";
@@ -194,12 +204,44 @@ void partIndex(string partName[], string partType[], int partQuant[], string par
 	}
 }
 
-/*void quantitySort(int partQuant[], int Order[], int quant)
+void lowamnt(int partQuant[], string partName[], string partType[], string partLoc[], int quantityLow, const int maxParts)
 {
-	int temp;
-	for (int i = 0; i < quant - 1; i++)
+	int i=0;
+	for (partQuant[i] >= quantityLow; i<=maxParts )
+		if (partQuant[i] = quantityLow)
+		{
+			cout << "**WARNING**" << "Part number " << i << partName[i] << partType[i] << "in location" << partLoc[i] << "has" << partQuant[i] << "pieces left.";
+		}
+		else
+			i++;
+}
+
+void search(int i, string partType[], char choice,const int maxParts)//capacitor
+{
+	int i = 0;
+	bool found=false;
+	if (choice = 'C' || 'c')
 	{
-		for (int j = 0; j < quant - i - 1; j++)
+		choice = "capacitor";
+	}
+	while ((!found) && (i <= maxParts))
+		if ("capacitor" == partType[i])
+		{
+			found = true;
+		}
+	
+		else
+		{
+			i++;
+		}
+}
+/*void quantitySort(int partQuant[], int Order[])
+{
+
+	int temp;
+	for (int i = 0; i < partQuant[i] - 1; i++)
+	{
+		for (int j = 0; j < partQuant[i] - i - 1; j++)
 		{
 			if (partQuant[Order[j]] > partQuant[Order[j + 1]])
 			{
