@@ -17,15 +17,15 @@ void partIndex(string partType[], string partName[], int partQuant[], string par
 //Only displays iformation for valid parts
 //void quantitySort(int partQuant[], int Order[]);
 void lowamnt(int partQuant[], string partName[], string partType[], string partLoc[], int quantityLow, const int maxParts);
-//no pre
-//this prints a list of parts whose quantity is below the 20pcs threshhold
+//precondition: partQuant array to be populated.
+//Postcondiitions: this prints a list of parts whose quantity is below the 20pcs(can be adjusted) threshhold.
 
 //the next void functions are search functions for part types i.e. Tansistors, resistors, and capacitors.
 //the require a menu choice and use that to search through the array for Tansistors, resistors, and capacitors.
 // they output the parts that met the criteria of which part type you chose
-void Csearch(int i, string partType[], char choice, const int maxParts);//capacitor
+/*void Csearch(int i, string partType[], char choice, const int maxParts);//capacitor
 void Tsearch(int i, string partType[], char choice, const int maxParts);//Transisitor
-void Rsearch(int i, string partType[], char choice, const int maxParts);//Resistor
+void Rsearch(int i, string partType[], char choice, const int maxParts);//Resistor*/
 int main()
 {
 	const int maxParts = 3;
@@ -51,7 +51,7 @@ int main()
 	//Part quantities
 	partQuant[0] = 20;
 	partQuant[1] = 60;
-	partQuant[2] = 80;
+	partQuant[2] = 19;
 	//Part locations
 	partLoc[0] = "0101A";
 	partLoc[1] = "0102A";
@@ -102,7 +102,6 @@ int main()
 					cin >> partsRemoved;
 					partQuant[partNumber - 1] = partQuant[partNumber - 1] - partsRemoved; //updates part quantity located in partQuant array
 					cout << partQuant[partNumber - 1] << " parts remaining\n\n";
-
 					int choice;
 					cout << "Type 1 if you would like to save this part information: ";
 					cin >> choice;
@@ -129,15 +128,15 @@ int main()
 			partIndex(partName, partType, partQuant, partLoc, maxParts);
 			break;
 
-		case 'S'://Specific typ search
+		case 'S'://Specific type search
 		case 's':
-			char choice;
+			//string choice;
 			cout << "Part type search\n" << "What type of part word you like to find?";
 			cout << "For capacitors type C ";
 			cout << "For Transisters type T ";
 			cout << "For Resisters type R ";
-			cin >> choice;
-			switch(choice)
+			//cin >> choice;
+		/*	switch(choice)
 				case 'C':
 				case'c':
 					Csearch(i, partType, choice, maxParts);
@@ -149,7 +148,7 @@ int main()
 				case 'R':
 				case'r':
 					Rsearch(i, partType, choice, maxParts);
-					break;
+					break;*/
 			
 			break;
 
@@ -209,22 +208,28 @@ void partIndex(string partName[], string partType[], int partQuant[], string par
 		cout << "Part Location: " << partLoc[i - 1] << "\t\n\n";
 	}
 }
+
 void lowamnt(int partQuant[], string partName[], string partType[], string partLoc[], int quantityLow, const int maxParts)
 {
-	int i=0;
-	for (partQuant[i] >= quantityLow; i<=maxParts )
-		if (partQuant[i] = quantityLow)
+	int i = 0;
+	for (i = 0; i < maxParts; i++)
+	{
+		if (partQuant[i] <= quantityLow)
 		{
-			cout << "**WARNING**" << "Part number " << i << partName[i] << partType[i] << "in location" << partLoc[i] << "has" << partQuant[i] << "pieces left.";
+			cout << "**WARNING**\n " << " Part number " << i+1 << " " << partName[i] << " " << partType[i] << " in location " << partLoc[i] << " has " << partQuant[i] << " pieces left.\n";
 		}
-		else
-			i++;
+
+
+	}
 }
-void Csearch(int i, string partType[], string choice,const int maxParts)//capacitor
+
+
+/*
+void Csearch(int i, string partType[], string choice, const int maxParts)//capacitor
 {
 	int i = 0;
-	bool found=false;
-	if (choice = 'C' || 'c')
+	bool found = false;
+	if (choice == "C" ||(choice == "c"))
 	{
 		choice = "capacitor";
 	}
@@ -243,7 +248,7 @@ void Tsearch(int i, string partType[], string choice, const int maxParts)//Trans
 {
 	int i = 0;
 	bool found = false;
-	if (choice = 'T' || 't')
+	if (choice = "T" || "t")
 	{
 		choice = "transistor";
 	}
