@@ -113,7 +113,7 @@ int main()
 						partData.close();
 					}*/
 				}
-			} while (partNumber != 0);
+			} while (PartDataObject.partNumber != 0);
 		
 			break;
 
@@ -152,8 +152,8 @@ int main()
 		case 'L':
 		case 'l':
 			cout << endl;
-			LABFILES.open("LAB1.txt"); //this option allows for the user to acess the labs
-			if (LABFILES.fail())
+			DataStreams.LABFILES.open("LAB1.txt"); //this option allows for the user to acess the labs
+			if (DataStreams.LABFILES.fail())
 			{
 				cout << "Lab file failed to open";
 				char wait;
@@ -176,7 +176,7 @@ int main()
 			}
 			cout << endl;
 
-			LABFILES.close();
+			DataStreams.LABFILES.close();
 			break;
 
 		case 'E':
@@ -189,7 +189,9 @@ int main()
 		}
 
 	} while ((menuChoice != 'E') && (menuChoice != 'e')); 
+
 	pushFileData(partName, partType, partQuant, partLoc, maxParts);
+
 	return 0;
 }
 
