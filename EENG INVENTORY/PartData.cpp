@@ -2,11 +2,11 @@
 #include <iostream>
 #include <string>
 
-using namespace std; //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+using namespace std;
 
-void PartData::PartRemoval(int partsRemoved, int partQuant[], int partNumber)
+void PartData::PartRemoval()
 {
-
+	int partsRemoved; 
 
 	cout << "How many parts are you removing? ";
 	cin >> partsRemoved;
@@ -18,7 +18,7 @@ void PartData::PartRemoval(int partsRemoved, int partQuant[], int partNumber)
 	cout << partQuant[partNumber - 1] << " parts remaining\n\n";
 }
 
-void PartData::lowamnt(int partQuant[], string partName[], string partType[], string partLoc[], int quantityLow, const int maxParts)
+void PartData::lowamnt()
 {
 	int i = 0;
 	for (i = 0; i < maxParts; i++)
@@ -32,7 +32,7 @@ void PartData::lowamnt(int partQuant[], string partName[], string partType[], st
 	}
 }
 
-void PartData::partIndex(string partName[], string partType[], int partQuant[], string partLoc[], const int maxParts)
+void PartData::partIndex()
 {
 	for (int i = 1; i <= maxParts; i++)
 	{
@@ -43,6 +43,27 @@ void PartData::partIndex(string partName[], string partType[], int partQuant[], 
 		cout << "Part Name: " << partName[i - 1] << " " << partType[i - 1] << "\t";
 		cout << "Part Quantity: " << partQuant[i - 1] << "\t";
 		cout << "Part Location: " << partLoc[i - 1] << "\t\n\n";
+	}
+}
+
+void PartData::partFind()
+{
+	//int partNumber;
+	cout << endl << "Type part number or 0 to exit to main menu: ";
+	cin >> partNumber;
+
+	if ((partNumber < 0) || (partNumber > maxParts))
+	{
+		cout << "Part not found.\n\n";
+	}
+	else if (partNumber != 0) //Part found
+	{
+		cout << endl;
+		cout << "Part Number " << partNumber << " requested" << "\n";
+		cout << "Type: " << partType[partNumber - 1] << "\n";
+		cout << "Name: " << partName[partNumber - 1] << " " << partType[partNumber - 1] << "\n";
+		cout << "Quantity: " << partQuant[partNumber - 1] << " pcs" << "\n";
+		cout << "Location: " << partLoc[partNumber - 1] << "\n\n";
 	}
 }
 
