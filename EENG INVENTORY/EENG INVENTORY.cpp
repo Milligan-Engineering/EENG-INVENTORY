@@ -10,7 +10,7 @@
 #include <string>
 #include <cstdlib>
 #include "PartData.h"
-
+//
 using namespace std;
 const int maxParts = 3;
 char testArray[45];
@@ -26,12 +26,12 @@ char readValue(ifstream& inputStream, char cell[]);
 
 //void partFind(string partName[], string partType[], int partQuant[], string partLoc[], const int maxParts, int partNumber);
 
-void partIndex(string partType[], string partName[], int partQuant[], string partLoc[], const int maxParts); //listprint
+//void partIndex(string partType[], string partName[], int partQuant[], string partLoc[], const int maxParts); //listprint
 //Displays output of part numbers, Names, Quantities, and locations.
 //Only displays iformation for valid parts
 //void quantitySort(int partQuant[], int Order[]);
 
-void lowamnt(int partQuant[], string partName[], string partType[], string partLoc[], int quantityLow, const int maxParts);
+//void lowamnt(int partQuant[], string partName[], string partType[], string partLoc[], int quantityLow, const int maxParts);
 //precondition: partQuant array to be populated.
 //Postcondiitions: this prints a list of parts whose quantity is below the 20pcs(can be adjusted) threshhold.
 
@@ -248,7 +248,7 @@ int main()
 }
 */
 
-void PartRemoval(int partsRemoved, int partQuant[], int partNumber)
+/*void PartRemoval(int partsRemoved, int partQuant[], int partNumber)
 {
 	
 
@@ -260,9 +260,9 @@ void PartRemoval(int partsRemoved, int partQuant[], int partNumber)
 	}
 	partQuant[partNumber - 1] = partQuant[partNumber - 1] - partsRemoved; //updates part quantity located in partQuant array//add accesseor and mutator function here
 	cout << partQuant[partNumber - 1] << " parts remaining\n\n";
-}
+}*/
 
-void partIndex(string partName[], string partType[], int partQuant[], string partLoc[], const int maxParts)
+/*void partIndex(string partName[], string partType[], int partQuant[], string partLoc[], const int maxParts)
 {
 	for (int i = 1; i <= maxParts; i++)
 	{
@@ -274,9 +274,9 @@ void partIndex(string partName[], string partType[], int partQuant[], string par
 		cout << "Part Quantity: " << partQuant[i - 1] << "\t";
 		cout << "Part Location: " << partLoc[i - 1] << "\t\n\n";
 	}
-}
+}*/
 
-void lowamnt(int partQuant[], string partName[], string partType[], string partLoc[], int quantityLow, const int maxParts)
+/*void lowamnt(int partQuant[], string partName[], string partType[], string partLoc[], int quantityLow, const int maxParts)
 {
 	int i = 0;
 	for (i = 0; i < maxParts; i++)
@@ -288,7 +288,7 @@ void lowamnt(int partQuant[], string partName[], string partType[], string partL
 
 
 	}
-}
+}*/
 
 
 

@@ -11,7 +11,7 @@ public:
 
 	int partNumber; //(partNumber-1) serves as an index to look up information for each part in the part arrays
 	void PartRemoval(int partsRemoved, int partQuant[], int partNumber);
-	friend void lowamnt(int partQuant[], string partName[], string partType[], string partLoc[], int quantityLow, const int maxParts);
+	void lowamnt(int partQuant[], string partName[], string partType[], string partLoc[], int quantityLow, const int maxParts);
 	void partIndex(string partType[], string partName[], int partQuant[], string partLoc[], const int maxParts);
 
 private:
