@@ -17,7 +17,8 @@ void PartData::PartRemoval()
 	partQuant[partNumber - 1] = partQuant[partNumber - 1] - partsRemoved; //updates part quantity located in partQuant array//add accesseor and mutator function here
 	cout << partQuant[partNumber - 1] << " parts remaining\n\n";
 }
-
+//precondition:
+//postcondidtion:
 void PartData::lowamnt()
 {
 	int i = 0;
@@ -31,7 +32,8 @@ void PartData::lowamnt()
 
 	}
 }
-
+//precondition: partQuant array to be populated.
+//postcondidtion: this prints a list of parts whose quantity is below the 20pcs(can be adjusted) threshhold.
 void PartData::partIndex()
 {
 	for (int i = 1; i <= maxParts; i++)
@@ -45,6 +47,8 @@ void PartData::partIndex()
 		cout << "Part Location: " << partLoc[i - 1] << "\t\n\n";
 	}
 }
+//precondition:
+//postcondidtion:
 
 void PartData::partFind()
 {
@@ -66,12 +70,47 @@ void PartData::partFind()
 		cout << "Location: " << partLoc[partNumber - 1] << "\n\n";
 	}
 }
+//precondition:
+//postcondidtion:
+
 
 PartData::PartData()
 {
+	//Part quantities
+	partQuant[0] = 20;
+	partQuant[1] = 60;
+	partQuant[2] = 19;
+}
 
+PartData::PartData()
+{
+	//Part names
+	partName[0] = "100uF electrolytic";
+	partName[1] = "1.5kOhm, 0.25W carbon film";
+	partName[2] = "2N5401 PNP silicon";
 
 }
+
+PartData::PartData()
+{
+	//Part types
+	partType[0] = "capacitor";
+	partType[1] = "resistor";
+	partType[2] = "transistor";
+
+}
+
+PartData::PartData()
+{
+	//Part locations
+	partLoc[0] = "0101A";
+	partLoc[1] = "0102A";
+	partLoc[2] = "0103A";
+
+}
+
+
+
 
 
 PartData::~PartData()

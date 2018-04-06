@@ -15,6 +15,10 @@ public:
 	void partIndex();
 	void partFind();
 
+	//inheritance??
+	friend int fetchFileData(string partName[maxParts], string partType[maxParts], int partQuant[maxParts], string partLoc[maxParts], int maxParts);
+	friend int pushFileData(string partName[maxParts], string partType[maxParts], int partQuant[maxParts], string partLoc[maxParts], int maxParts);
+	
 private:
 	static const int maxParts = 3; 
 							   

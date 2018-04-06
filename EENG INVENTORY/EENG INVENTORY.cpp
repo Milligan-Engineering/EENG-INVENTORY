@@ -12,25 +12,14 @@
 #include "PartData.h"
 
 using namespace std;
-const int maxParts = 3;
 char testArray[45];
 
-int fetchFileData(string partName[maxParts], string partType[maxParts], int partQuant[maxParts], string partLoc[maxParts], int maxParts);
+//int fetchFileData(string partName[maxParts], string partType[maxParts], int partQuant[maxParts], string partLoc[maxParts], int maxParts);
 
-int pushFileData(string partName[maxParts], string partType[maxParts], int partQuant[maxParts], string partLoc[maxParts], int maxParts);
+//int pushFileData(string partName[maxParts], string partType[maxParts], int partQuant[maxParts], string partLoc[maxParts], int maxParts);
 
 char readValue(ifstream& inputStream, char cell[]);
 
-//void partFind(string partName[], string partType[], int partQuant[], string partLoc[], const int maxParts, int partNumber);
-
-//void partIndex(string partType[], string partName[], int partQuant[], string partLoc[], const int maxParts); //listprint
-//Displays output of part numbers, Names, Quantities, and locations.
-//Only displays iformation for valid parts
-//void quantitySort(int partQuant[], int Order[]);
-
-//void lowamnt(int partQuant[], string partName[], string partType[], string partLoc[], int quantityLow, const int maxParts);
-//precondition: partQuant array to be populated.
-//Postcondiitions: this prints a list of parts whose quantity is below the 20pcs(can be adjusted) threshhold.
 
 //the next void functions are search functions for part types i.e. Tansistors, resistors, and capacitors.
 //the require a menu choice and use that to search through the array for Tansistors, resistors, and capacitors.
@@ -41,38 +30,36 @@ void Rsearch(int i, string partType[], char choice, const int maxParts);//Resist
 int main()
 {
 	const int quantityLow = 20;
-	ifstream LABFILES;
-	ifstream partInfo;
+	
 	ifstream inDataStream;
-	ofstream partData;
 	ofstream outDatastream;
+		ifstream partInfo;
+
+	struct DataStreams
+	{
+		ifstream LABFILES;
+		ofstream partData;
+	
+	};
+
+
+	/*
 	string partType[maxParts];
 	string partName[maxParts];
 	string partLoc[maxParts];
 	int partQuant[maxParts];
 	int partNumber; //(partNumber-1) serves as an index to look up information for each part in the part arrays
+	*/
+	PartData PartDataObject;
 
-	//Part types
-	partType[0] = "capacitor";
-	partType[1] = "resistor";
-	partType[2] = "transistor";
-	//Part names
-	partName[0] = "100uF electrolytic";
-	partName[1] = "1.5kOhm, 0.25W carbon film";
-	partName[2] = "2N5401 PNP silicon";
-	//Part quantities
-	partQuant[0] = 20;
-	partQuant[1] = 60;
-	partQuant[2] = 19;
-	//Part locations
-	partLoc[0] = "0101A";
-	partLoc[1] = "0102A";
-	partLoc[2] = "0103A";
+	
 
 	fetchFileData(partName, partType, partQuant, partLoc, maxParts);
 
 	cout << "Low parts:\n";
-	lowamnt(partQuant, partName, partType, partLoc, quantityLow, maxParts);
+
+	PartDataObject.lowamnt();
+
 	cout << "\n\n";
 
 	char menuChoice;
@@ -95,7 +82,7 @@ int main()
 			//partFind(partName, partType, partQuant, partLoc, maxParts, partNumber);
 			do
 			{
-				
+				/*
 				cout << endl << "Type part number or 0 to exit to main menu: ";
 				cin >> partNumber;
 
@@ -104,25 +91,10 @@ int main()
 					cout << "Part not found.\n\n";
 				}
 				else if (partNumber != 0) //Part found
-				{
-					int partsRemoved;
-					cout << endl;
-					cout << "Part Number " << partNumber << " requested" << "\n";
-					cout << "Type: " << partType[partNumber - 1] << "\n";
-					cout << "Name: " << partName[partNumber - 1] << " " << partType[partNumber - 1] << "\n";
-					cout << "Quantity: " << partQuant[partNumber - 1] << " pcs" << "\n";
-					cout << "Location: " << partLoc[partNumber - 1] << "\n\n";
-					PartRemoval(partsRemoved, partQuant, partNumber);
-					/*mutator
-					cout << "How many parts are you removing? ";
-					cin >> partsRemoved;
-					if (partsRemoved > partQuant[partNumber - 1])
-					{
-						cout << "parts removed greater than parts present.\n" << "enter a new number.";
-					}
-					partQuant[partNumber - 1] = partQuant[partNumber - 1] - partsRemoved; //updates part quantity located in partQuant array//add accesseor andmutator function here
-					cout << partQuant[partNumber - 1] << " parts remaining\n\n";
-					*/
+				{*/
+					PartDataObject.partFind();
+					PartDataObject.PartRemoval();
+					
 					/*int choice;
 					cout << "Type 1 if you would like to save this part information: ";
 					cin >> choice;
@@ -148,6 +120,7 @@ int main()
 		case 'I':
 		case 'i':
 
+			
 			PartDataObject.partIndex();
 			;
 			break;
