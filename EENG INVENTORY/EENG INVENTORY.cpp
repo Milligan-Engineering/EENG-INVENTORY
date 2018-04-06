@@ -3,7 +3,7 @@
 //EENG 221
 //sjwehner@my.milligan.edu
 //program if an inventory system that will be used to monitor and maintain quantities, locactions, and names of stored parts.
-//Last modified 04/02/2018
+//Last modified 04/05/2018
 
 #include <fstream>
 #include <iostream>
