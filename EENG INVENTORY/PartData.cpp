@@ -52,7 +52,7 @@ void PartData::partIndex()
 
 void PartData::partFind()
 {
-	//int partNumber;
+	
 	cout << endl << "Type part number or 0 to exit to main menu: ";
 	cin >> partNumber;
 
@@ -73,6 +73,17 @@ void PartData::partFind()
 //precondition:
 //postcondidtion:
 
+string PartData::getPartLoc(int i)//accessor
+{
+	return(partLoc[i]);
+}
+//precondition:
+//postcondidtion:
+
+void PartData::setlowQuant(int i)//Mutator
+{
+	quantityLow = i;
+}
 
 PartData::PartData()
 {
@@ -80,37 +91,22 @@ PartData::PartData()
 	partQuant[0] = 20;
 	partQuant[1] = 60;
 	partQuant[2] = 19;
-}
 
-PartData::PartData()
-{
 	//Part names
 	partName[0] = "100uF electrolytic";
 	partName[1] = "1.5kOhm, 0.25W carbon film";
 	partName[2] = "2N5401 PNP silicon";
 
-}
-
-PartData::PartData()
-{
-	//Part types
-	partType[0] = "capacitor";
-	partType[1] = "resistor";
-	partType[2] = "transistor";
-
-}
-
-PartData::PartData()
-{
 	//Part locations
 	partLoc[0] = "0101A";
 	partLoc[1] = "0102A";
 	partLoc[2] = "0103A";
 
+	//Part types
+	partType[0] = "capacitor";
+	partType[1] = "resistor";
+	partType[2] = "transistor";
 }
-
-
-
 
 
 PartData::~PartData()

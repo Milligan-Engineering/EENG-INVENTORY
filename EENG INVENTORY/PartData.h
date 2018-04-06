@@ -5,7 +5,18 @@ using namespace std;
 
 class PartData//PartData class for function, variables, and arrays associated with part data
 {
+
+private:
+	
+	static const int maxParts = 3; 					   
+	string partType[maxParts];
+	string partName[maxParts];
+	string partLoc[maxParts];
+	int partQuant[maxParts];
+	int quantityLow = 20;
+
 public:
+
 	PartData();
 	~PartData();
 
@@ -14,18 +25,12 @@ public:
 	void lowamnt();
 	void partIndex();
 	void partFind();
+	string getPartLoc(int i);
+	void setlowQuant(int i);
 
 	//inheritance??
-	friend int fetchFileData(string partName[maxParts], string partType[maxParts], int partQuant[maxParts], string partLoc[maxParts], int maxParts);
-	friend int pushFileData(string partName[maxParts], string partType[maxParts], int partQuant[maxParts], string partLoc[maxParts], int maxParts);
-	
-private:
-	static const int maxParts = 3; 
-							   
-	string partType[maxParts];
-	string partName[maxParts];
-	string partLoc[maxParts];
-	int partQuant[maxParts];
-	
 
+	friend int fetchFileData(PartData partstuff);
+	friend int pushFileData(PartData partstuff);
+	
 };

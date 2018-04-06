@@ -3,67 +3,40 @@
 //EENG 221
 //sjwehner@my.milligan.edu
 //program if an inventory system that will be used to monitor and maintain quantities, locactions, and names of stored parts.
-//Last modified 04/05/2018
+//Last modified 04/06/2018
 
 #include <fstream>
 #include <iostream>
 #include <string>
 #include <cstdlib>
 #include "PartData.h"
-
 using namespace std;
+
 char testArray[45];
 
-//int fetchFileData(string partName[maxParts], string partType[maxParts], int partQuant[maxParts], string partLoc[maxParts], int maxParts);
-
-//int pushFileData(string partName[maxParts], string partType[maxParts], int partQuant[maxParts], string partLoc[maxParts], int maxParts);
+struct DataStreams
+{
+	ifstream LABFILES;
+	ofstream partData;
+};
 
 char readValue(ifstream& inputStream, char cell[]);
 
-
-//the next void functions are search functions for part types i.e. Tansistors, resistors, and capacitors.
-//the require a menu choice and use that to search through the array for Tansistors, resistors, and capacitors.
-// they output the parts that met the criteria of which part type you chose
-/*void Csearch(int i, string partType[], char choice, const int maxParts);//capacitor
-void Tsearch(int i, string partType[], char choice, const int maxParts);//Transisitor
-void Rsearch(int i, string partType[], char choice, const int maxParts);//Resistor*/
 int main()
 {
-	const int quantityLow = 20;
-	
 	ifstream inDataStream;
 	ofstream outDatastream;
-		ifstream partInfo;
-
-	struct DataStreams
-	{
-		ifstream LABFILES;
-		ofstream partData;
-	
-	};
-
-
-	/*
-	string partType[maxParts];
-	string partName[maxParts];
-	string partLoc[maxParts];
-	int partQuant[maxParts];
-	int partNumber; //(partNumber-1) serves as an index to look up information for each part in the part arrays
-	*/
+	ifstream partInfo;
 	PartData PartDataObject;
+	DataStreams Datastreamflow;
 
-	
-
-	fetchFileData(partName, partType, partQuant, partLoc, maxParts);
+	fetchFileData(PartDataObject);//fetches CSV for program
 
 	cout << "Low parts:\n";
-
 	PartDataObject.lowamnt();
-
 	cout << "\n\n";
 
 	char menuChoice;
-
 	do
 	{
 		cout << endl;
@@ -82,20 +55,10 @@ int main()
 			//partFind(partName, partType, partQuant, partLoc, maxParts, partNumber);
 			do
 			{
-				/*
-				cout << endl << "Type part number or 0 to exit to main menu: ";
-				cin >> partNumber;
-
-				if ((partNumber < 0) || (partNumber > maxParts))
-				{
-					cout << "Part not found.\n\n";
-				}
-				else if (partNumber != 0) //Part found
-				{*/
 					PartDataObject.partFind();
 					PartDataObject.PartRemoval();
-					
-					/*int choice;
+					/*
+					int choice;
 					cout << "Type 1 if you would like to save this part information: ";
 					cin >> choice;
 					if (choice == 1)
@@ -111,18 +74,14 @@ int main()
 						partData << partNumber << " " << partName[partNumber - 1] << " " << partType[partNumber - 1]
 							<< " " << partQuant[partNumber - 1] << " " << partLoc[partNumber - 1];
 						partData.close();
-					}*/
-				}
+					}
+					*/
 			} while (PartDataObject.partNumber != 0);
-		
 			break;
 
 		case 'I':
 		case 'i':
-
-			
-			PartDataObject.partIndex();
-			;
+			PartDataObject.partIndex();//prints list off all parts contained in the CSV
 			break;
 
 		case 'S'://Specific type search
@@ -145,15 +104,14 @@ int main()
 				case 'R':
 				case'r':
 					Rsearch(i, partType, choice, maxParts);
-					break;*/
-			
+		*/
 			break;
 
 		case 'L':
-		case 'l':
+		case 'l':// A test lab file is stored this calls it an dprints it to the console
 			cout << endl;
-			DataStreams.LABFILES.open("LAB1.txt"); //this option allows for the user to acess the labs
-			if (DataStreams.LABFILES.fail())
+			Datastreamflow.LABFILES.open("LAB1.txt"); //this option allows for the user to acess the labs
+			if (Datastreamflow.LABFILES.fail())
 			{
 				cout << "Lab file failed to open";
 				char wait;
@@ -164,8 +122,8 @@ int main()
 			char cstring[30];
 			for (int i = 0; i < 30; i++)
 			{
-				LABFILES.get(cstring[i]);
-				if (LABFILES.eof()) //Stop the loop when the end of the file has been reached - Casey
+				Datastreamflow.LABFILES.get(cstring[i]);
+				if (Datastreamflow.LABFILES.eof()) //Stop the loop when the end of the file has been reached - Casey
 				{
 					break;
 				}
@@ -175,13 +133,13 @@ int main()
 				}
 			}
 			cout << endl;
-
-			DataStreams.LABFILES.close();
+				 
+			Datastreamflow.LABFILES.close();
 			break;
 
 		case 'E':
 		case 'e':
-			
+			//Exit program choice (**closes program**)
 			break;
 
 		default:
@@ -190,45 +148,12 @@ int main()
 
 	} while ((menuChoice != 'E') && (menuChoice != 'e')); 
 
-	pushFileData(partName, partType, partQuant, partLoc, maxParts);
+	pushFileData(PartDataObject);//pushes and stores CSV for program
 
 	return 0;
-}
+	}
 
-/*void partFind(string partName[], string partType[], int partQuant[], string partLoc[], const int maxParts, int partNumber)
-{
-	do
-	{
-		int partsRemoved;
-		cout << endl << "Type part number or 0 to exit to main menu: ";
-		cin >> partNumber;
-
-		if ((partNumber < 0) || (partNumber > maxParts))
-		{
-			cout << "Part not found.\n\n";
-		}
-		else if (partNumber != 0) //Part found
-		{
-			cout << endl;
-			cout << "Part Number " << partNumber << " requested" << "\n";
-			cout << "Type: " << partType[partNumber - 1] << "\n";
-			cout << "Name: " << partName[partNumber - 1] << " " << partType[partNumber - 1] << "\n";
-			cout << "Quantity: " << partQuant[partNumber - 1] << " pcs" << "\n";
-			cout << "Location: " << partLoc[partNumber - 1] << "\n\n";
-			}
-		}
-	} while (partNumber != 0);
-}
-*/
-
-
-
-
-
-
-
-
-int pushFileData(string partName[maxParts], string partType[maxParts], int partQuant[maxParts], string partLoc[maxParts], int maxParts)
+ int pushFileData(PartData partstuff)
 {
 	ofstream outDataStream;
 	outDataStream.open("mainInventoryData.csv");
@@ -238,33 +163,33 @@ int pushFileData(string partName[maxParts], string partType[maxParts], int partQ
 		return(1);
 	}
 	outDataStream << "Part Number, ";
-	for (int i = 0; i < maxParts; i++) // Save part name
+	for (int i = 0; i < partstuff.maxParts; i++) // Save part name
 	{
 		outDataStream << i << ",";
 	}
 	outDataStream << "\n";
 	outDataStream << "Name, ";
-	for (int i = 0; i < maxParts; i++) // Save part name
+	for (int i = 0; i < partstuff.maxParts; i++) // Save part name
 	{
-		outDataStream << partName[i] << ",";
+		outDataStream << partstuff.partName[i] << ",";
 	}
 	outDataStream << "\n";
 	outDataStream << "Type, ";
-	for (int i = 0; i < maxParts; i++) // Save part type
+	for (int i = 0; i < partstuff.maxParts; i++) // Save part type
 	{
-		outDataStream << partType[i] << ",";
+		outDataStream << partstuff.partType[i] << ",";
 	}
 	outDataStream << "\n";
 	outDataStream << "Quantity, ";
-	for (int i = 0; i < maxParts; i++) // Save part quant
+	for (int i = 0; i < partstuff.maxParts; i++) // Save part quant
 	{
-		outDataStream << partQuant[i] << ",";
+		outDataStream << partstuff.partQuant[i] << ",";
 	}
 	outDataStream << "\n";
 	outDataStream << "Location, ";
-	for (int i = 0; i < maxParts; i++) // Save part location
+	for (int i = 0; i < partstuff.maxParts; i++) // Save part location
 	{
-		outDataStream << partLoc[i] << ",";
+		outDataStream << partstuff.partLoc[i] << ",";
 	}
 	outDataStream << "\n";
 
@@ -289,7 +214,7 @@ char readValue(ifstream& inputStream, char cell[])
 	return(getChar);
 }
 
-int fetchFileData(string partName[maxParts], string partType[maxParts], int partQuant[maxParts], string partLoc[maxParts], int maxParts)
+ int fetchFileData(PartData partstuff)
 {
 	//	int val;
 	char getChar;
@@ -302,36 +227,36 @@ int fetchFileData(string partName[maxParts], string partType[maxParts], int part
 	}
 	getChar = readValue(inDataStream, testArray);// Read part #
 
-	for (int i = 0; i < maxParts; i++)
+	for (int i = 0; i < partstuff.maxParts; i++)
 	{
 		getChar = readValue(inDataStream, testArray);
 	}
 	getChar = readValue(inDataStream, testArray);// Read part name
 
-	for (int i = 0; i < maxParts; i++)
+	for (int i = 0; i < partstuff.maxParts; i++)
 	{
 		getChar = readValue(inDataStream, testArray);
-		partName[i] = testArray;
+		partstuff.partName[i] = testArray;
 	}
 	getChar = readValue(inDataStream, testArray); // Read part type
 
-	for (int i = 0; i < maxParts; i++)
+	for (int i = 0; i < partstuff.maxParts; i++)
 	{
 		getChar = readValue(inDataStream, testArray);
-		partType[i] = testArray;
+		partstuff.partType[i] = testArray;
 	}
 	getChar = readValue(inDataStream, testArray);// Read part quantity
-	for (int i = 0; i < maxParts; i++)
+	for (int i = 0; i < partstuff.maxParts; i++)
 	{
 		getChar = readValue(inDataStream, testArray);
-		partQuant[i] = atoi(testArray);
+		partstuff.partQuant[i] = atoi(testArray);
 	}
 	getChar = readValue(inDataStream, testArray); // Read part Location
 
-	for (int i = 0; i < maxParts; i++)
+	for (int i = 0; i < partstuff.maxParts; i++)
 	{
 		getChar = readValue(inDataStream, testArray);
-		partLoc[i] = testArray;
+		partstuff.partLoc[i] = testArray;
 	}
 	return(0);
 }
