@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 
+using namespace std; //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 void PartData::PartRemoval(int partsRemoved, int partQuant[], int partNumber)
 {
 
