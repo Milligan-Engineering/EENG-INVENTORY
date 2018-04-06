@@ -116,6 +116,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="EENG INVENTORY.cpp" />
+    <ClCompile Include="PartData.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PartData.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

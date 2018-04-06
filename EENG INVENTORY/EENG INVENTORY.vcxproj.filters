@@ -18,5 +18,13 @@
     <ClCompile Include="EENG INVENTORY.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PartData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PartData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

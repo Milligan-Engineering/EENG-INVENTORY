@@ -3,22 +3,28 @@
 //EENG 221
 //sjwehner@my.milligan.edu
 //program if an inventory system that will be used to monitor and maintain quantities, locactions, and names of stored parts.
-//Last modified 03/16/2018
+//Last modified 04/02/2018
 
 #include <fstream>
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include "PartData.h"
 
 using namespace std;
 const int maxParts = 3;
 char testArray[45];
+
+
+void PartRemoval(int partsRemoved, int partQuant[], int partNumber);
 
 int fetchFileData(string partName[maxParts], string partType[maxParts], int partQuant[maxParts], string partLoc[maxParts], int maxParts);
 
 int pushFileData(string partName[maxParts], string partType[maxParts], int partQuant[maxParts], string partLoc[maxParts], int maxParts);
 
 char readValue(ifstream& inputStream, char cell[]);
+
+//void partFind(string partName[], string partType[], int partQuant[], string partLoc[], const int maxParts, int partNumber);
 
 void partIndex(string partType[], string partName[], int partQuant[], string partLoc[], const int maxParts); //listprint
 //Displays output of part numbers, Names, Quantities, and locations.
@@ -89,9 +95,10 @@ int main()
 		{
 		case 'P':
 		case 'p':
+			//partFind(partName, partType, partQuant, partLoc, maxParts, partNumber);
 			do
 			{
-				int partsRemoved;
+				
 				cout << endl << "Type part number or 0 to exit to main menu: ";
 				cin >> partNumber;
 
@@ -101,22 +108,28 @@ int main()
 				}
 				else if (partNumber != 0) //Part found
 				{
+					int partsRemoved;
 					cout << endl;
 					cout << "Part Number " << partNumber << " requested" << "\n";
 					cout << "Type: " << partType[partNumber - 1] << "\n";
 					cout << "Name: " << partName[partNumber - 1] << " " << partType[partNumber - 1] << "\n";
 					cout << "Quantity: " << partQuant[partNumber - 1] << " pcs" << "\n";
 					cout << "Location: " << partLoc[partNumber - 1] << "\n\n";
-
-					//add a check here to make sure that partsRemoved is not greater than the number of parts in stock - Casey
+					PartRemoval(partsRemoved, partQuant, partNumber);
+					/*mutator
 					cout << "How many parts are you removing? ";
 					cin >> partsRemoved;
-					partQuant[partNumber - 1] = partQuant[partNumber - 1] - partsRemoved; //updates part quantity located in partQuant array
+					if (partsRemoved > partQuant[partNumber - 1])
+					{
+						cout << "parts removed greater than parts present.\n" << "enter a new number.";
+					}
+					partQuant[partNumber - 1] = partQuant[partNumber - 1] - partsRemoved; //updates part quantity located in partQuant array//add accesseor andmutator function here
 					cout << partQuant[partNumber - 1] << " parts remaining\n\n";
-					int choice;
+					*/
+					/*int choice;
 					cout << "Type 1 if you would like to save this part information: ";
 					cin >> choice;
-					if (choice == 1) //had (choice = 1), cause infinite loop - Casey
+					if (choice == 1)
 					{
 						partData.open("Datasheet.txt");
 						if (partData.fail())
@@ -129,13 +142,15 @@ int main()
 						partData << partNumber << " " << partName[partNumber - 1] << " " << partType[partNumber - 1]
 							<< " " << partQuant[partNumber - 1] << " " << partLoc[partNumber - 1];
 						partData.close();
-					}
+					}*/
 				}
 			} while (partNumber != 0);
+		
 			break;
 
 		case 'I':
 		case 'i':
+
 			partIndex(partName, partType, partQuant, partLoc, maxParts);
 			break;
 
@@ -207,6 +222,46 @@ int main()
 	return 0;
 }
 
+/*void partFind(string partName[], string partType[], int partQuant[], string partLoc[], const int maxParts, int partNumber)
+{
+	do
+	{
+		int partsRemoved;
+		cout << endl << "Type part number or 0 to exit to main menu: ";
+		cin >> partNumber;
+
+		if ((partNumber < 0) || (partNumber > maxParts))
+		{
+			cout << "Part not found.\n\n";
+		}
+		else if (partNumber != 0) //Part found
+		{
+			cout << endl;
+			cout << "Part Number " << partNumber << " requested" << "\n";
+			cout << "Type: " << partType[partNumber - 1] << "\n";
+			cout << "Name: " << partName[partNumber - 1] << " " << partType[partNumber - 1] << "\n";
+			cout << "Quantity: " << partQuant[partNumber - 1] << " pcs" << "\n";
+			cout << "Location: " << partLoc[partNumber - 1] << "\n\n";
+			}
+		}
+	} while (partNumber != 0);
+}
+*/
+
+void PartRemoval(int partsRemoved, int partQuant[], int partNumber)
+{
+	
+
+	cout << "How many parts are you removing? ";
+	cin >> partsRemoved;
+	if (partsRemoved > partQuant[partNumber - 1])
+	{
+		cout << "parts removed greater than parts present.\n" << "enter a new number.";
+	}
+	partQuant[partNumber - 1] = partQuant[partNumber - 1] - partsRemoved; //updates part quantity located in partQuant array//add accesseor and mutator function here
+	cout << partQuant[partNumber - 1] << " parts remaining\n\n";
+}
+
 void partIndex(string partName[], string partType[], int partQuant[], string partLoc[], const int maxParts)
 {
 	for (int i = 1; i <= maxParts; i++)
@@ -234,6 +289,8 @@ void lowamnt(int partQuant[], string partName[], string partType[], string partL
 
 	}
 }
+
+
 
 int pushFileData(string partName[maxParts], string partType[maxParts], int partQuant[maxParts], string partLoc[maxParts], int maxParts)
 {
@@ -295,6 +352,7 @@ char readValue(ifstream& inputStream, char cell[])
 	cell[j] = '\0';
 	return(getChar);
 }
+
 int fetchFileData(string partName[maxParts], string partType[maxParts], int partQuant[maxParts], string partLoc[maxParts], int maxParts)
 {
 	//	int val;
