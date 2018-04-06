@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 
+using namespace std; //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 void PartData::PartRemoval(int partsRemoved, int partQuant[], int partNumber)
 {
 
@@ -23,7 +25,7 @@ void PartData::lowamnt(int partQuant[], string partName[], string partType[], st
 	{
 		if (partQuant[i] <= quantityLow)
 		{
-			cout<< "**WARNING**\n " << " Part number " << i + 1 << " " << partName[i] << " " << partType[i] << " in location " << partLoc[i] << " has " << partQuant[i] << " pieces left.\n";
+			cout << "**WARNING**\n " << " Part number " << i + 1 << " " << partName[i] << " " << partType[i] << " in location " << partLoc[i] << " has " << partQuant[i] << " pieces left.\n";
 		}
 
 
