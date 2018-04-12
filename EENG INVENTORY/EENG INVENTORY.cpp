@@ -5,11 +5,18 @@
 //program if an inventory system that will be used to monitor and maintain quantities, locactions, and names of stored parts.
 //Last modified 04/05/2018
 
+//COMMENTS
+// Program does not compile. Multiple errors.
+
+
+
 #include <fstream>
 #include <iostream>
 #include <string>
 #include <cstdlib>
 #include "PartData.h"
+
+// Create a standard header stdafx.h for all files to use.
 
 using namespace std;
 char testArray[45];
@@ -33,7 +40,7 @@ int main()
 	
 	ifstream inDataStream;
 	ofstream outDatastream;
-		ifstream partInfo;
+	ifstream partInfo;
 
 	struct DataStreams
 	{
@@ -41,6 +48,13 @@ int main()
 		ofstream partData;
 	
 	};
+	// This is only the definition of the structure. You need to declare specific instances of it if you want to use it.
+	// I don't think that this is the best use of a structure anyways. Your input and output streams are not related right?
+	// What I would like for now is two structures:
+	//1. Name (string Model, string Description)
+	//2. Location (string Room, int Rack, int Shelf, int Cabinet)
+
+	//
 
 
 	/*
@@ -51,7 +65,7 @@ int main()
 	int partNumber; //(partNumber-1) serves as an index to look up information for each part in the part arrays
 	*/
 	PartData PartDataObject;
-
+	// Using the default constructor here.
 	
 
 	fetchFileData(partName, partType, partQuant, partLoc, maxParts);
@@ -222,7 +236,9 @@ int main()
 */
 
 
-
+// Want to change file format so that it has
+// int index, Name (struct), Type, Quantity, Location (stuct)
+// Current data set is saved in mainInventoryData.csv" saved in project resource files
 
 
 

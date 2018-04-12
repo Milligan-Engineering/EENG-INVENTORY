@@ -121,6 +121,9 @@
   <ItemGroup>
     <ClInclude Include="PartData.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\Desktop\mainInventoryData.csv" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -73,7 +73,7 @@ void PartData::partFind()
 //precondition:
 //postcondidtion:
 
-
+// Can not have constructors with same argument lists.
 PartData::PartData()
 {
 	//Part quantities

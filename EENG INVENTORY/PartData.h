@@ -8,6 +8,8 @@ class PartData//PartData class for function, variables, and arrays associated wi
 public:
 	PartData();
 	~PartData();
+// Need to give preconditions and postconditions for functions
+// Need accessor and mutator functions.
 
 	int partNumber;// (partNumber-1) serves as an index to look up information for each part in the part arrays
 	void PartRemoval();
