@@ -3,17 +3,36 @@
 
 using namespace std;
 
+struct PartInfo
+{
+	string ModelNumber[maxParts];
+	string PartDescription[maxParts];
+	string partType[maxParts];
+	string partName[maxParts];
+
+};
+struct Location
+{
+	string Room[maxParts];
+	int Rack[maxParts];
+	int Shelf[maxParts];
+	int Cabinet[maxParts];
+};
+
+
+
 class PartData//PartData class for function, variables, and arrays associated with part data
 {
 
 private:
-	
-	static const int maxParts = 3; 					   
-	string partType[maxParts];
-	string partName[maxParts];
-	string partLoc[maxParts];
+	static const int maxParts = 3;
+	PartInfo PI;
+	Location PL;
 	int partQuant[maxParts];
 	int quantityLow = 20;
+	ofstream outDatastream;
+	
+
 
 public:
 
@@ -28,9 +47,11 @@ public:
 	string getPartLoc(int i);
 	void setlowQuant(int i);
 
-	//inheritance??
+	int pushFileData();
+
+	char readValue(ifstream& inputStream, char cell[]);
 
 	friend int fetchFileData(PartData partstuff);
-	friend int pushFileData(PartData partstuff);
+	//friend int pushFileData(PartData partstuff);
 	
 };

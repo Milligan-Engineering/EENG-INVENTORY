@@ -20,17 +20,17 @@ struct DataStreams
 	ofstream partData;
 };
 
-char readValue(ifstream& inputStream, char cell[]);
+
 
 int main()
 {
 	ifstream inDataStream;
-	ofstream outDatastream;
+	
 	ifstream partInfo;
 	PartData PartDataObject;
 	DataStreams Datastreamflow;
 
-	fetchFileData(PartDataObject);//fetches CSV for program
+	//fetchFileData(PartDataObject);//fetches CSV for program
 
 	cout << "Low parts:\n";
 	PartDataObject.lowamnt();
@@ -148,12 +148,12 @@ int main()
 
 	} while ((menuChoice != 'E') && (menuChoice != 'e')); 
 
-	pushFileData(PartDataObject);//pushes and stores CSV for program
-
+	//pushFileData(PartDataObject);//pushes and stores CSV for program
+	PartDataObject.PushFileData();
 	return 0;
 	}
 
- int pushFileData(PartData partstuff)
+ /*int pushFileData(PartData partstuff)
 {
 	ofstream outDataStream;
 	outDataStream.open("mainInventoryData.csv");
@@ -198,21 +198,8 @@ int main()
 	outDataStream.close();
 	return(0);
 }
+*/
 
-char readValue(ifstream& inputStream, char cell[])
-{
-	char getChar;
-	inputStream.get(getChar);
-	int j = 0;
-	while ((getChar != ',') && (getChar != '\n'))
-	{
-		cell[j] = getChar;
-		j++;
-		inputStream.get(getChar);
-	}
-	cell[j] = '\0';
-	return(getChar);
-}
 
  int fetchFileData(PartData partstuff)
 {

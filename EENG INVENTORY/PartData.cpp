@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 
+
+
 using namespace std;
 
 void PartData::PartRemoval()
@@ -26,7 +28,7 @@ void PartData::lowamnt()
 	{
 		if (partQuant[i] <= quantityLow)
 		{
-			cout << "**WARNING**\n " << " Part number " << i + 1 << " " << partName[i] << " " << partType[i] << " in location " << partLoc[i] << " has " << partQuant[i] << " pieces left.\n";
+			cout << "**WARNING**\n " << " Part number " << i + 1 << " " << PI.partName[i] << " " << PI.PartDescription[i] << " in Room " << PL.Room[i]<< "Rack " << PL.Rack[i]<<"Shelf "<< PL.Shelf[i] <<"Cabinet"<< PL.Cabinet[i] << " has " << partQuant[i] << " pieces left.\n";
 		}
 
 
@@ -41,10 +43,16 @@ void PartData::partIndex()
 
 		cout << endl;
 		cout << "Part Number: " << i << "\t";
-		cout << "Part Type: " << partType[i - 1] << "\t";
-		cout << "Part Name: " << partName[i - 1] << " " << partType[i - 1] << "\t";
+
+		cout << "Part Name: " << PI.partName[i - 1] << "\t";
+		 
+		cout << "Part Description: " << PI.PartDescription[i - 1]<<"\t";
+
+		cout<< "Model Number: "<< PI.ModelNumber[i - 1] << "\t";
+
 		cout << "Part Quantity: " << partQuant[i - 1] << "\t";
-		cout << "Part Location: " << partLoc[i - 1] << "\t\n\n";
+
+		cout << "Room: " << PL.Room[i - 1] << "Rack: " << " " << PL.Rack[i - 1] << "Shelf: " << " " << PL.Shelf[i - 1] << "Cabinet: " << " " << PL.Cabinet[i - 1] << " " << "\n\n"; "\t\n\n";
 	}
 }
 //precondition:
@@ -63,27 +71,91 @@ void PartData::partFind()
 	else if (partNumber != 0) //Part found
 	{
 		cout << endl;
+
 		cout << "Part Number " << partNumber << " requested" << "\n";
-		cout << "Type: " << partType[partNumber - 1] << "\n";
-		cout << "Name: " << partName[partNumber - 1] << " " << partType[partNumber - 1] << "\n";
+
+		cout << "Name: " << PI.partName[partNumber - 1] << "\n";
+
+		cout << "Description: " << PI.PartDescription[partNumber - 1] << " " << "/n"<< "Model Number: " << PI.ModelNumber[partNumber - 1] << "\n";
+
+		cout << "Location: "<< "Room: " << PL.Room[partNumber - 1] <<"Rack: "<<" "<< PL.Rack[partNumber - 1]<<"Shelf: "<<" "<< PL.Shelf[partNumber - 1]<<"Cabinet: "<< " "<< PL.Cabinet[partNumber - 1]<<" "<<"\n\n";
+
 		cout << "Quantity: " << partQuant[partNumber - 1] << " pcs" << "\n";
-		cout << "Location: " << partLoc[partNumber - 1] << "\n\n";
 	}
 }
 //precondition:
 //postcondidtion:
 
-string PartData::getPartLoc(int i)//accessor
+string PartData::getPartQuant(int i)//accessor
 {
-	return(partLoc[i]);
+	return(partQuant[i]);
 }
 //precondition:
 //postcondidtion:
+
+int pushFileData();
+{
+	ofstream outDataStream;
+	outDataStream.open("mainInventoryData.csv");
+
+	outDataStream << " Number, ";
+	outDataStream << "Name, ";
+	outDataStream << "Description, ";
+	outDataStream << "Model Number, ";
+	outDataStream << "Room, ";
+	outDataStream << "Rack, ";
+	outDataStream << "Shelf, ";
+	outDataStream << "Cabinet, ";
+
+	if (outDataStream.fail())
+	{
+		cout << "Output file stream open failed \n";
+		return(1);
+	}
+
+	for (int i = 0; i < maxParts; i++) // Save part name
+	{
+		outDataStream << i << ",";
+
+		outDataStream << PI.partName[i] << ",";
+
+		outDataStream << PI.PartDescription[i] << ",";
+
+		outDataStream << PI.ModelNumber[i] << ",";
+
+		outDataStream << PL.Room[i]<< ",";
+
+		outDataStream << PL.Rack[i] << ",";
+
+		outDataStream << PL.Shelf[i]<< ",";
+
+		outDataStream << PL.Cabinet[i] << ",";
+
+		outDataStream <<partQuant[i];
+
+	}
+}
 
 void PartData::setlowQuant(int i)//Mutator
 {
 	quantityLow = i;
 }
+
+char readValue(ifstream& inputStream, char cell[])
+{
+	char getChar;
+	inputStream.get(getChar);
+	int j = 0;
+	while ((getChar != ',') && (getChar != '\n'))
+	{
+		cell[j] = getChar;
+		j++;
+		inputStream.get(getChar);
+	}
+	cell[j] = '\0';
+	return(getChar);
+}
+
 
 PartData::PartData()
 {
@@ -94,18 +166,40 @@ PartData::PartData()
 
 	//Part names
 	partName[0] = "100uF electrolytic";
-	partName[1] = "1.5kOhm, 0.25W carbon film";
-	partName[2] = "2N5401 PNP silicon";
+	partName[1] = "Oscillascope";
+	partName[2] = ".5in";
 
-	//Part locations
-	partLoc[0] = "0101A";
-	partLoc[1] = "0102A";
-	partLoc[2] = "0103A";
+	//Part Room
+	Room[0] = "1";
+	Room[1] = "2";
+	Room[2] = "3";
+	//Part Rack
+	Rack[0] = "1";
+	Rack[1] = "2";
+	Rack[2] ="3" ;
 
-	//Part types
-	partType[0] = "capacitor";
-	partType[1] = "resistor";
-	partType[2] = "transistor";
+	//Part Shelf
+	Shelf[0] ="1";
+	Shelf[1] ="2";
+	Shelf[2]= "3";
+	//Part Cabinet
+	Cabinet[0]="1";
+	Cabinet[1]="2";
+	Cabinet[2]="3";
+	//Part Description
+		//**Conventions**
+		//IC: Integrated Circuit
+		//EQ: Equipment
+		//RS: Resistor
+		//CN: Connector
+	PartDescription[0] ="RS" ;
+	PartDescription[1] ="EQ";
+	PartDescription[2] ="CN";
+	//Part Model NUmber
+	ModelNumber[0]="005A";
+	ModelNumber[1]="0202CB";
+	ModelNumber[2]="TI247";
+	
 }
 
 
