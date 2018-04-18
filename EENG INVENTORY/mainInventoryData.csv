@@ -1,6 +1,4 @@
-Part Number, 0,1,2,
-Name, 100uF electrolytic,1.5kOhm, 0.25W carbon film,2N5401 PNP silicon,
-Type, capacitor,resistor,transistor,
-Quantity, 20,60,19,
-Location, 0101A,0102A,0103A,
-
+ Number,Name,Description,Model Number,Room,Rack,Shelf,Cabinet,Quantity,
+0,100uF electrolytic,RS,005A,L01,1,1,1,80
+1,Oscillascope,EQ,0202CB,L02,2,2,2,60
+2,.5in,CN,TI247,L03,3,3,3,19

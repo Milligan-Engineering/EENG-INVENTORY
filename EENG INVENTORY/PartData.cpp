@@ -104,20 +104,24 @@ int PartData::PushFileData()
 	ofstream outDataStream;
 	outDataStream.open("mainInventoryData.csv");
 
-	outDataStream << " Number, ";
-	outDataStream << "Name, ";
-	outDataStream << "Description, ";
-	outDataStream << "Model Number, ";
-	outDataStream << "Room, ";
-	outDataStream << "Rack, ";
-	outDataStream << "Shelf, ";
-	outDataStream << "Cabinet, ";
-
-	if (outDataStream.fail())
+if (outDataStream.fail())
 	{
 		cout << "Output file stream open failed \n";
 		return(1);
 	}
+
+
+	outDataStream << " Number,";
+	outDataStream << "Name,";
+	outDataStream << "Description,";
+	outDataStream << "Model Number,";
+	outDataStream << "Room,";
+	outDataStream << "Rack,";
+	outDataStream << "Shelf,";
+	outDataStream << "Cabinet,";
+	outDataStream<< "Quantity,"<<"\n";
+
+	
 
 	for (int i = 0; i < maxParts; i++) // Save part name
 	{
@@ -137,11 +141,10 @@ int PartData::PushFileData()
 
 		outDataStream << PL.Cabinet[i] << ",";
 
-		outDataStream << partQuant[i]<< "/n";
+		outDataStream << partQuant[i]<< "\n";
 
 	}
 
-	outDataStream << "\n";
 	outDataStream.close();
 	return(0);
 }
@@ -159,10 +162,23 @@ int PartData::fetchFileData()
 		return(1);
 	}
 
-	getChar = readValue(inDataStream, testArray);// Read part #
+	getChar = readValue(inDataStream, testArray);
+	getChar = readValue(inDataStream, testArray);
+	getChar = readValue(inDataStream, testArray);
+	getChar = readValue(inDataStream, testArray);
+	getChar = readValue(inDataStream, testArray);
+	getChar = readValue(inDataStream, testArray);
+	getChar = readValue(inDataStream, testArray);
+	getChar = readValue(inDataStream, testArray);
+	getChar = readValue(inDataStream, testArray);
+	getChar = readValue(inDataStream, testArray);
+
 	for (int i = 0; i < maxParts; i++)
 	{
-		getChar = readValue(inDataStream, testArray);
+		char testArray[45];
+
+		getChar = readValue(inDataStream, testArray);// Read part #
+		partNumber = atoi(testArray);
 
 		getChar = readValue(inDataStream, testArray);// Read part name
 		PI.partName[i] = testArray;
@@ -189,67 +205,15 @@ int PartData::fetchFileData()
 		partQuant[i] = atoi(testArray);
 
 	}
-	/*
-	getChar = readValue(inDataStream, testArray);
-	for (int i = 0; i < maxParts; i++)
-	{
-		getChar = readValue(inDataStream, testArray);
-		PI.partName[i] = testArray;
-	}
+	return 0;
+}
 
-	getChar = readValue(inDataStream, testArray); 
-	for (int i = 0; i < maxParts; i++)
-	{
-		getChar = readValue(inDataStream, testArray);
-		PI.PartDescription[i] = testArray;
-	}
 
-	getChar = readValue(inDataStream, testArray);
-	for (int i = 0; i < maxParts; i++)
-	{
-		getChar = readValue(inDataStream, testArray);
-		PI.ModelNumber[i] = testArray;
-	}
 
-	getChar = readValue(inDataStream, testArray);// Read part quantity
-	for (int i = 0; i < maxParts; i++)
-	{
-		getChar = readValue(inDataStream, testArray);
-		partQuant[i] = atoi(testArray);
-	}
 
-	getChar = readValue(inDataStream, testArray); 
-	for (int i = 0; i < maxParts; i++)
-	{
-		getChar = readValue(inDataStream, testArray);
-		PL.Room[i] = testArray;
-	}
-
-	getChar = readValue(inDataStream, testArray); 
-	for (int i = 0; i < maxParts; i++)
-	{
-		getChar = readValue(inDataStream, testArray);
-		PL.Rack[i] = atoi(testArray);
-	}
-
-	getChar = readValue(inDataStream, testArray);
-	for (int i = 0; i < maxParts; i++)
-	{
-		
-	}
-
-	getChar = readValue(inDataStream, testArray); 
-	for (int i = 0; i < maxParts; i++)
-	{
-		getChar = readValue(inDataStream, testArray);
-		PL.Cabinet[i] = atoi(testArray);
-	}
-
-	return(0);
-}*/
-
-char readValue(ifstream& inputStream, char cell[]) 
+char PartData::readValue(ifstream& inputStream, char cell[]) 
 {
+
 	char getChar;
 	inputStream.get(getChar);
 	int j = 0;
@@ -282,9 +246,9 @@ void PartData::PrintList()
 
 				partInfo << partNumber << " " << PI.partName[partNumber - 1] << " " << PI.PartDescription[partNumber - 1]
 				<< " " << partQuant[partNumber - 1] << " " << PL.Room[partNumber - 1] << " " << PL.Rack[partNumber - 1]
-				<< " " << PL.Shelf[partNumber - 1] << " " << PL.Cabinet[.partNumber - 1];
+				<< " " << PL.Shelf[partNumber - 1] << " " << PL.Cabinet[partNumber - 1];
 
-			partData.close();
+			partInfo.close();
 		}
 
 	} while (partNumber != 0);
@@ -297,7 +261,7 @@ void PartData::PrintList()
 PartData::PartData()
 {
 	//Part quantities
-	partQuant[0] = 20;
+	partQuant[0] = 85;
 	partQuant[1] = 60;
 	partQuant[2] = 19;
 

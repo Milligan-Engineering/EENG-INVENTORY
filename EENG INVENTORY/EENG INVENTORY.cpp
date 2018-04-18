@@ -12,141 +12,132 @@
 #include "PartData.h"
 using namespace std;
 
-char testArray[45];
 
 
-
-int main()
-{
 	struct DataRead
 	{
 		ifstream inDataStream;
-	
 		ifstream LABFILES;
 	};
 
-	DataRead DR;
-
-	struct DataWrite
+	int main()
 	{
-		
-	};
-	 
-	DataWrite DW;
-	
-	PartData PartDataObject;// main class
-	
-	
-	//fetchFileData(PartDataObject);//fetches CSV for program
+		DataRead DR;
+		PartData PartDataObject;// main class
 
-	PartDataObject.fetchFileData();// pulling in CSV file
+		PartDataObject.fetchFileData();// pulling in CSV file
 
-	cout << "Low parts:\n";
-	PartDataObject.lowamnt();
-	cout << "\n\n";
+		cout << "Low parts:\n";
+		PartDataObject.lowamnt();
+		cout << "\n\n";
 
-	char menuChoice;
-	do
-	{
-		cout << endl;
-		cout << "What would you like to do today? \n\n";
-		cout << "To find a part press P\n";
-		cout << "To access part list press I \n";
-		cout << "To find class index press S\n";
-		cout << "To get lab instructions press L\n";
-		cout << "To exit press E\n\n";
-
-		cin >> menuChoice;
-		switch (menuChoice)
+		char menuChoice;
+		do
 		{
-		case 'P':
-		case 'p':
-			
-			do
-			{
-					PartDataObject.partFind();
-					PartDataObject.PartRemoval();
-					PartDataObject.PrintList();
-					
-
-				
-
-		case 'I':
-		case 'i':
-			PartDataObject.partIndex();//prints list off all parts contained in the CSV
-			break;
-
-		case 'S'://Specific type search
-		case 's':
-			//string choice;
-			cout << "Part type search\n" << "What type of part word you like to find?";
-			cout << "For capacitors type C ";
-			cout << "For Transisters type T ";
-			cout << "For Resisters type R ";
-			//cin >> choice;
-		/*	switch(choice)
-				case 'C':
-				case'c':
-					Csearch(i, partType, choice, maxParts);
-					break;
-				case 't':
-				case'T':
-					Tsearch(i, partType, choice, maxParts);
-					break;
-				case 'R':
-				case'r':
-					Rsearch(i, partType, choice, maxParts);
-		*/
-			break;
-
-		case 'L':
-		case 'l':// A test lab file is stored this calls it an dprints it to the console
 			cout << endl;
-			DR.LABFILES.open("LAB1.txt"); //this option allows for the user to acess the labs
-			if (DR.LABFILES.fail())
+			cout << "What would you like to do today? \n\n";
+			cout << "To find a part press P\n";
+			cout << "To access part list press I \n";
+			cout << "To find class index press S\n";
+			cout << "To get lab instructions press L\n";
+			cout << "To exit press E\n\n";
+
+			cin >> menuChoice;
+			switch (menuChoice)
 			{
-				cout << "Lab file failed to open";
-				char wait;
-				cin >> wait;
-				exit(1);
+
+			case 'P':
+			case 'p':
+
+
+				PartDataObject.partFind();
+				PartDataObject.PartRemoval();
+				PartDataObject.PrintList();
+
+
+
+
+			case 'I':
+			case 'i':
+				PartDataObject.partIndex();//prints list off all parts contained in the CSV
+				break;
+
+			case 'S'://Specific type search
+			case 's':
+				//string choice;
+				cout << "Part type search\n" << "What type of part word you like to find?";
+				cout << "For capacitors type C ";
+				cout << "For Transisters type T ";
+				cout << "For Resisters type R ";
+				//cin >> choice;
+			/*	switch(choice)
+					case 'C':
+					case'c':
+						Csearch(i, partType, choice, maxParts);
+						break;
+					case 't':
+					case'T':
+						Tsearch(i, partType, choice, maxParts);
+						break;
+					case 'R':
+					case'r':
+						Rsearch(i, partType, choice, maxParts);
+			*/
+				break;
+
+			case 'L':
+			case 'l':// A test lab file is stored this calls it an dprints it to the console
+				cout << endl;
+				DR.LABFILES.open("LAB1.txt"); //this option allows for the user to acess the labs
+				if (DR.LABFILES.fail())
+				{
+					cout << "Lab file failed to open";
+					char wait;
+					cin >> wait;
+					exit(1);
+				}
+
+				char cstring[30];
+				for (int i = 0; i < 30; i++)
+				{
+					DR.LABFILES.get(cstring[i]);
+					if (DR.LABFILES.eof()) //Stop the loop when the end of the file has been reached - Casey
+					{
+						break;
+					}
+					else
+					{
+						cout << cstring[i]; //Now prints just one character at a time instead of the entire array every loop iteration - Casey
+					}
+				}
+				cout << endl;
+
+				DR.LABFILES.close();
+				break;
+
+			case 'E':
+			case 'e':
+				//Exit program choice (**closes program**)
+				break;
+
+			default:
+				cout << "Not a valid menu choice.\n\n";
+
 			}
 
-			char cstring[30];
-			for (int i = 0; i < 30; i++)
-			{
-				DR.LABFILES.get(cstring[i]);
-				if (DR.LABFILES.eof()) //Stop the loop when the end of the file has been reached - Casey
-				{
-					break;
-				}
-				else
-				{
-					cout << cstring[i]; //Now prints just one character at a time instead of the entire array every loop iteration - Casey
-				}
-			}
-			cout << endl;
-				 
-			DR.LABFILES.close();
-			break;
 
-		case 'E':
-		case 'e':
-			//Exit program choice (**closes program**)
-			break;
 
-		default:
-			cout << "Not a valid menu choice.\n\n";
-		}
+		} while ((menuChoice != 'E') && (menuChoice != 'e'));
 
-	} while ((menuChoice != 'E') && (menuChoice != 'e')); 
+		
+		PartDataObject.PushFileData();
 
-	//pushFileData(PartDataObject);//pushes and stores CSV for program
-	PartDataObject.PushFileData();
+		//delete [] PartDataObject.testArray;
 
-	//delete [] PartDataObject.testArray;
-
-	return 0;
+		return 0;
 	}
+
+
 
  /*int pushFileData(PartData partstuff)
 {
