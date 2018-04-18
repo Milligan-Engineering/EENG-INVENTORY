@@ -86,14 +86,20 @@ void PartData::partFind()
 //precondition:
 //postcondidtion:
 
-string PartData::getPartQuant(int i)//accessor
+int PartData::getPartQuant(int i)//accessor
 {
 	return(partQuant[i]);
 }
 //precondition:
 //postcondidtion:
 
-int pushFileData();
+void PartData::setlowQuant(int i)//Mutator
+{
+	quantityLow = i;
+}
+
+//Data transfer Functions
+int PartData::PushFileData()
 {
 	ofstream outDataStream;
 	outDataStream.open("mainInventoryData.csv");
@@ -131,17 +137,95 @@ int pushFileData();
 
 		outDataStream << PL.Cabinet[i] << ",";
 
-		outDataStream <<partQuant[i];
+		outDataStream << partQuant[i]<< "/n";
 
 	}
+
+	outDataStream << "\n";
+	outDataStream.close();
+	return(0);
 }
 
-void PartData::setlowQuant(int i)//Mutator
+int PartData::fetchFileData()
 {
-	quantityLow = i;
+	//	int val;
+	char getChar;
+	ifstream inDataStream;
+	inDataStream.open("mainInventoryData.csv");
+
+	if (inDataStream.fail())
+	{
+		cout << "Input file stream open failed \n";
+		return(1);
+	}
+
+	getChar = readValue(inDataStream, testArray);// Read part #
+	for (int i = 0; i < maxParts; i++)
+	{
+		getChar = readValue(inDataStream, testArray);
+
+	}
+
+	getChar = readValue(inDataStream, testArray);// Read part name
+	for (int i = 0; i < maxParts; i++)
+	{
+		getChar = readValue(inDataStream, testArray);
+		PI.partName[i] = testArray;
+	}
+
+	getChar = readValue(inDataStream, testArray); // Read Description
+	for (int i = 0; i < maxParts; i++)
+	{
+		getChar = readValue(inDataStream, testArray);
+		PI.PartDescription[i] = testArray;
+	}
+
+	getChar = readValue(inDataStream, testArray); // Read part Model Numeber
+	for (int i = 0; i < maxParts; i++)
+	{
+		getChar = readValue(inDataStream, testArray);
+		PI.ModelNumber[i] = testArray;
+	}
+
+	getChar = readValue(inDataStream, testArray);// Read part quantity
+	for (int i = 0; i < maxParts; i++)
+	{
+		getChar = readValue(inDataStream, testArray);
+		partQuant[i] = atoi(testArray);
+	}
+
+	getChar = readValue(inDataStream, testArray); // Read part Room
+	for (int i = 0; i < maxParts; i++)
+	{
+		getChar = readValue(inDataStream, testArray);
+		PL.Room[i] = testArray;
+	}
+
+	getChar = readValue(inDataStream, testArray); // Read part Rack
+	for (int i = 0; i < maxParts; i++)
+	{
+		getChar = readValue(inDataStream, testArray);
+		PL.Rack[i] = testArray;
+	}
+
+	getChar = readValue(inDataStream, testArray); // Read part Shelf
+	for (int i = 0; i < maxParts; i++)
+	{
+		getChar = readValue(inDataStream, testArray);
+		PL.Shelf[i] = testArray;
+	}
+
+	getChar = readValue(inDataStream, testArray); // Read part Cabinet
+	for (int i = 0; i < maxParts; i++)
+	{
+		getChar = readValue(inDataStream, testArray);
+		PL.Cabinet[i] = testArray;
+	}
+
+	return(0);
 }
 
-char readValue(ifstream& inputStream, char cell[])
+char readValue(ifstream& inputStream, char cell[]) //ifstream& inputStream, char cell[]
 {
 	char getChar;
 	inputStream.get(getChar);
@@ -156,7 +240,7 @@ char readValue(ifstream& inputStream, char cell[])
 	return(getChar);
 }
 
-
+//initializing
 PartData::PartData()
 {
 	//Part quantities
@@ -165,40 +249,40 @@ PartData::PartData()
 	partQuant[2] = 19;
 
 	//Part names
-	partName[0] = "100uF electrolytic";
-	partName[1] = "Oscillascope";
-	partName[2] = ".5in";
+	PI.partName[0] = "100uF electrolytic";
+	PI.partName[1] = "Oscillascope";
+	PI.partName[2] = ".5in";
 
 	//Part Room
-	Room[0] = "1";
-	Room[1] = "2";
-	Room[2] = "3";
+	PL.Room[0] = "L01";
+	PL.Room[1] = "L02";
+	PL.Room[2] = "L03";
 	//Part Rack
-	Rack[0] = "1";
-	Rack[1] = "2";
-	Rack[2] ="3" ;
+	PL.Rack[0] = 1;
+	PL.Rack[1] = 2;
+	PL.Rack[2] = 3 ;
 
 	//Part Shelf
-	Shelf[0] ="1";
-	Shelf[1] ="2";
-	Shelf[2]= "3";
+	PL.Shelf[0] =1;
+	PL.Shelf[1] =2;
+	PL.Shelf[2]= 3;
 	//Part Cabinet
-	Cabinet[0]="1";
-	Cabinet[1]="2";
-	Cabinet[2]="3";
+	PL.Cabinet[0]=1;
+	PL.Cabinet[1]=2;
+	PL.Cabinet[2]=3;
 	//Part Description
 		//**Conventions**
 		//IC: Integrated Circuit
 		//EQ: Equipment
 		//RS: Resistor
 		//CN: Connector
-	PartDescription[0] ="RS" ;
-	PartDescription[1] ="EQ";
-	PartDescription[2] ="CN";
+	PI.PartDescription[0] ="RS" ;
+	PI.PartDescription[1] ="EQ";
+	PI.PartDescription[2] ="CN";
 	//Part Model NUmber
-	ModelNumber[0]="005A";
-	ModelNumber[1]="0202CB";
-	ModelNumber[2]="TI247";
+	PI.ModelNumber[0]="005A";
+	PI.ModelNumber[1]="0202CB";
+	PI.ModelNumber[2]="TI247";
 	
 }
 

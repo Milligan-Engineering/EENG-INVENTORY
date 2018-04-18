@@ -12,13 +12,10 @@
 #include "PartData.h"
 using namespace std;
 
-char testArray[45];
+//char testArray[45];
 
-struct DataStreams
-{
-	ifstream LABFILES;
-	ofstream partData;
-};
+	
+
 
 
 
@@ -28,8 +25,8 @@ int main()
 	
 	ifstream partInfo;
 	PartData PartDataObject;
-	DataStreams Datastreamflow;
-
+	ifstream LABFILES;
+	ofstream partData;
 	//fetchFileData(PartDataObject);//fetches CSV for program
 
 	cout << "Low parts:\n";
@@ -110,8 +107,8 @@ int main()
 		case 'L':
 		case 'l':// A test lab file is stored this calls it an dprints it to the console
 			cout << endl;
-			Datastreamflow.LABFILES.open("LAB1.txt"); //this option allows for the user to acess the labs
-			if (Datastreamflow.LABFILES.fail())
+			LABFILES.open("LAB1.txt"); //this option allows for the user to acess the labs
+			if (LABFILES.fail())
 			{
 				cout << "Lab file failed to open";
 				char wait;
@@ -122,7 +119,7 @@ int main()
 			char cstring[30];
 			for (int i = 0; i < 30; i++)
 			{
-				Datastreamflow.LABFILES.get(cstring[i]);
+				LABFILES.get(cstring[i]);
 				if (Datastreamflow.LABFILES.eof()) //Stop the loop when the end of the file has been reached - Casey
 				{
 					break;
@@ -134,7 +131,7 @@ int main()
 			}
 			cout << endl;
 				 
-			Datastreamflow.LABFILES.close();
+			LABFILES.close();
 			break;
 
 		case 'E':
@@ -150,6 +147,9 @@ int main()
 
 	//pushFileData(PartDataObject);//pushes and stores CSV for program
 	PartDataObject.PushFileData();
+
+	delete [] PartDataObject.testArray;
+
 	return 0;
 	}
 
@@ -200,7 +200,7 @@ int main()
 }
 */
 
-
+/*
  int fetchFileData(PartData partstuff)
 {
 	//	int val;
@@ -249,7 +249,7 @@ int main()
 }
 
 
-/*
+
 void Csearch(int i, string partType[], string choice, const int maxParts)//capacitor
 {
 	int i = 0;

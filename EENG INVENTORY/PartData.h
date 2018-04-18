@@ -1,7 +1,13 @@
 #pragma once
+#include <iostream>
 #include <string>
+#include <fstream>
+#include <string>
+#include <cstdlib>
 
 using namespace std;
+
+static const int maxParts = 3;
 
 struct PartInfo
 {
@@ -25,7 +31,7 @@ class PartData//PartData class for function, variables, and arrays associated wi
 {
 
 private:
-	static const int maxParts = 3;
+	
 	PartInfo PI;
 	Location PL;
 	int partQuant[maxParts];
@@ -39,17 +45,28 @@ public:
 	PartData();
 	~PartData();
 
+	
+
 	int partNumber;// (partNumber-1) serves as an index to look up information for each part in the part arrays
 	void PartRemoval();
 	void lowamnt();
 	void partIndex();
 	void partFind();
-	string getPartLoc(int i);
+	int getPartQuant(int i);
 	void setlowQuant(int i);
-
-	int pushFileData();
+	//Data Transfer Functions
+	int PushFileData();
+	int fetchFileData();
 
 	char readValue(ifstream& inputStream, char cell[]);
+
+	typedef char* CharPtr;
+	CharPtr p;
+	char testArray[45];
+	p = new testArray;
+
+	
+	
 
 	friend int fetchFileData(PartData partstuff);
 	//friend int pushFileData(PartData partstuff);
