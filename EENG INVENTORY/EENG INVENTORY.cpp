@@ -25,7 +25,7 @@ using namespace std;
 		DataRead DR;
 		PartData PartDataObject;// main class
 
-		PartDataObject.fetchFileData();// pulling in CSV file
+		//PartDataObject.fetchFileData();// pulling in CSV file
 
 		cout << "Low parts:\n";
 		PartDataObject.lowamnt();
@@ -52,7 +52,7 @@ using namespace std;
 
 				PartDataObject.partFind();
 				PartDataObject.PartRemoval();
-				PartDataObject.PrintList();
+				//PartDataObject.PrintList();
 
 
 
