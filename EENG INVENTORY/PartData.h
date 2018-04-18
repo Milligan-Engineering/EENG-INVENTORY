@@ -13,7 +13,7 @@ struct PartInfo
 {
 	string ModelNumber[maxParts];
 	string PartDescription[maxParts];
-	string partType[maxParts];
+
 	string partName[maxParts];
 
 };
@@ -37,15 +37,16 @@ private:
 	int partQuant[maxParts];
 	int quantityLow = 20;
 	ofstream outDatastream;
-	
+	char testArray[45];
 
+	ofstream partInfo;
+
+	//ifstream partInfo;
 
 public:
 
 	PartData();
 	~PartData();
-
-	
 
 	int partNumber;// (partNumber-1) serves as an index to look up information for each part in the part arrays
 	void PartRemoval();
@@ -54,21 +55,27 @@ public:
 	void partFind();
 	int getPartQuant(int i);
 	void setlowQuant(int i);
+
 	//Data Transfer Functions
 	int PushFileData();
-	int fetchFileData();
 
 	char readValue(ifstream& inputStream, char cell[]);
 
+	int fetchFileData();
+
+	void PrintList();
+
+	
+	/*
 	typedef char* CharPtr;
 	CharPtr p;
 	char testArray[45];
 	p = new testArray;
 
-	
+	*/
 	
 
-	friend int fetchFileData(PartData partstuff);
+	//friend int fetchFileData(PartData partstuff);
 	//friend int pushFileData(PartData partstuff);
 	
 };

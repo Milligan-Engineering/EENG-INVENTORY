@@ -12,22 +12,34 @@
 #include "PartData.h"
 using namespace std;
 
-//char testArray[45];
-
-	
-
+char testArray[45];
 
 
 
 int main()
 {
-	ifstream inDataStream;
+	struct DataRead
+	{
+		ifstream inDataStream;
 	
-	ifstream partInfo;
-	PartData PartDataObject;
-	ifstream LABFILES;
-	ofstream partData;
+		ifstream LABFILES;
+	};
+
+	DataRead DR;
+
+	struct DataWrite
+	{
+		
+	};
+	 
+	DataWrite DW;
+	
+	PartData PartDataObject;// main class
+	
+	
 	//fetchFileData(PartDataObject);//fetches CSV for program
+
+	PartDataObject.fetchFileData();// pulling in CSV file
 
 	cout << "Low parts:\n";
 	PartDataObject.lowamnt();
@@ -49,32 +61,15 @@ int main()
 		{
 		case 'P':
 		case 'p':
-			//partFind(partName, partType, partQuant, partLoc, maxParts, partNumber);
+			
 			do
 			{
 					PartDataObject.partFind();
 					PartDataObject.PartRemoval();
-					/*
-					int choice;
-					cout << "Type 1 if you would like to save this part information: ";
-					cin >> choice;
-					if (choice == 1)
-					{
-						partData.open("Datasheet.txt");
-						if (partData.fail())
-						{
-							cout << "File failed to open";
-							char wait;
-							cin >> wait;
-							exit(1);
-						}
-						partData << partNumber << " " << partName[partNumber - 1] << " " << partType[partNumber - 1]
-							<< " " << partQuant[partNumber - 1] << " " << partLoc[partNumber - 1];
-						partData.close();
-					}
-					*/
-			} while (PartDataObject.partNumber != 0);
-			break;
+					PartDataObject.PrintList();
+					
+
+				
 
 		case 'I':
 		case 'i':
@@ -107,8 +102,8 @@ int main()
 		case 'L':
 		case 'l':// A test lab file is stored this calls it an dprints it to the console
 			cout << endl;
-			LABFILES.open("LAB1.txt"); //this option allows for the user to acess the labs
-			if (LABFILES.fail())
+			DR.LABFILES.open("LAB1.txt"); //this option allows for the user to acess the labs
+			if (DR.LABFILES.fail())
 			{
 				cout << "Lab file failed to open";
 				char wait;
@@ -119,8 +114,8 @@ int main()
 			char cstring[30];
 			for (int i = 0; i < 30; i++)
 			{
-				LABFILES.get(cstring[i]);
-				if (Datastreamflow.LABFILES.eof()) //Stop the loop when the end of the file has been reached - Casey
+				DR.LABFILES.get(cstring[i]);
+				if (DR.LABFILES.eof()) //Stop the loop when the end of the file has been reached - Casey
 				{
 					break;
 				}
@@ -131,7 +126,7 @@ int main()
 			}
 			cout << endl;
 				 
-			LABFILES.close();
+			DR.LABFILES.close();
 			break;
 
 		case 'E':
@@ -148,7 +143,7 @@ int main()
 	//pushFileData(PartDataObject);//pushes and stores CSV for program
 	PartDataObject.PushFileData();
 
-	delete [] PartDataObject.testArray;
+	//delete [] PartDataObject.testArray;
 
 	return 0;
 	}

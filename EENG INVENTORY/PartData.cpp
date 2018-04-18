@@ -164,23 +164,47 @@ int PartData::fetchFileData()
 	{
 		getChar = readValue(inDataStream, testArray);
 
-	}
+		getChar = readValue(inDataStream, testArray);// Read part name
+		PI.partName[i] = testArray;
 
-	getChar = readValue(inDataStream, testArray);// Read part name
+		getChar = readValue(inDataStream, testArray);// Read Description
+		PI.PartDescription[i] = testArray;
+
+		getChar = readValue(inDataStream, testArray); // Read part Model Number
+		PI.ModelNumber[i] = testArray;
+
+		getChar = readValue(inDataStream, testArray);// Read part Room
+		PL.Room[i] = testArray;
+
+		getChar = readValue(inDataStream, testArray);// Read part Rack
+		PL.Rack[i] = atoi(testArray);
+
+		getChar = readValue(inDataStream, testArray);// Read part Shelf
+		PL.Shelf[i] = atoi(testArray);
+
+		getChar = readValue(inDataStream, testArray);// Read part Cabinet
+		PL.Cabinet[i] = atoi(testArray);
+
+		getChar = readValue(inDataStream, testArray);// Read part quantity
+		partQuant[i] = atoi(testArray);
+
+	}
+	/*
+	getChar = readValue(inDataStream, testArray);
 	for (int i = 0; i < maxParts; i++)
 	{
 		getChar = readValue(inDataStream, testArray);
 		PI.partName[i] = testArray;
 	}
 
-	getChar = readValue(inDataStream, testArray); // Read Description
+	getChar = readValue(inDataStream, testArray); 
 	for (int i = 0; i < maxParts; i++)
 	{
 		getChar = readValue(inDataStream, testArray);
 		PI.PartDescription[i] = testArray;
 	}
 
-	getChar = readValue(inDataStream, testArray); // Read part Model Numeber
+	getChar = readValue(inDataStream, testArray);
 	for (int i = 0; i < maxParts; i++)
 	{
 		getChar = readValue(inDataStream, testArray);
@@ -194,38 +218,37 @@ int PartData::fetchFileData()
 		partQuant[i] = atoi(testArray);
 	}
 
-	getChar = readValue(inDataStream, testArray); // Read part Room
+	getChar = readValue(inDataStream, testArray); 
 	for (int i = 0; i < maxParts; i++)
 	{
 		getChar = readValue(inDataStream, testArray);
 		PL.Room[i] = testArray;
 	}
 
-	getChar = readValue(inDataStream, testArray); // Read part Rack
+	getChar = readValue(inDataStream, testArray); 
 	for (int i = 0; i < maxParts; i++)
 	{
 		getChar = readValue(inDataStream, testArray);
-		PL.Rack[i] = testArray;
+		PL.Rack[i] = atoi(testArray);
 	}
 
-	getChar = readValue(inDataStream, testArray); // Read part Shelf
+	getChar = readValue(inDataStream, testArray);
 	for (int i = 0; i < maxParts; i++)
 	{
-		getChar = readValue(inDataStream, testArray);
-		PL.Shelf[i] = testArray;
+		
 	}
 
-	getChar = readValue(inDataStream, testArray); // Read part Cabinet
+	getChar = readValue(inDataStream, testArray); 
 	for (int i = 0; i < maxParts; i++)
 	{
 		getChar = readValue(inDataStream, testArray);
-		PL.Cabinet[i] = testArray;
+		PL.Cabinet[i] = atoi(testArray);
 	}
 
 	return(0);
-}
+}*/
 
-char readValue(ifstream& inputStream, char cell[]) //ifstream& inputStream, char cell[]
+char readValue(ifstream& inputStream, char cell[]) 
 {
 	char getChar;
 	inputStream.get(getChar);
@@ -239,6 +262,36 @@ char readValue(ifstream& inputStream, char cell[]) //ifstream& inputStream, char
 	cell[j] = '\0';
 	return(getChar);
 }
+
+void PartData::PrintList()
+{
+	{
+		int choice;
+		cout << "Type 1 if you would like to save this part information: ";
+		cin >> choice;
+		if (choice == 1)
+		{
+			partInfo.open("Datasheet.txt");
+			if (partInfo.fail())
+			{
+				cout << "File failed to open";
+				char wait;
+				cin >> wait;
+				exit(1);
+			}
+
+				partInfo << partNumber << " " << PI.partName[partNumber - 1] << " " << PI.PartDescription[partNumber - 1]
+				<< " " << partQuant[partNumber - 1] << " " << PL.Room[partNumber - 1] << " " << PL.Rack[partNumber - 1]
+				<< " " << PL.Shelf[partNumber - 1] << " " << PL.Cabinet[.partNumber - 1];
+
+			partData.close();
+		}
+
+	} while (partNumber != 0);
+}
+
+
+
 
 //initializing
 PartData::PartData()
