@@ -12,11 +12,11 @@ static const int maxParts = 3;
 struct PartInfo
 {
 	string ModelNumber[maxParts];
+	string PartType[maxParts];
 	string PartDescription[maxParts];
-
-	string partName[maxParts];
-
+	int LowQuant[maxParts];
 };
+
 struct Location
 {
 	string Room[maxParts];
