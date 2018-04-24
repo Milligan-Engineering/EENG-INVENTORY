@@ -96,11 +96,11 @@ int PartData::getPartQuant(int i)//accessor
 //precondition:
 //postcondidtion:
 
-void PartData::setlowQuant(int i)//Mutator
+/*void PartData::setlowQuant(int i)//Mutator
 {
-	quantityLow = i;
+	LowQuant[i] ;
 }
-
+*/
 //Data transfer Functions
 int PartData::PushFileData()
 {
@@ -182,7 +182,7 @@ int PartData::fetchFileData()
 	getChar = readValue(inDataStream, testArray);
 	getChar = readValue(inDataStream, testArray);
 
-	while (!inDataStream.eof())
+	while (i<=20)//(!inDataStream.eof())
 	{
 
 		getChar = readValue(inDataStream, testArray);
@@ -199,9 +199,26 @@ int PartData::fetchFileData()
 		i++;
 
 	}
+	inDataStream.close("mainInventoryData.csv");
 
 	{
-		i = maxParts;
+		inDataStream.open("mainInventoryData.csv");
+
+		if (inDataStream.fail())
+		{
+			cout << "Input file stream open failed \n";
+			return(1);
+		}
+		maxParts= 20;
+
+		PI.PartDescription = new string[maxParts];
+		PI.PartType = new string[maxParts];
+		PI.ModelNumber = new string[maxParts];
+		PL.Room = new string[maxParts];
+		PL.Rack = new int[maxParts];
+		PL.Shelf = new int[maxParts];
+		PL.Cabinet = new int[maxParts];
+		partQuant = new int[maxParts];
 
 		getChar = readValue(inDataStream, testArray);
 		getChar = readValue(inDataStream, testArray);
@@ -221,14 +238,14 @@ int PartData::fetchFileData()
 			getChar = readValue(inDataStream, testArray);// Read part #
 			partNumber = atoi(testArray);
 
+			getChar = readValue(inDataStream, testArray); // Read part Model Number
+			PI.ModelNumber[i] = testArray;
+
 			getChar = readValue(inDataStream, testArray);// Read part name
 			PI.PartDescription[i] = testArray;
 
 			getChar = readValue(inDataStream, testArray);// Read Description
 			PI.PartType[i] = testArray;
-
-			getChar = readValue(inDataStream, testArray); // Read part Model Number
-			PI.ModelNumber[i] = testArray;
 
 			getChar = readValue(inDataStream, testArray);// Read part Room
 			PL.Room[i] = testArray;
@@ -245,9 +262,14 @@ int PartData::fetchFileData()
 			getChar = readValue(inDataStream, testArray);// Read part quantity
 			partQuant[i] = atoi(testArray);
 
+			getChar = readValue(inDataStream, testArray);// Read low quant
+			PI.LowQuant[i] = atoi(testArray);
+
 		}
 	}
+	
 	return 0;
+
 }
 
 
@@ -300,6 +322,7 @@ void PartData::PrintList()
 //initializing
 PartData::PartData()
 {
+	/*
 	//Part quantities
 	partQuant[0] = 95;
 	partQuant[1] = 9;
@@ -346,7 +369,7 @@ PartData::PartData()
 	PI.ModelNumber[0]="005A";
 	PI.ModelNumber[1]="0202CB";
 	PI.ModelNumber[2]="TI247";
-	
+	*/
 }
 
 
