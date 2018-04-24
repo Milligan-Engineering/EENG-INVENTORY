@@ -7,7 +7,7 @@
 
 using namespace std;
 
-static const int maxParts = 3;
+static const int maxParts = 20;
 
 struct PartInfo
 {

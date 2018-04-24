@@ -39,7 +39,7 @@ using namespace std;
 			cout << "What would you like to do today? \n\n";
 			cout << "To find a part press P\n";
 			cout << "To access part list press I \n";
-			cout << "To find class index press S\n";
+			cout << "To find type index press S\n";
 			cout << "To get lab instructions press L\n";
 			cout << "To exit press E\n\n";
 
