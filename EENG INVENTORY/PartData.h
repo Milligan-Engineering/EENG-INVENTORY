@@ -7,13 +7,8 @@
 
 using namespace std;
 
-
-
 typedef string * StrPtr;
 typedef int * IntPtr;
-
-
- 
 
 struct PartInfo
 {
@@ -30,8 +25,6 @@ struct Location
 	IntPtr Shelf;
 	IntPtr Cabinet;
 };
-
-
 
 class PartData//PartData class for function, variables, and arrays associated with part data
 {
@@ -59,7 +52,7 @@ public:
 	void partIndex();
 	void partFind();
 	int getPartQuant(int i);
-	void setlowQuant(int i);
+	//void setlowQuant(int i);
 
 	//Data Transfer Functions
 	int PushFileData();

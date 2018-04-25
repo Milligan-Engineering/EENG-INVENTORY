@@ -115,14 +115,26 @@ if (outDataStream.fail())
 
 
 	outDataStream << " Number,";
-	outDataStream << "Name,";
-	outDataStream << "Description,";
+
 	outDataStream << "Model Number,";
+
+	outDataStream << "Description,";
+
+	outDataStream << "Type,";
+
+	outDataStream << "Quantity,";
+
+	outDataStream << "Low Quantity,";
+
 	outDataStream << "Room,";
+
 	outDataStream << "Rack,";
+
 	outDataStream << "Shelf,";
-	outDataStream << "Cabinet,";
-	outDataStream<< "Quantity,"<<"\n";
+
+	outDataStream << "Cabinet," << "\n";
+
+	
 
 	
 
@@ -130,11 +142,16 @@ if (outDataStream.fail())
 	{
 		outDataStream << i << ",";
 
+
+		outDataStream << PI.ModelNumber[i] << ",";
+
 		outDataStream << PI.PartDescription[i] << ",";
 
 		outDataStream << PI.PartType[i] << ",";
 
-		outDataStream << PI.ModelNumber[i] << ",";
+		outDataStream << partQuant[i] << ",";
+
+		outDataStream << PI.LowQuant[i] << ",";
 
 		outDataStream << PL.Room[i]<< ",";
 
@@ -142,9 +159,9 @@ if (outDataStream.fail())
 
 		outDataStream << PL.Shelf[i]<< ",";
 
-		outDataStream << PL.Cabinet[i] << ",";
+		outDataStream << PL.Cabinet[i] << "\n";
 
-		outDataStream << partQuant[i]<< "\n";
+		
 
 	}
 
@@ -159,31 +176,18 @@ if (outDataStream.fail())
 
 int PartData::fetchFileData()
 {
-	int i = 0;
+	
+		int i = 0;
 
-	char getChar;
-	ifstream inDataStream;
-	inDataStream.open("mainInventoryData.csv");
+		char getChar;
+		ifstream inDataStream;
+		inDataStream.open("mainInventoryData.csv");
 
-	if (inDataStream.fail())
-	{
-		cout << "Input file stream open failed \n";
-		return(1);
-	}
-
-	getChar = readValue(inDataStream, testArray);
-	getChar = readValue(inDataStream, testArray);
-	getChar = readValue(inDataStream, testArray);
-	getChar = readValue(inDataStream, testArray);
-	getChar = readValue(inDataStream, testArray);
-	getChar = readValue(inDataStream, testArray);
-	getChar = readValue(inDataStream, testArray);
-	getChar = readValue(inDataStream, testArray);
-	getChar = readValue(inDataStream, testArray);
-	getChar = readValue(inDataStream, testArray);
-
-	while (i<=20)//(!inDataStream.eof())
-	{
+		if (inDataStream.fail())
+		{
+			cout << "Input file stream open failed \n";
+			return(1);
+		}
 
 		getChar = readValue(inDataStream, testArray);
 		getChar = readValue(inDataStream, testArray);
@@ -196,10 +200,27 @@ int PartData::fetchFileData()
 		getChar = readValue(inDataStream, testArray);
 		getChar = readValue(inDataStream, testArray);
 
-		i++;
+		while (i <= 20)//(!inDataStream.eof())
+		{
 
-	}
-	inDataStream.close("mainInventoryData.csv");
+			getChar = readValue(inDataStream, testArray);
+			getChar = readValue(inDataStream, testArray);
+			getChar = readValue(inDataStream, testArray);
+			getChar = readValue(inDataStream, testArray);
+			getChar = readValue(inDataStream, testArray);
+			getChar = readValue(inDataStream, testArray);
+			getChar = readValue(inDataStream, testArray);
+			getChar = readValue(inDataStream, testArray);
+			getChar = readValue(inDataStream, testArray);
+			getChar = readValue(inDataStream, testArray);
+
+			i++;
+
+		}
+
+		inDataStream.close();
+	
+
 
 	{
 		inDataStream.open("mainInventoryData.csv");
@@ -219,6 +240,7 @@ int PartData::fetchFileData()
 		PL.Shelf = new int[maxParts];
 		PL.Cabinet = new int[maxParts];
 		partQuant = new int[maxParts];
+		PI.LowQuant = new int[maxParts];
 
 		getChar = readValue(inDataStream, testArray);
 		getChar = readValue(inDataStream, testArray);
@@ -247,6 +269,12 @@ int PartData::fetchFileData()
 			getChar = readValue(inDataStream, testArray);// Read Description
 			PI.PartType[i] = testArray;
 
+			getChar = readValue(inDataStream, testArray);// Read part quantity
+			partQuant[i] = atoi(testArray);
+
+			getChar = readValue(inDataStream, testArray);// Read low quant
+			PI.LowQuant[i] = atoi(testArray);
+
 			getChar = readValue(inDataStream, testArray);// Read part Room
 			PL.Room[i] = testArray;
 
@@ -259,11 +287,7 @@ int PartData::fetchFileData()
 			getChar = readValue(inDataStream, testArray);// Read part Cabinet
 			PL.Cabinet[i] = atoi(testArray);
 
-			getChar = readValue(inDataStream, testArray);// Read part quantity
-			partQuant[i] = atoi(testArray);
-
-			getChar = readValue(inDataStream, testArray);// Read low quant
-			PI.LowQuant[i] = atoi(testArray);
+		
 
 		}
 	}

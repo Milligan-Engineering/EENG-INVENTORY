@@ -9,6 +9,7 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <time.h>
 #include "PartData.h"
 using namespace std;
 
@@ -84,9 +85,27 @@ using namespace std;
 		
 		PartDataObject.PushFileData();
 
-		//delete [] PartDataObject.testArray;
+			//delete [] PartDataObject.
+		
 
 		return 0;
+	}
+
+	void genData(double data[], double avgVal[], double rangeVal[], int numVal, double period)
+	{
+
+		clock_t goal, now;
+		now = CLOCKS_PER_SEC;
+		now = clock();
+		goal = static_cast<clock_t>(1000 * period) * CLOCKS_PER_SEC / 1000;
+		while (goal > clock() - now)
+			;
+		for (int i = 0; i < numVal; i++)
+		{
+			data[i] = avgVal[i] - rangeVal[i] / 2 + (rand() % 1000)*rangeVal[i] / 1000; // assign random numbers
+		}
+
+
 	}
 
 
