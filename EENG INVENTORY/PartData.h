@@ -16,6 +16,7 @@ struct PartInfo
 	StrPtr PartType;
 	StrPtr PartDescription;
 	IntPtr LowQuant;
+	IntPtr partQuant;
 };
 
 struct Location
@@ -24,6 +25,7 @@ struct Location
 	IntPtr Rack;
 	IntPtr Shelf;
 	IntPtr Cabinet;
+	
 };
 
 class PartData//PartData class for function, variables, and arrays associated with part data
@@ -32,8 +34,8 @@ class PartData//PartData class for function, variables, and arrays associated wi
 private:
 	
 	PartInfo PI;
-	Location PL;
-	IntPtr partQuant;
+	Location PL; 
+	
 	ofstream outDatastream;
 	char testArray[45];
 
