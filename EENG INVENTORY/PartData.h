@@ -7,25 +7,24 @@
 
 using namespace std;
 
-static const int maxParts = 3;
+typedef string * StrPtr;
+typedef int * IntPtr;
 
 struct PartInfo
 {
-	string ModelNumber[maxParts];
-	string PartDescription[maxParts];
-
-	string partName[maxParts];
-
+	StrPtr ModelNumber;
+	StrPtr PartType;
+	StrPtr PartDescription;
+	IntPtr LowQuant;
 };
+
 struct Location
 {
-	string Room[maxParts];
-	int Rack[maxParts];
-	int Shelf[maxParts];
-	int Cabinet[maxParts];
+	StrPtr Room;
+	IntPtr Rack;
+	IntPtr Shelf;
+	IntPtr Cabinet;
 };
-
-
 
 class PartData//PartData class for function, variables, and arrays associated with part data
 {
@@ -34,8 +33,7 @@ private:
 	
 	PartInfo PI;
 	Location PL;
-	int partQuant[maxParts];
-	int quantityLow = 20;
+	IntPtr partQuant;
 	ofstream outDatastream;
 	char testArray[45];
 
@@ -47,14 +45,14 @@ public:
 
 	PartData();
 	~PartData();
-
+	int maxParts;
 	int partNumber;// (partNumber-1) serves as an index to look up information for each part in the part arrays
 	void PartRemoval();
 	void lowamnt();
 	void partIndex();
 	void partFind();
 	int getPartQuant(int i);
-	void setlowQuant(int i);
+	//void setlowQuant(int i);
 
 	//Data Transfer Functions
 	int PushFileData();

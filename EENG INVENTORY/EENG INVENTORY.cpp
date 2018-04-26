@@ -9,15 +9,17 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <time.h>
 #include "PartData.h"
 using namespace std;
+
+
 
 
 
 	struct DataRead
 	{
 		ifstream inDataStream;
-		ifstream LABFILES;
 	};
 
 	int main()
@@ -25,7 +27,9 @@ using namespace std;
 		DataRead DR;
 		PartData PartDataObject;// main class
 
-		//PartDataObject.fetchFileData();// pulling in CSV file
+		PartDataObject.fetchFileData();// pulling in CSV file
+
+		
 
 		cout << "Low parts:\n";
 		PartDataObject.lowamnt();
@@ -38,25 +42,18 @@ using namespace std;
 			cout << "What would you like to do today? \n\n";
 			cout << "To find a part press P\n";
 			cout << "To access part list press I \n";
-			cout << "To find class index press S\n";
+			cout << "To find type index press S\n";
 			cout << "To get lab instructions press L\n";
 			cout << "To exit press E\n\n";
 
 			cin >> menuChoice;
 			switch (menuChoice)
 			{
-
 			case 'P':
 			case 'p':
-
-
 				PartDataObject.partFind();
 				PartDataObject.PartRemoval();
 				//PartDataObject.PrintList();
-
-
-
-
 			case 'I':
 			case 'i':
 				PartDataObject.partIndex();//prints list off all parts contained in the CSV
@@ -69,50 +66,6 @@ using namespace std;
 				cout << "For capacitors type C ";
 				cout << "For Transisters type T ";
 				cout << "For Resisters type R ";
-				//cin >> choice;
-			/*	switch(choice)
-					case 'C':
-					case'c':
-						Csearch(i, partType, choice, maxParts);
-						break;
-					case 't':
-					case'T':
-						Tsearch(i, partType, choice, maxParts);
-						break;
-					case 'R':
-					case'r':
-						Rsearch(i, partType, choice, maxParts);
-			*/
-				break;
-
-			case 'L':
-			case 'l':// A test lab file is stored this calls it an dprints it to the console
-				cout << endl;
-				DR.LABFILES.open("LAB1.txt"); //this option allows for the user to acess the labs
-				if (DR.LABFILES.fail())
-				{
-					cout << "Lab file failed to open";
-					char wait;
-					cin >> wait;
-					exit(1);
-				}
-
-				char cstring[30];
-				for (int i = 0; i < 30; i++)
-				{
-					DR.LABFILES.get(cstring[i]);
-					if (DR.LABFILES.eof()) //Stop the loop when the end of the file has been reached - Casey
-					{
-						break;
-					}
-					else
-					{
-						cout << cstring[i]; //Now prints just one character at a time instead of the entire array every loop iteration - Casey
-					}
-				}
-				cout << endl;
-
-				DR.LABFILES.close();
 				break;
 
 			case 'E':
@@ -132,167 +85,31 @@ using namespace std;
 		
 		PartDataObject.PushFileData();
 
-		//delete [] PartDataObject.testArray;
+			//delete [] PartDataObject.
+		
 
 		return 0;
 	}
 
+	void genData(double data[], double avgVal[], double rangeVal[], int numVal, double period)
+	{
 
-
- /*int pushFileData(PartData partstuff)
-{
-	ofstream outDataStream;
-	outDataStream.open("mainInventoryData.csv");
-	if (outDataStream.fail())
-	{
-		cout << "Output file stream open failed \n";
-		return(1);
-	}
-	outDataStream << "Part Number, ";
-	for (int i = 0; i < partstuff.maxParts; i++) // Save part name
-	{
-		outDataStream << i << ",";
-	}
-	outDataStream << "\n";
-	outDataStream << "Name, ";
-	for (int i = 0; i < partstuff.maxParts; i++) // Save part name
-	{
-		outDataStream << partstuff.partName[i] << ",";
-	}
-	outDataStream << "\n";
-	outDataStream << "Type, ";
-	for (int i = 0; i < partstuff.maxParts; i++) // Save part type
-	{
-		outDataStream << partstuff.partType[i] << ",";
-	}
-	outDataStream << "\n";
-	outDataStream << "Quantity, ";
-	for (int i = 0; i < partstuff.maxParts; i++) // Save part quant
-	{
-		outDataStream << partstuff.partQuant[i] << ",";
-	}
-	outDataStream << "\n";
-	outDataStream << "Location, ";
-	for (int i = 0; i < partstuff.maxParts; i++) // Save part location
-	{
-		outDataStream << partstuff.partLoc[i] << ",";
-	}
-	outDataStream << "\n";
-
-
-	outDataStream << "\n";
-	outDataStream.close();
-	return(0);
-}
-*/
-
-/*
- int fetchFileData(PartData partstuff)
-{
-	//	int val;
-	char getChar;
-	ifstream inDataStream;
-	inDataStream.open("mainInventoryData.csv");
-	if (inDataStream.fail())
-	{
-		cout << "Input file stream open failed \n";
-		return(1);
-	}
-	getChar = readValue(inDataStream, testArray);// Read part #
-
-	for (int i = 0; i < partstuff.maxParts; i++)
-	{
-		getChar = readValue(inDataStream, testArray);
-	}
-	getChar = readValue(inDataStream, testArray);// Read part name
-
-	for (int i = 0; i < partstuff.maxParts; i++)
-	{
-		getChar = readValue(inDataStream, testArray);
-		partstuff.partName[i] = testArray;
-	}
-	getChar = readValue(inDataStream, testArray); // Read part type
-
-	for (int i = 0; i < partstuff.maxParts; i++)
-	{
-		getChar = readValue(inDataStream, testArray);
-		partstuff.partType[i] = testArray;
-	}
-	getChar = readValue(inDataStream, testArray);// Read part quantity
-	for (int i = 0; i < partstuff.maxParts; i++)
-	{
-		getChar = readValue(inDataStream, testArray);
-		partstuff.partQuant[i] = atoi(testArray);
-	}
-	getChar = readValue(inDataStream, testArray); // Read part Location
-
-	for (int i = 0; i < partstuff.maxParts; i++)
-	{
-		getChar = readValue(inDataStream, testArray);
-		partstuff.partLoc[i] = testArray;
-	}
-	return(0);
-}
-
-
-
-void Csearch(int i, string partType[], string choice, const int maxParts)//capacitor
-{
-	int i = 0;
-	bool found = false;
-	if (choice == "C" ||(choice == "c"))
-	{
-		choice = "capacitor";
-	}
-	while ((!found) && (i <= maxParts))
-		if ("capacitor" == partType[i])
+		clock_t goal, now;
+		now = CLOCKS_PER_SEC;
+		now = clock();
+		goal = static_cast<clock_t>(1000 * period) * CLOCKS_PER_SEC / 1000;
+		while (goal > clock() - now)
+			;
+		for (int i = 0; i < numVal; i++)
 		{
-			found = true;
+			data[i] = avgVal[i] - rangeVal[i] / 2 + (rand() % 1000)*rangeVal[i] / 1000; // assign random numbers
 		}
+
+
+	}
+
+
 	
-		else
-		{
-			i++;
-		}
-}
-void Tsearch(int i, string partType[], string choice, const int maxParts)//Transistor
-{
-	int i = 0;
-	bool found = false;
-	if (choice = "T" || "t")
-	{
-		choice = "transistor";
-	}
-	while ((!found) && (i <= maxParts))
-		if ("transistor" == partType[i])
-		{
-			found = true;
-		}
-
-		else
-		{
-			i++;
-		}
-}
-void Rsearch(int i, string partType[], string choice, const int maxParts)// Resistor
-{
-	int i = 0;
-	bool found = false;
-	if (choice = 'R' || 'r')
-	{
-		choice = "resistor";
-	}
-	while ((!found) && (i <= maxParts))
-		if ("resistor" == partType[i])
-		{
-			found = true;
-		}
-
-		else
-		{
-			i++;
-		}
-}
 /*void quantitySort(int partQuant[], int Order[])
 {
 
