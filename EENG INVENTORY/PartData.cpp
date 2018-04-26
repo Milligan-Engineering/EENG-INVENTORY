@@ -2,8 +2,6 @@
 #include <iostream>
 #include <string>
 
-
-
 using namespace std;
 
 void PartData::PartRemoval()
@@ -15,12 +13,13 @@ void PartData::PartRemoval()
 	if (partsRemoved > partQuant[partNumber - 1])
 	{
 		cout << "parts removed greater than parts present.\n" << "enter a new number.";
-	}
+	}    
+
 	partQuant[partNumber - 1] = partQuant[partNumber - 1] - partsRemoved; //updates part quantity located in partQuant array//add accesseor and mutator function here
 	cout << partQuant[partNumber - 1] << " parts remaining\n\n";
 }
-//precondition:
-//postcondidtion:
+//precondition: has the number of parts present in  the array partQuant[]
+//postcondidtion: removes numerical amount from array partQuant[]
 
 void PartData::lowamnt()
 {
@@ -57,8 +56,8 @@ void PartData::partIndex()
 		cout << "Room: " << PL.Room[i - 1] << "Rack: " << " " << PL.Rack[i - 1] << "Shelf: " << " " << PL.Shelf[i - 1] << "Cabinet: " << " " << PL.Cabinet[i - 1] << " " << "\n\n"; "\t\n\n";
 	}
 }
-//precondition:
-//postcondidtion:
+//precondition: None
+//postcondidtion: list all parts present in csv
 
 void PartData::partFind()
 {
@@ -86,21 +85,22 @@ void PartData::partFind()
 		cout << "Quantity: " << partQuant[partNumber - 1] << " pcs" << "\n";
 	}
 }	
-//precondition:
-//postcondidtion:
+//precondition: user types in part #
+//postcondidtion: the function returns all information asocciated with that part
 
 int PartData::getPartQuant(int i)//accessor
 {
 	return(partQuant[i]);
 }
-//precondition:
-//postcondidtion:
+//precondition: 
+//postcondidtion: returns part quant
 
 /*void PartData::setlowQuant(int i)//Mutator
 {
 	LowQuant[i] ;
 }
 */
+
 //Data transfer Functions
 int PartData::PushFileData()
 {
@@ -142,7 +142,6 @@ if (outDataStream.fail())
 	{
 		outDataStream << i << ",";
 
-
 		outDataStream << PI.ModelNumber[i] << ",";
 
 		outDataStream << PI.PartDescription[i] << ",";
@@ -161,18 +160,13 @@ if (outDataStream.fail())
 
 		outDataStream << PL.Cabinet[i] << "\n";
 
-		
-
 	}
 
 	outDataStream.close();
 	return(0);
 }
-
-
-
-
-
+//precondition: includes any information added or modified while program ran
+//postcondidtion: exports the added/modified information to the external CSV file
 
 int PartData::fetchFileData()
 {
@@ -295,7 +289,8 @@ int PartData::fetchFileData()
 	return 0;
 
 }
-
+//precondition: program starts
+//postcondidtion: brings in all information in the external CSV
 
 char PartData::readValue(ifstream& inputStream, char cell[]) 
 {
@@ -312,6 +307,8 @@ char PartData::readValue(ifstream& inputStream, char cell[])
 	cell[j] = '\0';
 	return(getChar);
 }
+//precondition: 
+//postcondidtion: reads value of cell[j] and puts value into array of type char
 
 void PartData::PrintList()
 {
@@ -339,7 +336,8 @@ void PartData::PrintList()
 
 	} while (partNumber != 0);
 }
-
+//precondition: 
+//postcondidtion:
 
 
 
