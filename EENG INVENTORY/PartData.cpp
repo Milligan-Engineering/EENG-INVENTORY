@@ -26,9 +26,9 @@ void PartData::lowamnt()
 	int i = 0;
 	for (i = 0; i < maxParts; i++)
 	{
-		if (PI.partQuant[i] = PI.LowQuant[i])
+		if (PI.partQuant[i] <= PI.LowQuant[i])
 		{
-			cout << "**WARNING**\n " << " Part number " << i + 1 << " " << PI.PartDescription[i] << " " << PI.PartType[i] << " in Room " << PL.Room[i]<< "Rack " << PL.Rack[i]<<"Shelf "<< PL.Shelf[i] <<"Cabinet"<< PL.Cabinet[i] << " has " << PI.partQuant[i] << " pieces left.\n";
+			cout << "**WARNING**\n " << " Part number " << i + 1 << " " << PI.PartDescription[i] << " " << PI.PartType[i] << " in Room " << PL.Room[i]<< " Rack " << PL.Rack[i]<<" Shelf "<< PL.Shelf[i] <<" Cabinet "<< PL.Cabinet[i] << " has " << PI.partQuant[i] << " pieces left.\n";
 		}
 
 
@@ -194,21 +194,21 @@ int PartData::fetchFileData()
 		getChar = readValue(inDataStream, testArray);
 		getChar = readValue(inDataStream, testArray);
 
-		while (i <= 20)//(!inDataStream.eof())
+		while (getchar!="end," )//(!inDataStream.eof())
 		{
-
-			getChar = readValue(inDataStream, testArray);
-			getChar = readValue(inDataStream, testArray);
-			getChar = readValue(inDataStream, testArray);
-			getChar = readValue(inDataStream, testArray);
-			getChar = readValue(inDataStream, testArray);
-			getChar = readValue(inDataStream, testArray);
-			getChar = readValue(inDataStream, testArray);
-			getChar = readValue(inDataStream, testArray);
-			getChar = readValue(inDataStream, testArray);
-			getChar = readValue(inDataStream, testArray);
-
-			i++;
+			
+				getChar = readValue(inDataStream, testArray);
+				getChar = readValue(inDataStream, testArray);
+				getChar = readValue(inDataStream, testArray);
+				getChar = readValue(inDataStream, testArray);
+				getChar = readValue(inDataStream, testArray);
+				getChar = readValue(inDataStream, testArray);
+				getChar = readValue(inDataStream, testArray);
+				getChar = readValue(inDataStream, testArray);
+				getChar = readValue(inDataStream, testArray);
+				getChar = readValue(inDataStream, testArray);
+				i++;
+	
 
 		}
 
@@ -224,7 +224,7 @@ int PartData::fetchFileData()
 			cout << "Input file stream open failed \n";
 			return(1);
 		}
-		maxParts= 20;
+		maxParts= i;
 
 		PI.PartDescription = new string[maxParts];
 		PI.PartType = new string[maxParts];
@@ -249,7 +249,7 @@ int PartData::fetchFileData()
 
 		for (int i = 0; i < maxParts; i++)
 		{
-			char testArray[45];
+			char testArray[80];
 
 			getChar = readValue(inDataStream, testArray);// Read part #
 			partNumber = atoi(testArray);

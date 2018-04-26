@@ -37,7 +37,7 @@ private:
 	Location PL; 
 	
 	ofstream outDatastream;
-	char testArray[45];
+	char testArray[80];
 
 	ofstream partInfo;
 
