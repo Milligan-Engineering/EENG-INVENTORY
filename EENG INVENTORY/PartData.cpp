@@ -10,13 +10,13 @@ void PartData::PartRemoval()
 
 	cout << "How many parts are you removing? ";
 	cin >> partsRemoved;
-	if (partsRemoved > PI.partQuant[partNumber - 1])
+	if (partsRemoved > partQuant[partNumber - 1])
 	{
 		cout << "parts removed greater than parts present.\n" << "enter a new number.";
 	}    
 
-	PI.partQuant[partNumber - 1] = PI.partQuant[partNumber - 1] - partsRemoved; //updates part quantity located in partQuant array//add accesseor and mutator function here
-	cout << PI.partQuant[partNumber - 1] << " parts remaining\n\n";
+	partQuant[partNumber - 1] = partQuant[partNumber - 1] - partsRemoved; //updates part quantity located in partQuant array//add accesseor and mutator function here
+	cout << partQuant[partNumber - 1] << " parts remaining\n\n";
 }
 //precondition: has the number of parts present in  the array partQuant[]
 //postcondidtion: removes numerical amount from array partQuant[]
@@ -26,9 +26,9 @@ void PartData::lowamnt()
 	int i = 0;
 	for (i = 0; i < maxParts; i++)
 	{
-		if (PI.partQuant[i] <= PI.LowQuant[i])
+		if (partQuant[i] <= PI.LowQuant[i])
 		{
-			cout << "**WARNING**\n " << " Part number " << i + 1 << " " << PI.PartDescription[i] << " " << PI.PartType[i] << " in Room " << PL.Room[i]<< " Rack " << PL.Rack[i]<<" Shelf "<< PL.Shelf[i] <<" Cabinet "<< PL.Cabinet[i] << " has " << PI.partQuant[i] << " pieces left.\n";
+			cout << "**WARNING**\n " << " Part number " << i + 1 << " " << PI.PartDescription[i] << " " << PI.PartType[i] << " in Room " << PL.Room[i]<< "Rack " << PL.Rack[i]<<"Shelf "<< PL.Shelf[i] <<"Cabinet"<< PL.Cabinet[i] << " has " << partQuant[i] << " pieces left.\n";
 		}
 
 
@@ -51,7 +51,7 @@ void PartData::partIndex()
 
 		cout<< "Model Number: "<< PI.ModelNumber[i - 1] << "\t";
 
-		cout << "Part Quantity: " << PI.partQuant[i - 1] << "\t";
+		cout << "Part Quantity: " << partQuant[i - 1] << "\t";
 
 		cout << "Room: " << PL.Room[i - 1] << "Rack: " << " " << PL.Rack[i - 1] << "Shelf: " << " " << PL.Shelf[i - 1] << "Cabinet: " << " " << PL.Cabinet[i - 1] << " " << "\n\n"; "\t\n\n";
 	}
@@ -82,7 +82,7 @@ void PartData::partFind()
 
 		cout << "Location: "<< "Room: " << PL.Room[partNumber - 1] <<"Rack: "<<" "<< PL.Rack[partNumber - 1]<<"Shelf: "<<" "<< PL.Shelf[partNumber - 1]<<"Cabinet: "<< " "<< PL.Cabinet[partNumber - 1]<<" "<<"\n\n";
 
-		cout << "Quantity: " << PI.partQuant[partNumber - 1] << " pcs" << "\n";
+		cout << "Quantity: " << partQuant[partNumber - 1] << " pcs" << "\n";
 	}
 }	
 //precondition: user types in part #
@@ -90,7 +90,7 @@ void PartData::partFind()
 
 int PartData::getPartQuant(int i)//accessor
 {
-	return(PI.partQuant[i]);
+	return(partQuant[i]);
 }
 //precondition: 
 //postcondidtion: returns part quant
@@ -148,7 +148,7 @@ if (outDataStream.fail())
 
 		outDataStream << PI.PartType[i] << ",";
 
-		outDataStream << PI.partQuant[i] << ",";
+		outDataStream << partQuant[i] << ",";
 
 		outDataStream << PI.LowQuant[i] << ",";
 
@@ -194,21 +194,21 @@ int PartData::fetchFileData()
 		getChar = readValue(inDataStream, testArray);
 		getChar = readValue(inDataStream, testArray);
 
-		while (getchar!="end," )//(!inDataStream.eof())
+		while (i <= 20)//(!inDataStream.eof())
 		{
-			
-				getChar = readValue(inDataStream, testArray);
-				getChar = readValue(inDataStream, testArray);
-				getChar = readValue(inDataStream, testArray);
-				getChar = readValue(inDataStream, testArray);
-				getChar = readValue(inDataStream, testArray);
-				getChar = readValue(inDataStream, testArray);
-				getChar = readValue(inDataStream, testArray);
-				getChar = readValue(inDataStream, testArray);
-				getChar = readValue(inDataStream, testArray);
-				getChar = readValue(inDataStream, testArray);
-				i++;
-	
+
+			getChar = readValue(inDataStream, testArray);
+			getChar = readValue(inDataStream, testArray);
+			getChar = readValue(inDataStream, testArray);
+			getChar = readValue(inDataStream, testArray);
+			getChar = readValue(inDataStream, testArray);
+			getChar = readValue(inDataStream, testArray);
+			getChar = readValue(inDataStream, testArray);
+			getChar = readValue(inDataStream, testArray);
+			getChar = readValue(inDataStream, testArray);
+			getChar = readValue(inDataStream, testArray);
+
+			i++;
 
 		}
 
@@ -224,7 +224,7 @@ int PartData::fetchFileData()
 			cout << "Input file stream open failed \n";
 			return(1);
 		}
-		maxParts= i;
+		maxParts= 20;
 
 		PI.PartDescription = new string[maxParts];
 		PI.PartType = new string[maxParts];
@@ -233,7 +233,7 @@ int PartData::fetchFileData()
 		PL.Rack = new int[maxParts];
 		PL.Shelf = new int[maxParts];
 		PL.Cabinet = new int[maxParts];
-		PI.partQuant = new int[maxParts];
+		partQuant = new int[maxParts];
 		PI.LowQuant = new int[maxParts];
 
 		getChar = readValue(inDataStream, testArray);
@@ -249,7 +249,7 @@ int PartData::fetchFileData()
 
 		for (int i = 0; i < maxParts; i++)
 		{
-			char testArray[80];
+			char testArray[45];
 
 			getChar = readValue(inDataStream, testArray);// Read part #
 			partNumber = atoi(testArray);
@@ -264,7 +264,7 @@ int PartData::fetchFileData()
 			PI.PartType[i] = testArray;
 
 			getChar = readValue(inDataStream, testArray);// Read part quantity
-			PI.partQuant[i] = atoi(testArray);
+			partQuant[i] = atoi(testArray);
 
 			getChar = readValue(inDataStream, testArray);// Read low quant
 			PI.LowQuant[i] = atoi(testArray);
@@ -328,7 +328,7 @@ void PartData::PrintList()
 			}
 
 				partInfo << partNumber << " " << PI.PartDescription[partNumber - 1] << " " << PI.PartType[partNumber - 1]
-				<< " " << PI.partQuant[partNumber - 1] << " " << PL.Room[partNumber - 1] << " " << PL.Rack[partNumber - 1]
+				<< " " << partQuant[partNumber - 1] << " " << PL.Room[partNumber - 1] << " " << PL.Rack[partNumber - 1]
 				<< " " << PL.Shelf[partNumber - 1] << " " << PL.Cabinet[partNumber - 1];
 
 			partInfo.close();

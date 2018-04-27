@@ -11,8 +11,11 @@
 #include <cstdlib>
 #include <time.h>
 #include "PartData.h"
-
 using namespace std;
+
+
+
+
 
 	struct DataRead
 	{
@@ -25,6 +28,8 @@ using namespace std;
 		PartData PartDataObject;// main class
 
 		PartDataObject.fetchFileData();// pulling in CSV file
+
+		
 
 		cout << "Low parts:\n";
 		PartDataObject.lowamnt();
