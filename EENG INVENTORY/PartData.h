@@ -35,13 +35,9 @@ private:
 	
 	PartInfo PI;
 	Location PL; 
-	
 	ofstream outDatastream;
-	char testArray[80];
-
 	ofstream partInfo;
-
-	//ifstream partInfo;
+	char testArray[80];
 
 public:
 
@@ -54,6 +50,7 @@ public:
 	void partIndex();
 	void partFind();
 	int getPartQuant(int i);
+	void SPSearch();
 	//void setlowQuant(int i);
 
 	//Data Transfer Functions
@@ -75,7 +72,5 @@ public:
 	*/
 	
 
-	//friend int fetchFileData(PartData partstuff);
-	//friend int pushFileData(PartData partstuff);
 	
 };

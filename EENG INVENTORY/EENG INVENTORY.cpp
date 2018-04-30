@@ -57,10 +57,7 @@ using namespace std;
 			case 'S'://Specific type search
 			case 's':
 				//string choice;
-				cout << "Part type search\n" << "What type of part word you like to find?";
-				cout << "For capacitors type C ";
-				cout << "For Transisters type T ";
-				cout << "For Resisters type R ";
+				PartDataObject.SPSearch();
 				break;
 
 			case 'E':
