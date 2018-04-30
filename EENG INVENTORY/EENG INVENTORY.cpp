@@ -102,21 +102,3 @@ using namespace std;
 	}
 
 
-	
-/*void quantitySort(int partQuant[], int Order[])
-{
-
-	int temp;
-	for (int i = 0; i < partQuant[i] - 1; i++)
-	{
-		for (int j = 0; j < partQuant[i] - i - 1; j++)
-		{
-			if (partQuant[Order[j]] > partQuant[Order[j + 1]])
-			{
-				temp = Order[j];
-				Order[j] = Order[j + 1];
-				Order[j + 1] = temp;
-			}
-		}
-	}
-}*/
