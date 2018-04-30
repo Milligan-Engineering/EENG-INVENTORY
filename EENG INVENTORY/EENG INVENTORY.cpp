@@ -58,6 +58,7 @@ using namespace std;
 			case 's':
 				//string choice;
 				PartDataObject.SPSearch();
+
 				break;
 
 			case 'E':
