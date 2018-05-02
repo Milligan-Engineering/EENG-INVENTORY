@@ -27,16 +27,14 @@ void PartData::PartRemoval()
 
 void PartData::lowamnt()
 {
-	int i = 0;
-	for (i = 0; i < maxParts; i++)
+	
+	for (int i = 0; i < maxParts; i++)
 	{
 		if (PI.partQuant[i] <= PI.LowQuant[i])
 		{
-			cout << "**WARNING**\n " << " Part number " << i + 1 << " " << PI.PartDescription[i] << " " << PI.PartType[i] << " in Room " << PL.Room[i]
+			cout << "**WARNING**\n " << " Part number " << i+1  << " " << PI.PartDescription[i] << " " << PI.PartType[i] << " in Room " << PL.Room[i]
 				<< " Rack " << PL.Rack[i] << " Shelf " << PL.Shelf[i] << " Cabinet " << PL.Cabinet[i] << " has " << PI.partQuant[i] << " pieces left.\n";
 		}
-
-
 	}
 }
 
@@ -102,12 +100,12 @@ int PartData::getPartQuant(int i)//accessor
 void PartData::SPSearch()
 {
 	string type;
-
-	cout << "What type list do would you like to see?";
-	cin >> type;
 	cout << "CN " << "connector" << "\n" << "EQ " << "Equipment" << "\n" << "RS " << "Resistor" << "\n" << "IC " << "Integrated Circuit" << "\n";
+	cout << "What type list do would you like to see?";
 
-	if (type == "CN" || "EQ" || "RS" || "IC")
+	cin >> type;
+	
+	if ((type =="CN")|| (type =="EQ" )|| (type =="RS")||(type =="IC"))
 	{
 		for (int i = 1; i <= maxParts; i++)
 		{
@@ -140,33 +138,18 @@ int PartData::PushFileData()
 	if (outDataStream.fail())
 	{
 		cout << "Output file stream open failed \n";
-		return(1);
+		return(0);
 	}
-
-
 	outDataStream << " Number,";
-
 	outDataStream << "Model Number,";
-
 	outDataStream << "Description,";
-
 	outDataStream << "Type,";
-
 	outDataStream << "Quantity,";
-
 	outDataStream << "Low Quantity,";
-
 	outDataStream << "Room,";
-
 	outDataStream << "Rack,";
-
 	outDataStream << "Shelf,";
-
-	outDataStream << "Cabinet," << "\n";
-
-
-
-
+	outDataStream << "Cabinet" << "\n";
 
 	for (int i = 0; i < maxParts; i++) // Save part name
 	{
@@ -199,7 +182,7 @@ int PartData::PushFileData()
 int PartData::fetchFileData()
 {
 
-	int i = 0;
+	int j=0;
 	char getChar;
 	ifstream inDataStream;
 
@@ -211,24 +194,17 @@ int PartData::fetchFileData()
 		return(1);
 	}
 
-
-
-	//getChar = readValue(inDataStream, testArray);
-
 	while (!inDataStream.eof()) //(strcmp(testArray, "exit") )
 	{
-
+		for (int i = 0; i < 10; i++)
+		{
+			getChar = readValue(inDataStream, testArray);
+		}
 		getChar = readValue(inDataStream, testArray);
-		getChar = readValue(inDataStream, testArray);
-		getChar = readValue(inDataStream, testArray);
-		getChar = readValue(inDataStream, testArray);
-		getChar = readValue(inDataStream, testArray);
-		getChar = readValue(inDataStream, testArray);
-		getChar = readValue(inDataStream, testArray);
-		getChar = readValue(inDataStream, testArray);
-		getChar = readValue(inDataStream, testArray);
-		getChar = readValue(inDataStream, testArray);
-		i++;
+		if (!inDataStream.eof())
+		{
+			j++;
+		}
 	}
 
 	inDataStream.close();
@@ -241,7 +217,7 @@ int PartData::fetchFileData()
 		return(1);
 	}
 
-	maxParts = i - 1;
+	maxParts = j;
 
 	PI.PartDescription = new string[maxParts];
 	PI.PartType = new string[maxParts];
@@ -253,17 +229,10 @@ int PartData::fetchFileData()
 	PI.partQuant = new int[maxParts];
 	PI.LowQuant = new int[maxParts];
 
-	getChar = readValue(inDataStream, testArray);//1
-	getChar = readValue(inDataStream, testArray);//2
-	getChar = readValue(inDataStream, testArray);//3
-	getChar = readValue(inDataStream, testArray);//4
-	getChar = readValue(inDataStream, testArray);//5
-	getChar = readValue(inDataStream, testArray);//6
-	getChar = readValue(inDataStream, testArray);//7
-	getChar = readValue(inDataStream, testArray);//8
-	getChar = readValue(inDataStream, testArray);//8
-	getChar = readValue(inDataStream, testArray);//9
-	getChar = readValue(inDataStream, testArray);//10 Reads titles and throws them away
+	for (int i = 0; i < 10; i++)
+	{
+		getChar = readValue(inDataStream, testArray);
+	}
 
 	for (int i =0; i < maxParts; i++)
 	{

@@ -3,7 +3,7 @@
 //EENG 221
 //sjwehner@my.milligan.edu
 //program if an inventory system that will be used to monitor and maintain quantities, locactions, and names of stored parts.
-//Last modified 04/06/2018
+//Last modified 05/02/2018
 
 #include <fstream>
 #include <iostream>
@@ -14,19 +14,14 @@
 
 using namespace std;
 
-	struct DataRead
-	{
-		ifstream inDataStream;
-	};
 
 	int main()
 	{
-		DataRead DR;
 		PartData PartDataObject;// main class
 
 		PartDataObject.fetchFileData();// pulling in CSV file
 
-		cout << "Low parts:\n";
+		
 		PartDataObject.lowamnt();
 		cout << "\n\n";
 
@@ -41,11 +36,11 @@ using namespace std;
 			cout << "To exit press E\n\n";
 
 			cin >> menuChoice;
+
 			switch (menuChoice)
 			{
 			case 'P':
 			case 'p':
-				//PartDataObject.partFind();
 				if (PartDataObject.partFind() != 0)
 				{
 					PartDataObject.PartRemoval();
@@ -61,7 +56,6 @@ using namespace std;
 			case 's':
 				//string choice;
 				PartDataObject.SPSearch();
-
 				break;
 
 			case 'E':
@@ -73,17 +67,8 @@ using namespace std;
 				cout << "Not a valid menu choice.\n\n";
 
 			}
-
-
-
 		} while ((menuChoice != 'E') && (menuChoice != 'e'));
-
-		
 		PartDataObject.PushFileData();
-
-			//delete [] PartDataObject.
-		
-
 		return 0;
 	}
 
