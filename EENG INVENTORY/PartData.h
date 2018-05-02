@@ -25,16 +25,17 @@ struct Location
 	IntPtr Rack;
 	IntPtr Shelf;
 	IntPtr Cabinet;
-	
+
 };
 
 class PartData//PartData class for function, variables, and arrays associated with part data
 {
 
 private:
-	
+
 	PartInfo PI;
 	Location PL; 
+	
 	ofstream outDatastream;
 	ofstream partInfo;
 	char testArray[80];
@@ -62,15 +63,16 @@ public:
 
 	void PrintList();
 
-	
+
 	/*
 	typedef char* CharPtr;
 	CharPtr p;
 	char testArray[45];
 	p = new testArray;
-
 	*/
-	
 
+
+	//friend int fetchFileData(PartData partstuff);
+	//friend int pushFileData(PartData partstuff);
 	
 };
