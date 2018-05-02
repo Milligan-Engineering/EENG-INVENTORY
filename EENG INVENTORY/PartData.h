@@ -6,7 +6,7 @@
 #include <cstdlib>
 
 using namespace std;
-
+//pointers
 typedef string * StrPtr;
 typedef int * IntPtr;
 
@@ -44,35 +44,41 @@ public:
 
 	PartData();
 	~PartData();
-	int maxParts;
+	
+	int maxParts;//dynamically defined through the fetchFile function
 	int partNumber;// (partNumber-1) serves as an index to look up information for each part in the part arrays
+
 	void PartRemoval();
+	//precondition: has the number of parts present in  the array partQuant[]
+	//postcondidtion: removes numerical amount from array partQuant[]
+
 	void lowamnt();
+	//precondition: partQuant array to be populated.
+	//postcondidtion: this prints a list of parts whose quantity is below the 20pcs(can be adjusted) threshhold.
+
 	void partIndex();
-	void partFind();
+	//precondition: None
+	//postcondidtion: list all parts present in csv
+
+	int partFind();
+	//precondition: user types in part #
+	//postcondidtion: the function returns all information asocciated with that part
+	
 	int getPartQuant(int i);
+
 	void SPSearch();
+
 	//void setlowQuant(int i);
 
 	//Data Transfer Functions
 	int PushFileData();
+	//precondition: includes any information added or modified while program ran
+	//postcondidtion: exports the added/modified information to the external CSV file
 
 	char readValue(ifstream& inputStream, char cell[]);
 
 	int fetchFileData();
-
-	void PrintList();
-
-
-	/*
-	typedef char* CharPtr;
-	CharPtr p;
-	char testArray[45];
-	p = new testArray;
-	*/
-
-
-	//friend int fetchFileData(PartData partstuff);
-	//friend int pushFileData(PartData partstuff);
+	//precondition: program starts
+	//postcondidtion: brings in all information in the external CSV
 	
 };

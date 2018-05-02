@@ -3,23 +3,27 @@
 #include <string>
 
 using namespace std;
-
+//main functions
 void PartData::PartRemoval()
 {
 	int partsRemoved;
 
 	cout << "How many parts are you removing? ";
 	cin >> partsRemoved;
-	if (partsRemoved > PI.partQuant[partNumber - 1])
-	{
-		cout << "parts removed greater than parts present.\n" << "enter a new number.";
-	}
 
-	PI.partQuant[partNumber - 1] = PI.partQuant[partNumber - 1] - partsRemoved; //updates part quantity located in partQuant array//add accesseor and mutator function here
-	cout << PI.partQuant[partNumber - 1] << " parts remaining\n\n";
+	 while (partsRemoved > PI.partQuant[partNumber - 1])
+	{
+		cout << "parts removed greater than parts present.\n" << "enter a new number, \n";
+
+		cout << "How many parts are you removing? ";
+		cin >> partsRemoved;
+	} 
+
+	PI.partQuant[partNumber - 1] -= partsRemoved;  //updates part quantity located in partQuant array
+	cout << PI.partQuant[partNumber - 1]<<" parts remaining\n\n";
+	
 }
-//precondition: has the number of parts present in  the array partQuant[]
-//postcondidtion: removes numerical amount from array partQuant[]
+	
 
 void PartData::lowamnt()
 {
@@ -28,14 +32,14 @@ void PartData::lowamnt()
 	{
 		if (PI.partQuant[i] <= PI.LowQuant[i])
 		{
-			cout << "**WARNING**\n " << " Part number " << i + 1 << " " << PI.PartDescription[i] << " " << PI.PartType[i] << " in Room " << PL.Room[i] << " Rack " << PL.Rack[i] << " Shelf " << PL.Shelf[i] << " Cabinet " << PL.Cabinet[i] << " has " << PI.partQuant[i] << " pieces left.\n";
+			cout << "**WARNING**\n " << " Part number " << i + 1 << " " << PI.PartDescription[i] << " " << PI.PartType[i] << " in Room " << PL.Room[i]
+				<< " Rack " << PL.Rack[i] << " Shelf " << PL.Shelf[i] << " Cabinet " << PL.Cabinet[i] << " has " << PI.partQuant[i] << " pieces left.\n";
 		}
 
 
 	}
 }
-//precondition: partQuant array to be populated.
-//postcondidtion: this prints a list of parts whose quantity is below the 20pcs(can be adjusted) threshhold.
+
 
 void PartData::partIndex()
 {
@@ -56,52 +60,78 @@ void PartData::partIndex()
 		cout << "Room: " << PL.Room[i - 1] << "Rack: " << " " << PL.Rack[i - 1] << "Shelf: " << " " << PL.Shelf[i - 1] << "Cabinet: " << " " << PL.Cabinet[i - 1] << " " << "\n\n"; "\t\n\n";
 	}
 }
-//precondition: None
-//postcondidtion: list all parts present in csv
 
-void PartData::partFind()
+
+int PartData::partFind()
 {
 
 	cout << endl << "Type part number or 0 to exit to main menu: ";
 
 	cin >> partNumber;
-
-	if ((partNumber < 0) || (partNumber > maxParts))
+	if ((partNumber != 0))
 	{
-		cout << "Part not found.\n\n";
+		if ((partNumber < 0) || (partNumber > maxParts))
+		{
+			cout << "Part not found.\n\n";
+		}
+		else if (partNumber != 0) //Part found
+		{
+			cout << endl;
+
+			cout << "Part Number " << partNumber << " requested" << "\n";
+
+			cout << "Name: " << PI.PartDescription[partNumber - 1] << "\n";
+
+			cout << "Description: " << PI.PartType[partNumber - 1] << " " << "/n" << "Model Number: " << PI.ModelNumber[partNumber - 1] << "\n";
+
+			cout << " Room: " << PL.Room[partNumber - 1] << " Rack:" << " " << PL.Rack[partNumber - 1] << " Shelf:"
+				<< " " << PL.Shelf[partNumber - 1] << " Cabinet:" << " " << PL.Cabinet[partNumber - 1] << " " << "\n\n";
+
+			cout << "Quantity: " << PI.partQuant[partNumber - 1] << " pcs" << "\n\n";
+		}
 	}
-	else if (partNumber != 0) //Part found
-	{
-		cout << endl;
-
-		cout << "Part Number " << partNumber << " requested" << "\n";
-
-		cout << "Name: " << PI.PartDescription[partNumber - 1] << "\n";
-
-		cout << "Description: " << PI.PartType[partNumber - 1] << " " << "/n" << "Model Number: " << PI.ModelNumber[partNumber - 1] << "\n";
-
-		cout << "Location: " << "Room: " << PL.Room[partNumber - 1] << "Rack: " << " " << PL.Rack[partNumber - 1] << "Shelf: " << " " << PL.Shelf[partNumber - 1] << "Cabinet: " << " " << PL.Cabinet[partNumber - 1] << " " << "\n\n";
-
-		cout << "Quantity: " << PI.partQuant[partNumber - 1] << " pcs" << "\n";
-	}
+	return(partNumber);
 }
-//precondition: user types in part #
-//postcondidtion: the function returns all information asocciated with that part
+
 
 int PartData::getPartQuant(int i)//accessor
 {
 	return(PI.partQuant[i]);
 }
-//precondition: 
-//postcondidtion: returns part quant
 
-/*void PartData::setlowQuant(int i)//Mutator
+void PartData::SPSearch()
 {
-	LowQuant[i] ;
-}
-*/
+	string type;
 
-//Data transfer Functions
+	cout << "What type list do would you like to see?";
+	cin >> type;
+	cout << "CN " << "connector" << "\n" << "EQ " << "Equipment" << "\n" << "RS " << "Resistor" << "\n" << "IC " << "Integrated Circuit" << "\n";
+
+	if (type == "CN" || "EQ" || "RS" || "IC")
+	{
+		for (int i = 1; i <= maxParts; i++)
+		{
+			PI.PartType[i];
+
+			if (PI.PartType[i]== type)
+			{
+
+				cout << "Part Number: " << i - 1 << "\n";
+
+				cout << "Part Name: " << PI.PartDescription[i - 1] << "\n";
+
+				cout << "Model Number: " << PI.ModelNumber[i - 1] << "\n";
+
+				cout << "Part Quantity: " << PI.partQuant[i - 1] << "\n";
+
+				cout << " Room: " << PL.Room[i - 1] << " Rack: " << " " << PL.Rack[i - 1] << " Shelf: " << " " << PL.Shelf[i - 1] << " Cabinet: " << " " << PL.Cabinet[i - 1] << " " << "\n\n";
+
+			}
+		}
+	}
+}
+
+//Data in/out Functions
 int PartData::PushFileData()
 {
 	ofstream outDataStream;
@@ -140,7 +170,7 @@ int PartData::PushFileData()
 
 	for (int i = 0; i < maxParts; i++) // Save part name
 	{
-		outDataStream << i << ",";
+		outDataStream << i+1 << ",";
 
 		outDataStream << PI.ModelNumber[i] << ",";
 
@@ -165,16 +195,14 @@ int PartData::PushFileData()
 	outDataStream.close();
 	return(0);
 }
-//precondition: includes any information added or modified while program ran
-//postcondidtion: exports the added/modified information to the external CSV file
 
 int PartData::fetchFileData()
 {
 
 	int i = 0;
-
 	char getChar;
 	ifstream inDataStream;
+
 	inDataStream.open("mainInventoryData.csv");
 
 	if (inDataStream.fail())
@@ -183,114 +211,99 @@ int PartData::fetchFileData()
 		return(1);
 	}
 
-	getChar = readValue(inDataStream, testArray);
-	getChar = readValue(inDataStream, testArray);
-	getChar = readValue(inDataStream, testArray);
-	getChar = readValue(inDataStream, testArray);
-	getChar = readValue(inDataStream, testArray);
-	getChar = readValue(inDataStream, testArray);
-	getChar = readValue(inDataStream, testArray);
-	getChar = readValue(inDataStream, testArray);
-	getChar = readValue(inDataStream, testArray);
-	getChar = readValue(inDataStream, testArray);
 
-		while (getchar!="end," )//(!inDataStream.eof())
-		{
-			
-				getChar = readValue(inDataStream, testArray);
-				getChar = readValue(inDataStream, testArray);
-				getChar = readValue(inDataStream, testArray);
-				getChar = readValue(inDataStream, testArray);
-				getChar = readValue(inDataStream, testArray);
-				getChar = readValue(inDataStream, testArray);
-				getChar = readValue(inDataStream, testArray);
-				getChar = readValue(inDataStream, testArray);
-				getChar = readValue(inDataStream, testArray);
-				getChar = readValue(inDataStream, testArray);
-				i++;
-	
 
+	//getChar = readValue(inDataStream, testArray);
+
+	while (!inDataStream.eof()) //(strcmp(testArray, "exit") )
+	{
+
+		getChar = readValue(inDataStream, testArray);
+		getChar = readValue(inDataStream, testArray);
+		getChar = readValue(inDataStream, testArray);
+		getChar = readValue(inDataStream, testArray);
+		getChar = readValue(inDataStream, testArray);
+		getChar = readValue(inDataStream, testArray);
+		getChar = readValue(inDataStream, testArray);
+		getChar = readValue(inDataStream, testArray);
+		getChar = readValue(inDataStream, testArray);
+		getChar = readValue(inDataStream, testArray);
+		i++;
 	}
 
 	inDataStream.close();
 
+	inDataStream.open("mainInventoryData.csv");
 
-
+	if (inDataStream.fail())
 	{
-		inDataStream.open("mainInventoryData.csv");
-
-		if (inDataStream.fail())
-		{
-			cout << "Input file stream open failed \n";
-			return(1);
-		}
-		maxParts= i;
-
-		PI.PartDescription = new string[maxParts];
-		PI.PartType = new string[maxParts];
-		PI.ModelNumber = new string[maxParts];
-		PL.Room = new string[maxParts];
-		PL.Rack = new int[maxParts];
-		PL.Shelf = new int[maxParts];
-		PL.Cabinet = new int[maxParts];
-		PI.partQuant = new int[maxParts];
-		PI.LowQuant = new int[maxParts];
-
-		getChar = readValue(inDataStream, testArray);
-		getChar = readValue(inDataStream, testArray);
-		getChar = readValue(inDataStream, testArray);
-		getChar = readValue(inDataStream, testArray);
-		getChar = readValue(inDataStream, testArray);
-		getChar = readValue(inDataStream, testArray);
-		getChar = readValue(inDataStream, testArray);
-		getChar = readValue(inDataStream, testArray);
-		getChar = readValue(inDataStream, testArray);
-		getChar = readValue(inDataStream, testArray);
-
-		for (int i = 0; i < maxParts; i++)
-		{
-			char testArray[80];
-
-			getChar = readValue(inDataStream, testArray);// Read part #
-			partNumber = atoi(testArray);
-
-			getChar = readValue(inDataStream, testArray); // Read part Model Number
-			PI.ModelNumber[i] = testArray;
-
-			getChar = readValue(inDataStream, testArray);// Read part name
-			PI.PartDescription[i] = testArray;
-
-			getChar = readValue(inDataStream, testArray);// Read Description
-			PI.PartType[i] = testArray;
-
-			getChar = readValue(inDataStream, testArray);// Read part quantity
-			PI.partQuant[i] = atoi(testArray);
-
-			getChar = readValue(inDataStream, testArray);// Read low quant
-			PI.LowQuant[i] = atoi(testArray);
-
-			getChar = readValue(inDataStream, testArray);// Read part Room
-			PL.Room[i] = testArray;
-
-			getChar = readValue(inDataStream, testArray);// Read part Rack
-			PL.Rack[i] = atoi(testArray);
-
-			getChar = readValue(inDataStream, testArray);// Read part Shelf
-			PL.Shelf[i] = atoi(testArray);
-
-			getChar = readValue(inDataStream, testArray);// Read part Cabinet
-			PL.Cabinet[i] = atoi(testArray);
-
-
-
-		}
+		cout << "Input file stream open failed \n";
+		return(1);
 	}
+
+	maxParts = i - 1;
+
+	PI.PartDescription = new string[maxParts];
+	PI.PartType = new string[maxParts];
+	PI.ModelNumber = new string[maxParts];
+	PL.Room = new string[maxParts];
+	PL.Rack = new int[maxParts];
+	PL.Shelf = new int[maxParts];
+	PL.Cabinet = new int[maxParts];
+	PI.partQuant = new int[maxParts];
+	PI.LowQuant = new int[maxParts];
+
+	getChar = readValue(inDataStream, testArray);//1
+	getChar = readValue(inDataStream, testArray);//2
+	getChar = readValue(inDataStream, testArray);//3
+	getChar = readValue(inDataStream, testArray);//4
+	getChar = readValue(inDataStream, testArray);//5
+	getChar = readValue(inDataStream, testArray);//6
+	getChar = readValue(inDataStream, testArray);//7
+	getChar = readValue(inDataStream, testArray);//8
+	getChar = readValue(inDataStream, testArray);//8
+	getChar = readValue(inDataStream, testArray);//9
+	getChar = readValue(inDataStream, testArray);//10 Reads titles and throws them away
+
+	for (int i =0; i < maxParts; i++)
+	{
+		char testArray[100];
+
+		getChar = readValue(inDataStream, testArray);// Read part #
+		partNumber = atoi(testArray);
+
+		getChar = readValue(inDataStream, testArray); // Read part Model Number
+		PI.ModelNumber[i] = testArray;
+
+		getChar = readValue(inDataStream, testArray);// Read part name
+		PI.PartDescription[i] = testArray;
+
+		getChar = readValue(inDataStream, testArray);// Read Description
+		PI.PartType[i] = testArray;
+
+		getChar = readValue(inDataStream, testArray);// Read part quantity
+		PI.partQuant[i] = atoi(testArray);
+
+		getChar = readValue(inDataStream, testArray);// Read low quant
+		PI.LowQuant[i] = atoi(testArray);
+
+		getChar = readValue(inDataStream, testArray);// Read part Room
+		PL.Room[i] = testArray;
+
+		getChar = readValue(inDataStream, testArray);// Read part Rack
+		PL.Rack[i] = atoi(testArray);
+
+		getChar = readValue(inDataStream, testArray);// Read part Shelf
+		PL.Shelf[i] = atoi(testArray);
+
+		getChar = readValue(inDataStream, testArray);// Read part Cabinet
+		PL.Cabinet[i] = atoi(testArray);
+	}
+
 
 	return 0;
 
 }
-//precondition: program starts
-//postcondidtion: brings in all information in the external CSV
 
 char PartData::readValue(ifstream& inputStream, char cell[])
 {
@@ -298,7 +311,7 @@ char PartData::readValue(ifstream& inputStream, char cell[])
 	char getChar;
 	inputStream.get(getChar);
 	int j = 0;
-	while ((getChar != ',') && (getChar != '\n'))
+	while ((getChar != ',') && (getChar != '\n') && !inputStream.eof())
 	{
 		cell[j] = getChar;
 		j++;
@@ -310,94 +323,23 @@ char PartData::readValue(ifstream& inputStream, char cell[])
 //precondition: 
 //postcondidtion: reads value of cell[j] and puts value into array of type char
 
-void PartData::SPSearch()
-{
-	string type;
 
-	cout << "What type list do would you like to see?";
-	cin >> type;
-	cout << "CN " << "connector" << "\n" << "EQ " << "Equipment" << "\n" << "RS " << "Resistor" << "\n" << "IC " << "Integrated Circuit" << "\n";
-
-	if (type == "CN" || "EQ" || "RS" || "IC")
-	{
-		for (int i = 1; i <= maxParts; i++)
-		{
-			PI.PartType[i];
-
-			if (PI.PartType[i]== type)
-			{
-
-				cout << "Part Number: " << i - 1 << "\n";
-
-				cout << "Part Name: " << PI.PartDescription[i - 1] << "\n";
-
-				partInfo << partNumber << " " << PI.PartDescription[partNumber - 1] << " " << PI.PartType[partNumber - 1]
-				<< " " << PI.partQuant[partNumber - 1] << " " << PL.Room[partNumber - 1] << " " << PL.Rack[partNumber - 1]
-				<< " " << PL.Shelf[partNumber - 1] << " " << PL.Cabinet[partNumber - 1];
-
-				cout << "Model Number: " << PI.ModelNumber[i - 1] << "\n";
-
-				cout << "Part Quantity: " << PI.partQuant[i - 1] << "\t";
-
-				cout << "Room: " << PL.Room[i - 1] << "Rack: " << " " << PL.Rack[i - 1] << "Shelf: " << " " << PL.Shelf[i - 1] << "Cabinet: " << " " << PL.Cabinet[i - 1] << " " << "\n\n";
-
-			}
-		}
-	}
-}
 
 //initializing
 PartData::PartData()
 {
-	/*
-	//Part quantities
-	partQuant[0] = 95;
-	partQuant[1] = 9;
-	partQuant[2] = 5;
-	//Low Quants
-	PI.LowQuant[0] = 20;
-	PI.LowQuant[1] = 1;
-	PI.LowQuant[2] = 25;
-	//Part names
-	PI.PartDescription[0] = "100uF electrolytic";// changed part name to part descripton
-	PI.PartDescription[1] = "Oscillascope";
-	PI.PartDescription[2] = ".5in";
-	//Part Room
-	PL.Room[0] = "L01";
-	PL.Room[1] = "L02";
-	PL.Room[2] = "L03";
-	//Part Rack
-	PL.Rack[0] = 1;
-	PL.Rack[1] = 2;
-	PL.Rack[2] = 3 ;
-	//Part Shelf
-	PL.Shelf[0] =1;
-	PL.Shelf[1] =2;
-	PL.Shelf[2]= 3;
-	//Part Cabinet
-	PL.Cabinet[0]=1;
-	PL.Cabinet[1]=2;
-	PL.Cabinet[2]=3;
-	//Part Description
-	//**Conventions**
-	//IC: Integrated Circuit
-	//EQ: Equipment
-	//RS: Resistor
-	//CN: Connector
-	PI.PartType[0] ="RS" ; //changed from description to type
-	PI.PartType[1] ="EQ";
-	PI.PartType[2] ="CN";
-	//Part Model NUmber
-	PI.ModelNumber[0]="005A";
-	PI.ModelNumber[1]="0202CB";
-	PI.ModelNumber[2]="TI247";
-	*/
+	
 }
-
 
 PartData::~PartData()
 {
 }
+
+/*void PartData::setlowQuant(int i)//Mutator
+{
+LowQuant[i] ;
+}
+*/
 
 
 /*void PartData::PrintList()

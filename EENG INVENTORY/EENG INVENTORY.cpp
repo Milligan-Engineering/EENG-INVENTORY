@@ -38,7 +38,6 @@ using namespace std;
 			cout << "To find a part press P\n";
 			cout << "To access part list press I \n";
 			cout << "To find type index press S\n";
-			cout << "To get lab instructions press L\n";
 			cout << "To exit press E\n\n";
 
 			cin >> menuChoice;
@@ -46,9 +45,13 @@ using namespace std;
 			{
 			case 'P':
 			case 'p':
-				PartDataObject.partFind();
-				PartDataObject.PartRemoval();
-				//PartDataObject.PrintList();
+				//PartDataObject.partFind();
+				if (PartDataObject.partFind() != 0)
+				{
+					PartDataObject.PartRemoval();
+				}
+
+				break;
 			case 'I':
 			case 'i':
 				PartDataObject.partIndex();//prints list off all parts contained in the CSV
@@ -84,21 +87,6 @@ using namespace std;
 		return 0;
 	}
 
-	void genData(double data[], double avgVal[], double rangeVal[], int numVal, double period)
-	{
 
-		clock_t goal, now;
-		now = CLOCKS_PER_SEC;
-		now = clock();
-		goal = static_cast<clock_t>(1000 * period) * CLOCKS_PER_SEC / 1000;
-		while (goal > clock() - now)
-			;
-		for (int i = 0; i < numVal; i++)
-		{
-			data[i] = avgVal[i] - rangeVal[i] / 2 + (rand() % 1000)*rangeVal[i] / 1000; // assign random numbers
-		}
-
-
-	}
 
 
