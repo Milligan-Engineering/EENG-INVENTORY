@@ -1,6 +1,6 @@
 #include "PartData.h"
-#include <iostream>
-#include <string>
+#include "stdafx.h"
+
 
 using namespace std;
 //main functions
@@ -99,7 +99,7 @@ int PartData::getPartQuant(int i)//accessor
 
 void PartData::SPSearch()
 {
-	string type;
+	char type[3];
 	cout << "CN " << "connector" << "\n" << "EQ " << "Equipment" << "\n" << "RS " << "Resistor" << "\n" << "IC " << "Integrated Circuit" << "\n";
 	cout << "What type list do would you like to see?";
 
@@ -194,7 +194,7 @@ int PartData::fetchFileData()
 		return(1);
 	}
 
-	while (!inDataStream.eof()) //(strcmp(testArray, "exit") )
+	while (!inDataStream.eof()) 
 	{
 		for (int i = 0; i < 10; i++)
 		{

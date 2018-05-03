@@ -5,15 +5,10 @@
 //program if an inventory system that will be used to monitor and maintain quantities, locactions, and names of stored parts.
 //Last modified 05/02/2018
 
-#include <fstream>
-#include <iostream>
-#include <string>
-#include <cstdlib>
-#include <time.h>
+#include "stdafx.h"
 #include "PartData.h"
 
 using namespace std;
-
 
 	int main()
 	{
