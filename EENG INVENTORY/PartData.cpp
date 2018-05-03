@@ -1,6 +1,5 @@
 
 #include "PartData.h"
-
 using namespace std;
 
 //main functions
@@ -23,8 +22,6 @@ void PartData::PartRemoval()
 	cout << PI.partQuant[partNumber - 1]<<" parts remaining\n\n";
 	
 }
-	
-
 void PartData::lowamnt()
 {
 	
@@ -37,8 +34,6 @@ void PartData::lowamnt()
 		}
 	}
 }
-
-
 void PartData::partIndex()
 {
 	for (int i = 1; i <= maxParts; i++)
@@ -58,8 +53,6 @@ void PartData::partIndex()
 		cout << "Room: " << PL.Room[i - 1] << "Rack: " << " " << PL.Rack[i - 1] << "Shelf: " << " " << PL.Shelf[i - 1] << "Cabinet: " << " " << PL.Cabinet[i - 1] << " " << "\n\n"; "\t\n\n";
 	}
 }
-
-
 int PartData::partFind()
 {
 
@@ -75,28 +68,25 @@ int PartData::partFind()
 		else if (partNumber != 0) //Part found
 		{
 			cout << endl;
-
-			cout << "Part Number " << partNumber << " requested" << "\n";
-
-			cout << "Name: " << PI.PartDescription[partNumber - 1] << "\n";
-
-			cout << "Description: " << PI.PartType[partNumber - 1] << " " << "\n" << "Model Number: " << PI.ModelNumber[partNumber - 1] << "\n";
-
+			cout << "Part Number: " << partNumber << " requested" << "\n";
+			cout<< "Model Number: " << PI.ModelNumber[partNumber - 1] << "\n";
+			cout << "Description: " << PI.PartDescription[partNumber - 1] << "\n";
+			cout << "Type: " << PI.PartType[partNumber - 1] << " " << "\n";
+			cout << "Quantity: " << PI.partQuant[partNumber - 1] << " pcs\n";
 			cout << "Room: " << PL.Room[partNumber - 1] << " Rack:" << " " << PL.Rack[partNumber - 1] << " Shelf:"
-				<< " " << PL.Shelf[partNumber - 1] << " Cabinet:" << " " << PL.Cabinet[partNumber - 1] << " " << "Quantity: " << PI.partQuant[partNumber - 1] << " pcs" << "\n\n";
+				<< " " << PL.Shelf[partNumber - 1] << " Cabinet:" << " " << PL.Cabinet[partNumber - 1] << "\n\n";
 
 			 
 		}
 	}
 	return(partNumber);
 }
-
-
 void PartData::SPSearch()
 {
 	string type;
-	cout << "CN " << "connector" << "\n" << "EQ " << "Equipment" << "\n" << "RS " << "Resistor" << "\n" << "IC " << "Integrated Circuit" << "\n";
-	cout << "What type list do would you like to see?";
+
+	cout << "\n"<<"CN " << "connector" << "\n" << "EQ " << "Equipment" << "\n" << "RS " << "Resistor" << "\n" << "IC " << "Integrated Circuit" << "\n";
+	cout << "What type list do would you like to see? **Input should look like 'CN'**\n";
 
 	cin >> type;
 	
@@ -104,9 +94,11 @@ void PartData::SPSearch()
 		{
 			PI.PartType[i];
 
-			if (0==strcmp(type, PI.PartType[i]))
+			if (type == PI.PartType[i])
+
 			{
-				cout << "Part Number: " << i - 1 << "\n";
+				cout << "\n";
+				cout << "Part Number: " << i << "\n";
 				cout << "Part Name: " << PI.PartDescription[i - 1] << "\n";
 				cout << "Model Number: " << PI.ModelNumber[i - 1] << "\n";
 				cout << "Part Quantity: " << PI.partQuant[i - 1] << "\n";
@@ -165,7 +157,6 @@ int PartData::PushFileData()
 	outDataStream.close();
 	return(0);
 }
-
 int PartData::fetchFileData()
 {
 
@@ -260,7 +251,6 @@ int PartData::fetchFileData()
 	return 0;
 
 }
-
 char PartData::readValue(ifstream& inputStream, char cell[])
 {
 
@@ -276,21 +266,16 @@ char PartData::readValue(ifstream& inputStream, char cell[])
 	cell[j] = '\0';
 	return(getChar);
 }
-//precondition: 
-//postcondidtion: reads value of cell[j] and puts value into array of type char
 
 //Accessors
-
 	int PartData::getPartQuant(int i)
 	{
 		return(PI.partQuant[i]);
 	}
-
 	int PartData::getLowQuant(int i)
 	{
 		return(PI.LowQuant[i]);
 	}
-
 	string PartData::getModelNumber(int i)
 	{
 		return(PI.ModelNumber[i]);
@@ -299,91 +284,82 @@ char PartData::readValue(ifstream& inputStream, char cell[])
 	{
 		return(PI.PartDescription[i]);
 	}
-
 	string PartData::getPartType(int i)
 	{
 		return(PI.PartType[i]);
 	}
-
 	string PartData::getRoom(int i)
 	{
 		return(PL.Room[i]);
 	}
-
 	int PartData::getRack(int i)
 	{
 		return(PL.Rack[i]);
 	}
-
 	int PartData::getShelf(int i)
 	{
 		return(PL.Shelf[i]);
 	}
-
 	int PartData::getCabinet(int i)
 	{
 		return(PL.Cabinet[i]);
 	}
 	   
 	//Mutators
-	/*
-	void PartData::setPartQuant(int i)
+	void PartData::setpartQuant(int i)
 	{
-		PartQuant[i];
+		PI.partQuant[i];
 	}
-
-	void PartData::setlowQuant(int i)
+	void PartData::setLowQuant(int i)
 	{
-		LowQuant[i];
+		PI.LowQuant[i];
 	}
-	*/
+	void PartData::setModelNumber(int i)
+	{
+		PI.ModelNumber[i];
+	}
+	void PartData::setPartDescription(int i)
+	{
+		PI.PartDescription[i];
+	}
+	void PartData::setPartType(int i)
+	{
+		PI.PartType[i];
+	}
+	void PartData::setRoom(int i)
+	{
+		PL.Room[i];
+	}
+	void PartData::setRack(int i)
+	{
+		PL.Rack[i];
+	}
+	void PartData::setShelf(int i)
+	{
+		PL.Shelf[i];
+	}
+	void PartData::setCabinet(int i)
+	{
+		PL.Cabinet[i];
+	}
 
 PartData::PartData()
 {
-	
+	fetchFileData();// pulling in CSV file
+	lowamnt();
 }
 
 PartData::~PartData()
 {
+	PushFileData();
+
+	delete[] PI.PartDescription;
+	delete[] PI.PartType;
+	delete[] PI.ModelNumber;
+	delete[] PL.Room;
+	delete[] PL.Rack;
+	delete[] PL.Shelf;
+	delete[] PL.Cabinet;
+	delete[] PI.partQuant;
+	delete[] PI.LowQuant;
 }
-
-
-
-
-
-/*void PartData::PrintList()
-{
-{
-int choice;
-cout << "Type 1 if you would like to save this part information: ";
-cin >> choice;
-if (choice == 1)
-{
-partInfo.open("Datasheet.txt");
-if (partInfo.fail())
-{
-cout << "File failed to open";
-char wait;
-cin >> wait;
-exit(1);
-}
-
-partInfo << partNumber << " " << PI.PartDescription[partNumber - 1] << " " << PI.PartType[partNumber - 1]
-<< " " << PI.partQuant[partNumber - 1] << " " << PL.Room[partNumber - 1] << " " << PL.Rack[partNumber - 1]
-<< " " << PL.Shelf[partNumber - 1] << " " << PL.Cabinet[partNumber - 1];
-
-partInfo.close();
-}
-
-} while (partNumber != 0);
-}
-//precondition:
-//postcondidtion:
-*/
-
-
-/*void PartData::setlowQuant(int i)//Mutator
-{
-LowQuant[i] ;
-}
-*/

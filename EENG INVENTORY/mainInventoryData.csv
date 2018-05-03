@@ -1,95 +1,80 @@
  Number,Model Number,Description,Type,Quantity,Low Quantity,Room,Rack,Shelf,Cabinet
-1,7400,quad 2 input NAND gate,IC,8,5,L02,3,2,20
-2,7402,quad 2 input NOR gate,IC,9,5,L02,3,2,20
-3,7403,quad 2 input NAND gate open collector outputs,IC,12,5,L02,3,2,20
+1,7400,quad 2-input NAND gate,IC,8,5,L02,3,2,20
+2,7402,quad 2-input NOR gate,IC,9,5,L02,3,2,20
+3,7403,quad 2-input NAND gate  open collector outputs,IC,12,5,L02,3,2,20
 4,7404,hex inverter,IC,5,5,L02,3,2,20
-5,7406,hex inverter buffer driver 30 V open collector outputs,IC,10,5,L02,3,2,20
-6,7408,quad 2 input AND gate,IC,5,5,L02,3,2,20
-7,7409,quad 2 input AND gate open collector outputs,IC,7,5,L02,3,2,20
-8,7410,triple 3 input NAND gate,IC,8,5,L02,3,2,20
-9,7412,triple 3 input NAND gate open collector outputs,IC,14,5,L02,3,2,20
-10,7413,dual Schmitt trigger 4 input NAND gate,IC,11,5,L02,3,2,20
+5,7406,hex inverter buffer/driver  30 V open collector outputs,IC,10,5,L02,3,2,20
+6,7408,quad 2-input AND gate,IC,5,5,L02,3,2,20
+7,7409,quad 2-input AND gate  open collector outputs,IC,7,5,L02,3,2,20
+8,7410,triple 3-input NAND gate,IC,8,5,L02,3,2,20
+9,7412,triple 3-input NAND gate  open collector outputs,IC,14,5,L02,3,2,20
+10,7413,dual Schmitt trigger 4-input NAND gate,IC,11,5,L02,3,2,20
 11,7414,hex Schmitt trigger inverter,IC,8,5,L02,3,2,20
-12,7420,dual 4 input NAND gate,IC,8,5,L02,3,2,20
-13,7421,dual 4 input AND gate,IC,13,5,L02,3,2,20
-14,7427,triple 3 input NOR gate,IC,14,5,L02,3,2,20
-15,7430,8 input NAND gate,IC,6,5,L02,3,2,20
-16,7432,quad 2 input OR gate,IC,10,5,L02,3,2,20
-17,7433,quad 2 input NOR buffer open collector outputs,IC,6,5,L02,3,2,20
-18,7437,quad 2 input NAND buffer,IC,6,5,L02,3,2,20
-19,7438,quad 2 input NAND buffer open collector outputs,IC,6,5,L02,3,2,20
-20,7451,dual 2 wide 2 input AND OR invert gate,IC,9,5,L02,3,2,20
-21,7474,dual D positive edge triggered flip flop asynchronous preset and clear,IC,5,5,L02,3,2,20
-22,7485,4 bit magnitude comparator,IC,11,5,L02,3,2,20
-23,7486,quad 2 input XOR gate,IC,14,5,L02,3,2,20
-24,74109,dual J Not K positive edge triggered flip flop clear and preset,IC,9,5,L02,3,2,20
-25,74110,AND gated J K master slave flip flop data lockout,IC,7,5,L02,3,2,20
-26,74112,dual J K negative edge triggered flip flop clear and preset,IC,11,5,L02,3,2,20
-27,74123,dual retriggerable monostable multivibrator clear,IC,7,5,L02,3,2,20
-28,74125,quad bus buffer  three state outputs  negative enable,IC,11,5,L02,3,2,20
-29,74126,quad bus buffer  three state outputs  positive enable,IC,12,5,L02,3,2,20
-30,74132,quad 2 input NAND Schmitt trigger,IC,10,5,L02,3,2,20
-31,74138,3 to 8 line decoder -demultiplexer  inverting outputs,IC,7,5,L02,3,2,20
-32,74139,dual 2 to 4 line decoder -demultiplexer  inverting outputs,IC,5,5,L02,3,2,20
-33,74145,BCD to decimal decoder -driver,IC,11,5,L02,3,2,20
-34,74148,8 line to 3 line priority encoder,IC,13,5,L02,3,2,20
-35,74151,8 line to 1 line data selector -multiplexer,IC,13,5,L02,3,2,20
-36,74155,dual 2 line to 4 line decoder -demultiplexer  inverting outputs,IC,9,5,L02,3,2,20
-37,74157,quad 2 line to 1 line data selector -multiplexer  non inverting outputs,IC,11,5,L02,3,2,20
-38,74161,synchronous presettable 4 bit binary counter  asynchronous clear,IC,7,5,L02,3,2,20
-39,74162,synchronous presettable 4 bit decade counter  synchronous clear,IC,10,5,L02,3,2,20
-40,74163,synchronous presettable 4 bit binary counter  synchronous clear,IC,6,5,L02,3,2,20
-41,74164,8 bit parallel out serial shift register  asynchronous clear,IC,12,5,L02,3,2,20
-42,74165,8 bit serial shift register  parallel load  complementary outputs,IC,5,5,L02,3,2,20
-43,74166,parallel load 8 bit shift register,IC,10,5,L02,3,2,20
-44,74174,hex D flip flop  common asynchronous clear,IC,7,5,L02,3,2,20
-45,74175,quad D edge triggered flip flop  complementary outputs and asynchronous clear,IC,6,5,L02,3,2,20
-46,74193,synchronous presettable up -down 4 bit binary counter  clear,IC,7,5,L02,3,2,21
+12,7420,dual 4-input NAND gate,IC,12,5,L02,3,2,20
+13,7421,dual 4-input AND gate,IC,13,5,L02,3,2,20
+14,7427,triple 3-input NOR gate,IC,14,5,L02,3,2,20
+15,7430,8-input NAND gate,IC,6,5,L02,3,2,20
+16,7432,quad 2-input OR gate,IC,10,5,L02,3,2,20
+17,7433,quad 2-input NOR buffer  open collector outputs,IC,6,5,L02,3,2,20
+18,7437,quad 2-input NAND buffer,IC,6,5,L02,3,2,20
+19,7438,quad 2-input NAND buffer  open collector outputs,IC,6,5,L02,3,2,20
+20,7451,dual 2-wide 2-input AND-OR-invert gate,IC,9,5,L02,3,2,20
+21,7474,dual D positive edge triggered flip-flop  asynchronous preset and clear,IC,5,5,L02,3,2,20
+22,7485,4-bit magnitude comparator,IC,11,5,L02,3,2,20
+23,7486,quad 2-input XOR gate,IC,14,5,L02,3,2,20
+24,74109,dual J-Not-K positive-edge-triggered flip-flop  clear and preset,IC,9,5,L02,3,2,20
+25,74110,AND-gated J-K master-slave flip-flop  data lockout,IC,7,5,L02,3,2,20
+26,74112,dual J-K negative-edge-triggered flip-flop  clear and preset,IC,11,5,L02,3,2,20
+27,74123,dual retriggerable monostable multivibrator  clear,IC,7,5,L02,3,2,20
+28,74125,quad bus buffer  three-state outputs  negative enable,IC,11,5,L02,3,2,20
+29,74126,quad bus buffer  three-state outputs  positive enable,IC,12,5,L02,3,2,20
+30,74132,quad 2-input NAND Schmitt trigger,IC,10,5,L02,3,2,20
+31,74138,3 to 8-line decoder/demultiplexer  inverting outputs,IC,7,5,L02,3,2,20
+32,74139,dual 2 to 4-line decoder/demultiplexer  inverting outputs,IC,5,5,L02,3,2,20
+33,74145,BCD to decimal decoder/driver,IC,11,5,L02,3,2,20
+34,74148,8-line to 3-line priority encoder,IC,13,5,L02,3,2,20
+35,74151,8-line to 1-line data selector/multiplexer,IC,13,5,L02,3,2,20
+36,74155,dual 2-line to 4-line decoder/demultiplexer  inverting outputs,IC,9,5,L02,3,2,20
+37,74157,quad 2-line to 1-line data selector/multiplexer  non-inverting outputs,IC,11,5,L02,3,2,20
+38,74161,synchronous presettable 4-bit binary counter  asynchronous clear,IC,7,5,L02,3,2,20
+39,74162,synchronous presettable 4-bit decade counter  synchronous clear,IC,10,5,L02,3,2,20
+40,74163,synchronous presettable 4-bit binary counter  synchronous clear,IC,6,5,L02,3,2,20
+41,74164,8-bit parallel-out serial shift register  asynchronous clear,IC,12,5,L02,3,2,20
+42,74165,8-bit serial shift register  parallel load  complementary outputs,IC,5,5,L02,3,2,20
+43,74166,parallel-load 8-bit shift register,IC,10,5,L02,3,2,20
+44,74174,hex D flip-flop  common asynchronous clear,IC,7,5,L02,3,2,20
+45,74175,quad D edge-triggered flip-flop  complementary outputs and asynchronous clear,IC,6,5,L02,3,2,20
+46,74193,synchronous presettable up/down 4-bit binary counter  clear,IC,7,5,L02,3,2,21
 47,74221,dual monostable multivibrator  Schmitt trigger input,IC,9,5,L02,3,2,21
-48,74237,3 of 8 decoder -demultiplexer  address latch  active high outputs,IC,8,5,L02,3,2,21
-49,74241,octal buffer  non inverting three state outputs,IC,6,5,L02,3,2,21
-50,74242,quad bus transceiver  inverting three state outputs,IC,13,5,L02,3,2,21
-51,74243,quad bus transceiver  non inverting three state outputs,IC,14,5,L02,3,2,21
-52,74245,octal bus transceiver  non inverting three state outputs,IC,9,5,L02,3,2,21
-53,74251,8 line to 1 line data selector -multiplexer  complementary three state outputs,IC,13,5,L02,3,2,21
-54,74253,dual 4 line to 1 line data selector -multiplexer  three state outputs,IC,6,5,L02,3,2,21
-55,74258,quad 2 line to 1 line data selector -multiplexer  inverting three state outputs,IC,13,5,L02,3,2,21
-56,74259,8 bit addressable latch,IC,13,5,L02,3,2,21
-57,74273,8 bit register  asynchronous clear,IC,6,5,L02,3,2,21
-58,74279,quad set reset latch,IC,12,5,L02,3,2,21
-59,74280,9 bit odd -even parity bit generator -checker,IC,11,5,L02,3,2,21
-60,74293,4 bit binary counter (separate divide by 2 and divide by 8 sections),IC,5,5,L02,3,2,21
-61,74321,crystal controlled oscillators  F -2 and F -4 count down outputs,IC,6,5,L02,3,2,21
-62,74366,hex buffer  inverting three state outputs,IC,8,5,L02,3,2,21
-63,74367,hex buffer  non inverting three state outputs,IC,9,5,L02,3,2,21
-64,74368,hex buffer  inverting three state outputs,IC,5,5,L02,3,2,21
-65,74373,octal transparent latch  three state outputs,IC,7,5,L02,3,2,21
-66,74374,octal register  three state outputs,IC,7,5,L02,3,2,21
-67,74379,4 bit register  clock enable and complementary outputs,IC,11,5,L02,3,2,21
-68,74393,dual 4 bit binary counter,IC,6,5,L02,3,2,21
-69,10,10 ohm  1 -4W  5% resistor,RS,12,5,L02,4,3,35
-70,47,47 ohm  1 -4W  5% resistor,RS,5,5,L02,4,3,35
-71,56,56 ohm  1 -4W  5% resistor,RS,10,5,L02,4,3,35
-72,82,82 ohm  1 -4W  5% resistor,RS,5,5,L02,4,3,35
-73,150,150 ohm  1 -4W  5% resistor,RS,7,5,L02,4,3,35
-74,220,220 ohm  1 -4W  5% resistor,RS,8,5,L02,4,3,35
-75,270,270 ohm  1 -4W  5% resistor,RS,14,5,L02,4,3,35
-76,330,330 ohm  1 -4W  5% resistor,RS,11,5,L02,4,3,35
-77,470,470 ohm  1 -4W  5% resistor,RS,8,5,L02,4,3,35
-78,1K,1K ohm  1 -4W  5% resistor,RS,8,5,L02,4,3,35
-79,1.2K,1.2K ohm  1 -4W  5% resistor,RS,13,5,L02,4,3,35
-80,1.5K,1.5K ohm  1 -4W  5% resistor,RS,14,5,L02,4,3,35
-81,2K,2K ohm  1 -4W  5% resistor,RS,6,5,L02,4,3,35
-82,2.2K,2.2K ohm  1 -4W  5% resistor,RS,10,5,L02,4,3,35
-83,2.7K,2.7K ohm  1 -4W  5% resistor,RS,6,5,L02,4,3,35
-84,3.3K,3.3K ohm  1 -4W  5% resistor,RS,6,5,L02,4,3,35
-85,3.9K,3.9K ohm  1 -4W  5% resistor,RS,6,5,L02,4,3,35
-86,4.7K,4.7K ohm  1 -4W  5% resistor,RS,9,5,L02,4,3,35
-87,5K,5K ohm  1 -4W  5% resistor,RS,5,5,L02,4,3,35
-88,475,Tektronix 475 Osciloscope,EQ,1,1,L02,9,4,0
-89,2465,Tektronix 2465 Osciloscope,EQ,1,1,L02,9,4,0
-90,240 C,Power Resistor Decade Box,EQ,1,1,L02,2,3,0
-91,,D Pin Crimp Male,CN,5,5,L01,12,2,47
-92,,D Pin Crimp Female,CN,6,5,L01,12,2,47
-93,,L ZIF Pin Crimp,CN,7,5,L01,12,2,47
-94,,Square Pin Crimp,CN,8,5,L01,12,2,47
+48,74237,3-of-8 decoder/demultiplexer  address latch  active high outputs,IC,8,5,L02,3,2,21
+49,74241,octal buffer  non-inverting three-state outputs,IC,6,5,L02,3,2,21
+50,74242,quad bus transceiver  inverting three-state outputs,IC,13,5,L02,3,2,21
+51,74243,quad bus transceiver  non-inverting three-state outputs,IC,14,5,L02,3,2,21
+52,74245,octal bus transceiver  non-inverting three-state outputs,IC,9,5,L02,3,2,21
+53,74251,8-line to 1-line data selector/multiplexer  complementary three-state outputs,IC,13,5,L02,3,2,21
+54,74253,dual 4-line to 1-line data selector/multiplexer  three-state outputs,IC,6,5,L02,3,2,21
+55,74258,quad 2-line to 1-line data selector/multiplexer  inverting three-state outputs,IC,13,5,L02,3,2,21
+56,74259,8-bit addressable latch,IC,13,5,L02,3,2,21
+57,74273,8-bit register  asynchronous clear,IC,6,5,L02,3,2,21
+58,74279,quad set-reset latch,IC,12,5,L02,3,2,21
+59,74280,9-bit odd/even parity bit generator/checker,IC,11,5,L02,3,2,21
+60,74293,4-bit binary counter (separate divide-by-2 and divide-by-8 sections),IC,5,5,L02,3,2,21
+61,74321,crystal-controlled oscillators  F/2 and F/4 count-down outputs,IC,6,5,L02,3,2,21
+62,74366,hex buffer  inverting three-state outputs,IC,8,5,L02,3,2,21
+63,74367,hex buffer  non-inverting three-state outputs,IC,9,5,L02,3,2,21
+64,74368,hex buffer  inverting three-state outputs,IC,5,5,L02,3,2,21
+65,74373,octal transparent latch  three-state outputs,IC,7,5,L02,3,2,21
+66,74374,octal register  three-state outputs,IC,7,5,L02,3,2,21
+67,74379,4-bit register  clock enable and complementary outputs,IC,11,5,L02,3,2,21
+68,74393,dual 4-bit binary counter,IC,6,5,L02,3,2,21
+69,10,10 ohm  1/4W  5% resistor,RS,12,5,L02,4,3,35
+70,47,47 ohm  1/4W  5% resistor,RS,5,5,L02,4,3,35
+71,56,56 ohm  1/4W  5% resistor,RS,10,5,L02,4,3,35
+72,82,82 ohm  1/4W  5% resistor,RS,5,5,L02,4,3,35
+73,150,150 ohm  1/4W  5% resistor,RS,7,5,L02,4,3,35
+74,220,220 ohm  1/4W  5% resistor,RS,8,5,L02,4,3,35
+75,270,270 ohm  1/4W  5% resistor,RS,14,5,L02,4,3,35
+76,330,330 ohm  1/4W  5% resistor,RS,11,5,L02,4,3,35
+77,470,470 ohm  1/4W  5% resistor,RS,8,5,L02,4,3,35
+78,1K,1K ohm  1/4W  5% resistor,RS,8,5,L02,4,3,35
+79,1.2K,1.2K ohm  1/4W  5% resistor,RS,13,5,L02,4,3,35

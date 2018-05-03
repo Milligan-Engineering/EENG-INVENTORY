@@ -2,7 +2,7 @@
 //Author: Sam Wehner
 //EENG 221
 //sjwehner@my.milligan.edu
-//program if an inventory system that will be used to monitor and maintain quantities, locactions, and names of stored parts.
+//program is an inventory system that will be used to monitor and maintain information of stored parts.
 //Last modified 05/02/2018
 
 #include "stdafx.h"
@@ -11,17 +11,9 @@
 #include <cstdlib>
 
 using namespace std;
-
 	int main()
 	{
 		PartData PartDataObject;// main class
-
-		PartDataObject.fetchFileData();// pulling in CSV file
-
-		
-		PartDataObject.lowamnt();
-		cout << "\n";
-
 		char menuChoice;
 		do
 		{
@@ -33,7 +25,6 @@ using namespace std;
 			cout << "To exit press E\n\n";
 
 			cin >> menuChoice;
-
 			switch (menuChoice)
 			{
 			case 'P':
@@ -42,16 +33,15 @@ using namespace std;
 				{
 					PartDataObject.PartRemoval();
 				}
-
 				break;
+
 			case 'I':
 			case 'i':
 				PartDataObject.partIndex();//prints list off all parts contained in the CSV
 				break;
 
-			case 'S'://Specific type search
+			case 'S':
 			case 's':
-				//string choice;
 				PartDataObject.SPSearch();
 				break;
 
@@ -65,7 +55,6 @@ using namespace std;
 
 			}
 		} while ((menuChoice != 'E') && (menuChoice != 'e'));
-		PartDataObject.PushFileData();
 		return 0;
 	}
 
