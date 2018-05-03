@@ -20,7 +20,7 @@ using namespace std;
 
 		
 		PartDataObject.lowamnt();
-		cout << "\n\n";
+		cout << "\n";
 
 		char menuChoice;
 		do
@@ -28,8 +28,8 @@ using namespace std;
 			cout << endl;
 			cout << "What would you like to do today? \n\n";
 			cout << "To find a part press P\n";
-			cout << "To access part list press I \n";
 			cout << "To find type index press S\n";
+			cout << "To access part list press I \n";
 			cout << "To exit press E\n\n";
 
 			cin >> menuChoice;

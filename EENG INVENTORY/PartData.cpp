@@ -1,9 +1,8 @@
+
 #include "PartData.h"
-#include "stdafx.h"
-#include <fstream>
-#include <cstdlib>
 
 using namespace std;
+
 //main functions
 void PartData::PartRemoval()
 {
@@ -34,7 +33,7 @@ void PartData::lowamnt()
 		if (PI.partQuant[i] <= PI.LowQuant[i])
 		{
 			cout << "**WARNING**\n " << " Part number " << i+1  << " " << PI.PartDescription[i] << " " << PI.PartType[i] << " in Room " << PL.Room[i]
-				<< " Rack " << PL.Rack[i] << " Shelf " << PL.Shelf[i] << " Cabinet " << PL.Cabinet[i] << " has " << PI.partQuant[i] << " pieces left.\n";
+				<< " Rack " << PL.Rack[i] << " Shelf " << PL.Shelf[i] << " Cabinet " << PL.Cabinet[i] << " has " << PI.partQuant[i] << " pieces left.\n\n";
 		}
 	}
 }
@@ -81,56 +80,43 @@ int PartData::partFind()
 
 			cout << "Name: " << PI.PartDescription[partNumber - 1] << "\n";
 
-			cout << "Description: " << PI.PartType[partNumber - 1] << " " << "/n" << "Model Number: " << PI.ModelNumber[partNumber - 1] << "\n";
+			cout << "Description: " << PI.PartType[partNumber - 1] << " " << "\n" << "Model Number: " << PI.ModelNumber[partNumber - 1] << "\n";
 
-			cout << " Room: " << PL.Room[partNumber - 1] << " Rack:" << " " << PL.Rack[partNumber - 1] << " Shelf:"
-				<< " " << PL.Shelf[partNumber - 1] << " Cabinet:" << " " << PL.Cabinet[partNumber - 1] << " " << "\n\n";
+			cout << "Room: " << PL.Room[partNumber - 1] << " Rack:" << " " << PL.Rack[partNumber - 1] << " Shelf:"
+				<< " " << PL.Shelf[partNumber - 1] << " Cabinet:" << " " << PL.Cabinet[partNumber - 1] << " " << "Quantity: " << PI.partQuant[partNumber - 1] << " pcs" << "\n\n";
 
-			cout << "Quantity: " << PI.partQuant[partNumber - 1] << " pcs" << "\n\n";
+			 
 		}
 	}
 	return(partNumber);
 }
 
 
-int PartData::getPartQuant(int i)//accessor
-{
-	return(PI.partQuant[i]);
-}
-
 void PartData::SPSearch()
 {
-	char type[3];
+	string type;
 	cout << "CN " << "connector" << "\n" << "EQ " << "Equipment" << "\n" << "RS " << "Resistor" << "\n" << "IC " << "Integrated Circuit" << "\n";
 	cout << "What type list do would you like to see?";
 
 	cin >> type;
 	
-	if ((type =="CN")|| (type =="EQ" )|| (type =="RS")||(type =="IC"))
-	{
 		for (int i = 1; i <= maxParts; i++)
 		{
 			PI.PartType[i];
 
-			if (PI.PartType[i]== type)
+			if (0==strcmp(type, PI.PartType[i]))
 			{
-
 				cout << "Part Number: " << i - 1 << "\n";
-
 				cout << "Part Name: " << PI.PartDescription[i - 1] << "\n";
-
 				cout << "Model Number: " << PI.ModelNumber[i - 1] << "\n";
-
 				cout << "Part Quantity: " << PI.partQuant[i - 1] << "\n";
-
-				cout << " Room: " << PL.Room[i - 1] << " Rack: " << " " << PL.Rack[i - 1] << " Shelf: " << " " << PL.Shelf[i - 1] << " Cabinet: " << " " << PL.Cabinet[i - 1] << " " << "\n\n";
-
+				cout << "Room: " << PL.Room[i - 1] << " Rack: " << " " << PL.Rack[i - 1] << " Shelf: " << " " << PL.Shelf[i - 1] << " Cabinet: " << " " << PL.Cabinet[i - 1] << " " << "\n\n";
 			}
 		}
-	}
+	
 }
 
-//Data in/out Functions
+//Data i/o Functions
 int PartData::PushFileData()
 {
 	ofstream outDataStream;
@@ -293,9 +279,65 @@ char PartData::readValue(ifstream& inputStream, char cell[])
 //precondition: 
 //postcondidtion: reads value of cell[j] and puts value into array of type char
 
+//Accessors
 
+	int PartData::getPartQuant(int i)
+	{
+		return(PI.partQuant[i]);
+	}
 
-//initializing
+	int PartData::getLowQuant(int i)
+	{
+		return(PI.LowQuant[i]);
+	}
+
+	string PartData::getModelNumber(int i)
+	{
+		return(PI.ModelNumber[i]);
+	}
+	string PartData::getPartDescription(int i)
+	{
+		return(PI.PartDescription[i]);
+	}
+
+	string PartData::getPartType(int i)
+	{
+		return(PI.PartType[i]);
+	}
+
+	string PartData::getRoom(int i)
+	{
+		return(PL.Room[i]);
+	}
+
+	int PartData::getRack(int i)
+	{
+		return(PL.Rack[i]);
+	}
+
+	int PartData::getShelf(int i)
+	{
+		return(PL.Shelf[i]);
+	}
+
+	int PartData::getCabinet(int i)
+	{
+		return(PL.Cabinet[i]);
+	}
+	   
+	//Mutators
+	/*
+	void PartData::setPartQuant(int i)
+	{
+		PartQuant[i];
+	}
+
+	void PartData::setlowQuant(int i)
+	{
+		LowQuant[i];
+	}
+	*/
+
 PartData::PartData()
 {
 	
@@ -305,11 +347,8 @@ PartData::~PartData()
 {
 }
 
-/*void PartData::setlowQuant(int i)//Mutator
-{
-LowQuant[i] ;
-}
-*/
+
+
 
 
 /*void PartData::PrintList()

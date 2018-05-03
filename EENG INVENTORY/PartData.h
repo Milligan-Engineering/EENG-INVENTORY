@@ -62,11 +62,11 @@ public:
 	//precondition: user types in part #
 	//postcondidtion: the function returns all information asocciated with that part
 	
-	int getPartQuant(int i);
+	
 
 	void SPSearch();
 
-	//void setlowQuant(int i);
+	
 
 	//Data Transfer Functions
 	int PushFileData();
@@ -75,8 +75,23 @@ public:
 
 	char readValue(ifstream& inputStream, char cell[]);
 
+
 	int fetchFileData();
 	//precondition: program starts
 	//postcondidtion: brings in all information in the external CSV
 	
+	//Accessors
+	int getPartQuant(int i);
+	int getLowQuant(int i);
+	string getModelNumber(int i);
+	string getPartDescription(int i);
+	string getPartType(int i);
+	string getRoom(int i);
+	int getRack(int i);
+	int getShelf(int i);
+	int getCabinet(int i);
+
+//Mutators
+//void setlowQuant(int i);
+
 };
