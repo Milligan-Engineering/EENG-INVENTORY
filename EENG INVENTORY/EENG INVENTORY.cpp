@@ -7,6 +7,8 @@
 
 #include "stdafx.h"
 #include "PartData.h"
+#include <fstream>
+#include <cstdlib>
 
 using namespace std;
 

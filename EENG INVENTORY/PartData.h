@@ -1,5 +1,7 @@
 #pragma once
 #include "stdafx.h"
+#include <fstream>
+#include <cstdlib>
 
 using namespace std;
 //pointers

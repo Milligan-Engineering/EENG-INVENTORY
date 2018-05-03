@@ -1,6 +1,7 @@
 #include "PartData.h"
 #include "stdafx.h"
-
+#include <fstream>
+#include <cstdlib>
 
 using namespace std;
 //main functions
