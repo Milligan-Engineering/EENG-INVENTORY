@@ -178,7 +178,11 @@ int PartData::fetchFileData()
 		{
 			getChar = readValue(inDataStream, testArray);
 		}
-		getChar = readValue(inDataStream, testArray);
+	// Problem right here. The statement below reads the 11th value for each part.
+	// Since there are only 10, the while statement is counting to few parts
+	// and maxParts is too low - 66 instead of 72.  When commented out maxParts = 73 - one too many.
+	//	getChar = readValue(inDataStream, testArray);
+
 		if (!inDataStream.eof())
 		{
 			j++;
@@ -195,7 +199,7 @@ int PartData::fetchFileData()
 		return(1);
 	}
 
-	maxParts = j;
+	maxParts = j-1;
 
 	PI.PartDescription = new string[maxParts];
 	PI.PartType = new string[maxParts];

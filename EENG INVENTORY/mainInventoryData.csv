@@ -32,7 +32,7 @@
 31,74138,3 to 8-line decoder/demultiplexer  inverting outputs,IC,7,5,L02,3,2,20
 32,74139,dual 2 to 4-line decoder/demultiplexer  inverting outputs,IC,5,5,L02,3,2,20
 33,74145,BCD to decimal decoder/driver,IC,11,5,L02,3,2,20
-34,74148,8-line to 3-line priority encoder,IC,13,5,L02,3,2,20
+34,74148,8-line to 3-line priority encoder,IC,10,5,L02,3,2,20
 35,74151,8-line to 1-line data selector/multiplexer,IC,13,5,L02,3,2,20
 36,74155,dual 2-line to 4-line decoder/demultiplexer  inverting outputs,IC,9,5,L02,3,2,20
 37,74157,quad 2-line to 1-line data selector/multiplexer  non-inverting outputs,IC,11,5,L02,3,2,20
@@ -71,10 +71,3 @@
 70,47,47 ohm  1/4W  5% resistor,RS,5,5,L02,4,3,35
 71,56,56 ohm  1/4W  5% resistor,RS,10,5,L02,4,3,35
 72,82,82 ohm  1/4W  5% resistor,RS,5,5,L02,4,3,35
-73,150,150 ohm  1/4W  5% resistor,RS,7,5,L02,4,3,35
-74,220,220 ohm  1/4W  5% resistor,RS,8,5,L02,4,3,35
-75,270,270 ohm  1/4W  5% resistor,RS,14,5,L02,4,3,35
-76,330,330 ohm  1/4W  5% resistor,RS,11,5,L02,4,3,35
-77,470,470 ohm  1/4W  5% resistor,RS,8,5,L02,4,3,35
-78,1K,1K ohm  1/4W  5% resistor,RS,8,5,L02,4,3,35
-79,1.2K,1.2K ohm  1/4W  5% resistor,RS,13,5,L02,4,3,35
